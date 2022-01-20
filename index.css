@@ -9,9 +9,11 @@
 }
 
 .header p#selected{
-  border-bottom: 2px solid #337ab7;
-  color: #337ab7;
+  color: black;
   font-weight: bold;
+  background: #337ab7;
+  padding-left: 3px;
+  padding-right: 3px;
 }
 
 .header *{
@@ -49,7 +51,24 @@
 
 .main-right {
   border-left: 1px solid black;
-  margin-left: 10px;
-  padding-left: 10px;
+  margin-left: 30px;
+  padding-left: 30px;
   width: 50%;
+}
+
+.dummybox {
+  background-color: #efefef;
+  border-radius: 20px;
+  border: 1px solid #cccccc;
+  padding: 10px;
+}
+
+.title {
+  display: flex;
+  gap: 2em;
+}
+
+
+.footer{
+  text-align: center;
 }

@@ -6,6 +6,30 @@
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mochiy+Pop+P+One">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <script type="text/javascript">
+    function read()
+    {
+         var txtFile = new XMLHttpRequest();
+         txtFile.open("GET", "http://ebx0.github.io/content/timeline/test.txt", true);
+         txtFile.onreadystatechange = function()
+         {
+              if (txtFile.readyState === 4)
+              {
+                   // Makes sure the document is ready to parse.
+                   if (txtFile.status === 200)
+                   {
+                        // Makes sure it's found the file.
+                        document.getElementById("1").innerHTML = txtFile.responseText;
+                   }
+              }
+         }
+         txtFile.send(null)
+    }
+    read()
+    </script>
+
+
   </head>
   <body>
 
@@ -38,11 +62,18 @@
         </div>
       </div>
       <div class="main-right">
-        test
+        <h1>timeline</h1>
+        <div class="dummybox">
+          <div class="title">
+            <h2>01-2022</h2>
+            <h2>dummy-title</h2>
+          </div>
+          <p id="1">Lorem ipsum dolor sit amet. This message box will edit and shown with script. Data will taken from content/timeline</p>
+        </div>
       </div>
     </div>
     <div class="footer">
-      this github page created with 🫖 tea
+      this page created with 🫖 tea!
     </div>
 	<dix
   </body>
