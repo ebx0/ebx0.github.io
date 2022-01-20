@@ -13,32 +13,35 @@
          var txtFile = new XMLHttpRequest();
          let contentpath = "https://ebx0.github.io/content/timeline/"
          let textname = i.toString();
-         txtFile.open("GET", contentpath.concat(textname), true);
+         txtFile.open("GET", contentpath.concat(textname).concat(".txt"), true);
          txtFile.onreadystatechange = function()
          {
               if (txtFile.readyState === 4)
               {
                    if (txtFile.status === 200)
                    {
-                      const data = txtFile.responseText.split("***")
-                      for (let l = data.length-1; l > 0; l--)
-                      document.body.onload = addElement;
+                      const len = txtFile.responseText.split("***").length-1
+                      for (let l = len; l > 0; l--){
+                        var text = txtFile.responseText.split("***")[l-1].toString()
+                        console.log(l);
 
-                      function addElement () {
-                      const newDiv = document.createElement("div");
-                      const newText = document.createTextNode(data(l).split("Content=",0));
-                      newDiv.className = "textbox";
+                        function addElement () {
+                          const newDiv = document.createElement("div");
+                          const newText = document.createTextNode(text.split("Content=")[1]);
+                          newDiv.className = "textbox";
 
-                      const newTitle = document.createElement("h2");
-                      const newTitleText = document.createTextNode(data(l).split("Content=",1));
+                          const newTitle = document.createElement("h2");
+                          const newTitleText = document.createTextNode(text.split("Content=")[0].split("Title=")[1]);
 
-                      newTitle.appendChild(newTitleText);
-                      newDiv.appendChild(newTitle);
-                      newDiv.appendChild(newText);
+                          newTitle.appendChild(newTitleText);
+                          newDiv.appendChild(newTitle);
+                          newDiv.appendChild(newText);
 
-                      const currentDiv = document.getElementById("textboxs");
-                      currentDiv.appendChild(newDiv)
-                      }
+                          const currentDiv = document.getElementById("textboxs");
+                          currentDiv.appendChild(newDiv)
+                        }
+                      addElement();
+                    }
                    }
               }
          }
@@ -83,13 +86,6 @@
       </div>
       <div class="main-right" id="textboxs">
         <h1>timeline</h1>
-
-        <div class="textbox" id="div-0001">
-          <h2 id="h2-0001">dummy-title</h2>
-          <p id="ptext-0001">Lorem ipsum dolor sit amet. This message box will edit and shown with script. Data will taken from content/timeline</p>
-        </div>
-
-
       </div>
     </div>
     <div class="footer">
