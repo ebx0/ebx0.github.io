@@ -8,25 +8,45 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
     <script type="text/javascript">
-    function read()
+    function read(i)
     {
          var txtFile = new XMLHttpRequest();
-         txtFile.open("GET", "http://ebx0.github.io/content/timeline/test.txt", true);
+         let contentpath = "https://ebx0.github.io/content/timeline/"
+         let textname = i.toString();
+         txtFile.open("GET", contentpath.concat(textname), true);
          txtFile.onreadystatechange = function()
          {
               if (txtFile.readyState === 4)
               {
-                   // Makes sure the document is ready to parse.
                    if (txtFile.status === 200)
                    {
-                        // Makes sure it's found the file.
-                        document.getElementById("1").innerHTML = txtFile.responseText;
+                      const data = txtFile.responseText.split("***")
+                      for (let l = data.length-1; l > 0; l--)
+                      document.body.onload = addElement;
+
+                      function addElement () {
+                      const newDiv = document.createElement("div");
+                      const newText = document.createTextNode(data(l).split("Content=",0));
+                      newDiv.className = "textbox";
+
+                      const newTitle = document.createElement("h2");
+                      const newTitleText = document.createTextNode(data(l).split("Content=",1));
+
+                      newTitle.appendChild(newTitleText);
+                      newDiv.appendChild(newTitle);
+                      newDiv.appendChild(newText);
+
+                      const currentDiv = document.getElementById("textboxs");
+                      currentDiv.appendChild(newDiv)
+                      }
                    }
               }
          }
          txtFile.send(null)
     }
-    read()
+    for (let i = 2030; i > 2020; i--) {
+      read(i)
+    }
     </script>
 
 
@@ -61,15 +81,15 @@
           </ul>
         </div>
       </div>
-      <div class="main-right">
+      <div class="main-right" id="textboxs">
         <h1>timeline</h1>
-        <div class="dummybox">
-          <div class="title">
-            <h2>01-2022</h2>
-            <h2>dummy-title</h2>
-          </div>
-          <p id="1">Lorem ipsum dolor sit amet. This message box will edit and shown with script. Data will taken from content/timeline</p>
+
+        <div class="textbox" id="div-0001">
+          <h2 id="h2-0001">dummy-title</h2>
+          <p id="ptext-0001">Lorem ipsum dolor sit amet. This message box will edit and shown with script. Data will taken from content/timeline</p>
         </div>
+
+
       </div>
     </div>
     <div class="footer">

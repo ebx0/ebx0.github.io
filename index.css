@@ -56,16 +56,11 @@
   width: 50%;
 }
 
-.dummybox {
+.textbox {
   background-color: #efefef;
   border-radius: 20px;
   border: 1px solid #cccccc;
   padding: 10px;
-}
-
-.title {
-  display: flex;
-  gap: 2em;
 }
 
 
