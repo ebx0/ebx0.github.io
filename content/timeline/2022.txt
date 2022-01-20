@@ -1,0 +1,6 @@
+Title=Hello world.
+Content=01-2022 | This page created.
+***
+Title=Second Post
+Content=01-2022 | I'm still learning.
+***
