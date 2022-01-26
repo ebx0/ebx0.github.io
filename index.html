@@ -51,7 +51,7 @@
                           newDiv.appendChild(newText);
 
                           const currentDiv = document.getElementById("textboxs");
-                          currentDiv.innerHTML = '';
+                          currentDiv.removeChild(currentDiv.lastChild)
                           currentDiv.appendChild(newDiv)
                         }
                       addElement();
