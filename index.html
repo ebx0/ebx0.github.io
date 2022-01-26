@@ -55,6 +55,13 @@
 
                           const currentTitle = document.getElementById("title");
                           currentTitle.innerHTML = "timeline";
+
+                          const button1 = document.getElementById("index");
+                          button2.setAttribute("class", "selected")
+                          const button2 = document.getElementById("usefullinks");
+                          button2.setAttribute("class", "no")
+                          const button3 = document.getElementById("jpegs");
+                          button2.setAttribute("class", "no")
                         }
                       addElement();
                     }
@@ -111,6 +118,13 @@
 
                           const currentTitle = document.getElementById("title");
                           currentTitle.innerHTML = "wormholes";
+
+                          const button1 = document.getElementById("index");
+                          button2.setAttribute("class", "no")
+                          const button2 = document.getElementById("usefullinks");
+                          button2.setAttribute("class", "selected")
+                          const button3 = document.getElementById("jpegs");
+                          button2.setAttribute("class", "no")
                         }
                       addElement();
                       }
@@ -139,7 +153,7 @@
 
 
     <div class="header">
-      <a onclick="read1();" class="selected" id="selected" href="#">index.html</a>
+      <a onclick="read1();" class="selected" id="index" href="#">index.html</a>
       <a onclick="read2();" class="no" id="usefullinks" href="#">useful links</button>
       <a onclick="read3();" class="no" id="jpegs" href="#">jpeg archive</a>
     </div>
