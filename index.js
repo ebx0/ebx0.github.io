@@ -143,7 +143,7 @@ function read3()
 
                       const newLink = document.createElement("img");
                       newLink.setAttribute("src", text.split("Desc=")[0].split("Link=")[1]);
-                      newLink.setAttribute("onClick()", "window.open(this.src)");
+                      newLink.setAttribute("onclick", "window.open(this.src)");
 
                       const newDesc = document.createElement("p");
                       const newDescText = document.createTextNode(text.split("Link=")[1].split("Desc=")[1]);
