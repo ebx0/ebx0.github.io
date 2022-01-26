@@ -7,11 +7,24 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mochiy+Pop+P+One">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
+
+
+
+
+
+
+
+
+
+
+
     <script type="text/javascript">
-    function read(i)
+
+
+    function read1b(i)
     {
          var txtFile = new XMLHttpRequest();
-         let contentpath = "https://ebx0.github.io/content/timeline/"
+         let contentpath = "https://raw.githubusercontent.com/ebx0/ebx0.github.io/main/content/timeline"
          let textname = i.toString();
          txtFile.open("GET", contentpath.concat(textname).concat(".txt"), true);
          txtFile.onreadystatechange = function()
@@ -47,10 +60,63 @@
          }
          txtFile.send(null)
     }
-    for (let i = 2030; i > 2020; i--) {
-      read(i)
+
+    function read1(){
+      for (let i = 2030; i > 2020; i--) {
+        read1b(i)
+      }
     }
+
+
+    function read2()
+    {
+         var txtFile = new XMLHttpRequest();
+         txtFile.open("GET", "https://raw.githubusercontent.com/ebx0/ebx0.github.io/main/content/useful/links.txt", true);
+         txtFile.onreadystatechange = function()
+         {
+              if (txtFile.readyState === 4)
+              {
+                   if (txtFile.status === 200)
+                   {
+                      const len = txtFile.responseText.split("***").length-1
+                      for (let l = len; l > 0; l--){
+                        var text = txtFile.responseText.split("***")[l-1].toString()
+                        console.log(l);
+
+                        function addElement () {
+                          const newDiv = document.createElement("div");
+                          newDiv.className = "linkbox";
+
+                          const newLink = document.createElement("a");
+                          newLink.innerHTML = text.split("Desc=")[0].split("Link=")[1].split("https://")[1];
+                          newLink.setAttribute("href", text.split("Desc=")[0].split("Link=")[1]);
+                          newLink.setAttribute("target", "_blank");
+
+                          const newDesc = document.createElement("p");
+                          const newDescText = document.createTextNode(text.split("Link=")[1].split("Desc=")[1]);
+
+                          newDesc.appendChild(newDescText);
+                          newDiv.appendChild(newLink);
+                          newDiv.appendChild(newDesc);
+
+                          const currentDiv = document.getElementById("textboxs");
+                          currentDiv.appendChild(newDiv)
+                        }
+                      addElement();
+                      }
+                   }
+              }
+         }
+         txtFile.send(null)
+    }
+
     </script>
+
+
+
+
+
+
 
 
   </head>
@@ -65,7 +131,7 @@
 
     <div class="header">
       <p id="selected">index.html</p>
-      <a href="useful.html">useful links</a>
+      <button onclick="read2();" id="usefullinks">useful links</button>
       <a href="archive.html">jpeg archive</a>
     </div>
     <div class="main">

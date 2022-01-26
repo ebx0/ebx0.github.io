@@ -11,7 +11,7 @@
     function read()
     {
          var txtFile = new XMLHttpRequest();
-         txtFile.open("GET", "https://ebx0.github.io/content/useful/links.txt", true);
+         txtFile.open("GET", "https://raw.githubusercontent.com/ebx0/ebx0.github.io/main/content/useful/links.txt", true);
          txtFile.onreadystatechange = function()
          {
               if (txtFile.readyState === 4)
@@ -28,11 +28,12 @@
                           newDiv.className = "linkbox";
 
                           const newLink = document.createElement("a");
-                          newLink.innerHTML = text.split("Desc=")[0].split("Link=")[1];
-                          newLink.setAttribute("href", text.split("Desc=")[0].split("Link=")[1].split("https://")[1]);
+                          newLink.innerHTML = text.split("Desc=")[0].split("Link=")[1].split("https://")[1];
+                          newLink.setAttribute("href", text.split("Desc=")[0].split("Link=")[1]);
+                          newLink.setAttribute("target", "_blank");
 
                           const newDesc = document.createElement("p");
-                          const newDescText = document.createTextNode(text.split("Link=")[1]);
+                          const newDescText = document.createTextNode(text.split("Link=")[1].split("Desc=")[1]);
 
                           newDesc.appendChild(newDescText);
                           newDiv.appendChild(newLink);
