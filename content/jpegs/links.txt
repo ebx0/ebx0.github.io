@@ -1,3 +1,9 @@
 Link=https://i.imgur.com/SyqPNlt.jpeg
-Desc=A horse eats a cat
+Desc=a horse eats a cat
+***
+Link=https://i.hizliresim.com/gx0d0ye.png
+Desc=a dog i found on internet
+***
+Link=https://i.hizliresim.com/qiigpd9.png
+Desc=eycan making a tea
 ***

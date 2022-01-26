@@ -39,6 +39,23 @@ body{
   border-radius: 30px;
 }
 
+.jpegboxs {
+  display: flex;
+  flex-direction: row;
+}
+
+.jpegbox {
+  background-color: #efefef;
+  border-radius: 5px;
+  border: 1px solid #cccccc;
+  padding: 5px;
+  display: inline-block;
+}
+
+img {
+  height: 300px;
+}
+
 .info-box{
   display: flex;
   flex-direction: column;
