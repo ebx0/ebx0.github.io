@@ -24,7 +24,7 @@
     function read1b(i)
     {
          var txtFile = new XMLHttpRequest();
-         let contentpath = "https://raw.githubusercontent.com/ebx0/ebx0.github.io/main/content/timeline"
+         let contentpath = "https://raw.githubusercontent.com/ebx0/ebx0.github.io/main/content/timeline/"
          let textname = i.toString();
          txtFile.open("GET", contentpath.concat(textname).concat(".txt"), true);
          txtFile.onreadystatechange = function()
@@ -51,8 +51,10 @@
                           newDiv.appendChild(newText);
 
                           const currentDiv = document.getElementById("textboxs");
-                          currentDiv.removeChild(currentDiv.lastChild)
-                          currentDiv.appendChild(newDiv)
+                          currentDiv.appendChild(newDiv);
+
+                          const currentTitle = document.getElementById("title");
+                          currentTitle.innerHTML = "timeline";
                         }
                       addElement();
                     }
@@ -63,6 +65,8 @@
     }
 
     function read1(){
+      const currentDiv = document.getElementById("textboxs");
+      currentDiv.innerHTML="";
       for (let i = 2030; i > 2020; i--) {
         read1b(i)
       }
@@ -71,6 +75,8 @@
 
     function read2()
     {
+        const currentDiv = document.getElementById("textboxs");
+        currentDiv.innerHTML="";
          var txtFile = new XMLHttpRequest();
          txtFile.open("GET", "https://raw.githubusercontent.com/ebx0/ebx0.github.io/main/content/useful/links.txt", true);
          txtFile.onreadystatechange = function()
@@ -101,8 +107,10 @@
                           newDiv.appendChild(newDesc);
 
                           const currentDiv = document.getElementById("textboxs");
-                          currentDiv.removeChild(currentDiv.lastChild)
-                          currentDiv.appendChild(newDiv)
+                          currentDiv.appendChild(newDiv);
+
+                          const currentTitle = document.getElementById("title");
+                          currentTitle.innerHTML = "wormholes";
                         }
                       addElement();
                       }
@@ -111,7 +119,6 @@
          }
          txtFile.send(null)
     }
-
     </script>
 
 
@@ -122,7 +129,7 @@
 
 
   </head>
-  <body>
+  <body onload="read1();">
 
     <style>
       body {
@@ -132,9 +139,9 @@
 
 
     <div class="header">
-      <p id="selected">index.html</p>
-      <a onclick="read2();" id="usefullinks">useful links</a>
-      <a href="archive.html">jpeg archive</a>
+      <a onclick="read1();" class="selected" id="selected" href="#">index.html</a>
+      <a onclick="read2();" class="no" id="usefullinks" href="#">useful links</button>
+      <a onclick="read3();" class="no" id="jpegs" href="#">jpeg archive</a>
     </div>
     <div class="main">
       <div class="main-left">
@@ -152,8 +159,11 @@
           </ul>
         </div>
       </div>
-      <div class="main-right" id="textboxs">
-        <h1>timeline</h1>
+      <div class="main-right">
+        <h1 id="title">timeline</h1>
+        <div id="textboxs">
+          dummy text
+        </div>
       </div>
     </div>
     <div class="footer">
