@@ -51,6 +51,7 @@
                           newDiv.appendChild(newText);
 
                           const currentDiv = document.getElementById("textboxs");
+                          currentDiv.innerHTML = '';
                           currentDiv.appendChild(newDiv)
                         }
                       addElement();
@@ -131,7 +132,7 @@
 
     <div class="header">
       <p id="selected">index.html</p>
-      <button onclick="read2();" id="usefullinks">useful links</button>
+      <a onclick="read2();" id="usefullinks">useful links</a>
       <a href="archive.html">jpeg archive</a>
     </div>
     <div class="main">
