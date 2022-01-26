@@ -25,11 +25,11 @@
 
                         function addElement () {
                           const newDiv = document.createElement("div");
+                          newDiv.className = "linkbox";
 
                           const newLink = document.createElement("a");
                           newLink.innerHTML = text.split("Desc=")[0].split("Link=")[1];
-                          newLink.setAttribute("href", text.split("Desc=")[0].split("Link=")[1]);
-                          newDiv.className = "linkbox";
+                          newLink.setAttribute("href", text.split("Desc=")[0].split("Link=")[1].split("https://")[1]);
 
                           const newDesc = document.createElement("p");
                           const newDescText = document.createTextNode(text.split("Link=")[1]);
@@ -38,11 +38,11 @@
                           newDiv.appendChild(newLink);
                           newDiv.appendChild(newDesc);
 
-                          const currentDiv = document.getElementById("textboxs");
+                          const currentDiv = document.getElementById("linkboxs");
                           currentDiv.appendChild(newDiv)
                         }
                       addElement();
-                    }
+                      }
                    }
               }
          }
@@ -83,7 +83,7 @@
           </ul>
         </div>
       </div>
-      <div class="main-right" id="textboxs">
+      <div class="main-right" id="linkboxs">
         <h1>all content</h1>
       </div>
     </div>
