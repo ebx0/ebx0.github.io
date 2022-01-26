@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+  <head>
+    <title>ebx0's github page</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="useful.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mochiy+Pop+P+One">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <script type="text/javascript">
+    function read(i)
+    {
+         var txtFile = new XMLHttpRequest();
+         txtFile.open("GET", "https://ebx0.github.io/content/useful/links.txt", true);
+         txtFile.onreadystatechange = function()
+         {
+              if (txtFile.readyState === 4)
+              {
+                   if (txtFile.status === 200)
+                   {
+                      const len = txtFile.responseText.split("***").length-1
+                      for (let l = len; l > 0; l--){
+                        var text = txtFile.responseText.split("***")[l-1].toString()
+                        console.log(l);
+
+                        function addElement () {
+                          const newDiv = document.createElement("div");
+                          const newText = document.createTextNode(text.split("Link=")[1]);
+                          newDiv.className = "textbox";
+
+                          const newTitle = document.createElement("h2");
+                          const newTitleText = document.createTextNode(text.split("Desc=")[0].split("Link=")[1]);
+
+                          newTitle.appendChild(newTitleText);
+                          newDiv.appendChild(newTitle);
+                          newDiv.appendChild(newText);
+
+                          const currentDiv = document.getElementById("textboxs");
+                          currentDiv.appendChild(newDiv)
+                        }
+                      addElement();
+                    }
+                   }
+              }
+         }
+         txtFile.send(null)
+    }
+    for (let i = 2030; i > 2020; i--) {
+      read(i)
+    }
+    </script>
+
+
+  </head>
+  <body>
+
+    <style>
+      body {
+        font-family: "Mochiy Pop P One", sans-serif;
+      }
+    </style>
+
+
+    <div class="header">
+      <a href="index.html">index.html</a>
+      <p id="selected">useful links</p>
+      <a href="archive.html">jpeg archive</a>
+    </div>
+    <div class="main">
+      <div class="main-left">
+        <div class="photo-frame">
+          <a href="#"></a>
+        </div>
+        <div class="info-box">
+          <h1 class="name">eren bülbül</h1>
+          <ul class="info-links">
+            <a href="#">email</a><br>
+            <a href="#">github</a><br>
+            <a href="#">kaggle</a><br>
+            <a href="#">linkedin</a><br>
+            <a href="#">discord</a>
+          </ul>
+        </div>
+      </div>
+      <div class="main-right" id="textboxs">
+        <h1>all content</h1>
+      </div>
+    </div>
+    <div class="footer">
+      this page created with 🫖 tea!
+    </div>
+	<dix
+  </body>
+</html>
