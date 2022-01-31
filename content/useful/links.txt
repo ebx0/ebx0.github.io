@@ -1,7 +1,7 @@
 Link=https://math.fel.cvut.cz/en/mt/pagee1.htm
 Desc=online calculus tutor with solved examples by czech technical university in prague.
 ***
-Link=http://hansard.millbanksystems.com/
+Link=https://hansard.millbanksystems.com/
 Desc=online archive of all united kingdom parliamentary records from 1800s to the present. (old alternative)
 ***
 Link=https://hansard.parliament.uk/
