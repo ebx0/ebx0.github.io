@@ -160,7 +160,7 @@ function read3()
                       currentDiv2.appendChild(newDiv2);
 
                       const currentTitle = document.getElementById("title");
-                      currentTitle.innerHTML = "memento";
+                      currentTitle.innerHTML = "mementos";
 
                       const button1 = document.getElementById("index");
                       button1.setAttribute("class", "no")
