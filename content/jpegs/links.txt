@@ -1,9 +1,13 @@
+***
+Link=https://i.hizliresim.com/lndpagn.png
+Desc=a cute mouse from a biology book that i really like
+***
 Link=https://i.imgur.com/SyqPNlt.jpeg
-Desc=a horse eats a cat
+Desc=a horse eating a cat
 ***
 Link=https://i.hizliresim.com/gx0d0ye.png
 Desc=a dog i found on internet
 ***
 Link=https://i.hizliresim.com/qiigpd9.png
-Desc=eycan making a tea
+Desc=a tea made by eycan
 ***
