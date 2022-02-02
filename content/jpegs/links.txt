@@ -2,6 +2,9 @@
 Link=https://i.hizliresim.com/lndpagn.png
 Desc=a cute mouse from a biology book that i really like
 ***
+Link=https://i.imgur.com/Y2i3niP.jpeg
+Desc=a social distance zipper
+***
 Link=https://i.imgur.com/SyqPNlt.jpeg
 Desc=a horse eating a cat
 ***
