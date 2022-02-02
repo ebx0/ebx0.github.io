@@ -49,12 +49,22 @@ body{
   border-radius: 5px;
   border: 1px solid #cccccc;
   padding: 5px;
+  margin: 5px;
   display: inline-block;
+  height: 300px;
+
 }
 
-img {
-  height: 300px;
+.jpeg {
+  height: 90%;
 }
+
+.jpegbox p{
+  word-wrap: break-word;
+  height: 10%;
+  text-align: center;
+}
+
 
 .info-box{
   display: flex;

@@ -1,5 +1,8 @@
 function read1b(i)
 {
+  const currentDiv = document.getElementById("textboxs");
+  currentDiv.innerHTML="";
+
      var txtFile = new XMLHttpRequest();
      let contentpath = "https://raw.githubusercontent.com/ebx0/ebx0.github.io/main/content/timeline/"
      let textname = i.toString();
@@ -144,6 +147,7 @@ function read3()
                       const newLink = document.createElement("img");
                       newLink.setAttribute("src", text.split("Desc=")[0].split("Link=")[1]);
                       newLink.setAttribute("onclick", "window.open(this.src)");
+                      newLink.setAttribute("class", "jpeg")
 
                       const newDesc = document.createElement("p");
                       const newDescText = document.createTextNode(text.split("Link=")[1].split("Desc=")[1]);
@@ -156,7 +160,7 @@ function read3()
                       currentDiv2.appendChild(newDiv2);
 
                       const currentTitle = document.getElementById("title");
-                      currentTitle.innerHTML = "almanac";
+                      currentTitle.innerHTML = "memento";
 
                       const button1 = document.getElementById("index");
                       button1.setAttribute("class", "no")
@@ -173,3 +177,5 @@ function read3()
      }
      txtFile.send(null)
 }
+const currentDiv = document.getElementById("textboxs");
+currentDiv.innerHTML="";

@@ -1,6 +1,9 @@
 ***
 Link=https://i.hizliresim.com/lndpagn.png
-Desc=a cute mouse from a biology book that i really like
+Desc=a mouse from a biology book
+***
+Link=https://i.imgur.com/MQHNYb7_d.webp?maxwidth=520&shape=thumb&fidelity=high
+Desc=a ramen knitter
 ***
 Link=https://i.imgur.com/Y2i3niP.jpeg
 Desc=a social distance zipper
