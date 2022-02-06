@@ -2,6 +2,7 @@ Title=hello world.
 Content=01-2022 | this page created.
 ***
 Title=ebx0/molecular-simulation
-Content=02-2022 | i am trying create a molecular behaviour simulator based on pesudo quantum mechanics and basic physical relations: https://github.com/ebx0/molecular-simulation
+Content=02-2022 | i am trying to create a molecular behaviour simulator based on pesudo quantum mechanics and basic physical relations.
+github: github.com/ebx0/molecular-simulation youtube playlist: youtube.com/playlist?list=PLxj14dpoW2uI-VeM-hxDduqHxqZ-ocVor
 ***
 
