@@ -1,4 +1,10 @@
 ***
+Link=https://c.tenor.com/P9DFtD3HjcwAAAAd/cat-cats-love.gif
+Desc=a cat act like a rabbit
+***
+Link=https://c.tenor.com/2v1aDCelTJgAAAAC/cat-cats.gif
+Desc=a cat with a hat
+***
 Link=https://i.hizliresim.com/lndpagn.png
 Desc=a mouse from a biology book
 ***
