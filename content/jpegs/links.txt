@@ -17,9 +17,6 @@ Desc=a dog i found on internet
 Link=https://i.hizliresim.com/qiigpd9.png
 Desc=a tea made by eycan
 ***
-Link=https://user-images.githubusercontent.com/97095537/152566982-ea0058ab-4683-47a2-912a-21d3e93359eb.jpg
-Desc=a hydrogen ion simulation by me
-***
 Link=https://c.tenor.com/P9DFtD3HjcwAAAAd/cat-cats-love.gif
 Desc=a cat act like a rabbit
 ***
