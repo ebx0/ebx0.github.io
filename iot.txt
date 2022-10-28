@@ -1,0 +1,5 @@
+gps=41,2,28,55
+batarya=51
+hiz=73
+lastik=L
+sicaklik=33
