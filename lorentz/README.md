@@ -14,7 +14,7 @@ This causes time to dilate and contract as well as space, leading to things like
 slower to everyone else; [Relativity of simultaneity](https://en.wikipedia.org/wiki/Relativity_of_simultaneity), where events that happen at the same time in your reference frame do not always happen simultaneously  for other reference frames; and the fact that the faster you go the thinner you become until your ship looks like something resembling a flying pancake. ([length contraction](https://en.wikipedia.org/wiki/Length_contraction))
 
 ## How to use it
-[Try it in the browser](https://kieranlinton.github.io/LorentzTransformations/index.html)
+[Try it in the browser](https://ebx0.github.io/lorentz/lorentz.html)
 
 This is a spacetime diagram, on the horizontal axis we have one spacial dimension (X), and vertically we measure time (t).
 It might seem strange to combine space and time like this, but we do it all the time, for example, if someone asks how far away the shop is they could say "it's about 400m away" or "it's about 5 minutes away".
