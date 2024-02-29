@@ -38,10 +38,3 @@ Notice light is always C velocity away from the current reference velocity.
 
 ![alt text](https://raw.githubusercontent.com/KieranLinton/LorentzTransformations/master/gitPictures/lorentz%20transformations.gif)
 
-## How does it work
-(the code is a little messy at the moment because I was experimenting around with different values and ideas. I will make the code more readable in the next update)
-
- Every point in the grid goes through these Lorentz transformation equations to move to a different moving perspective: 
-
-![alt text](https://www.relativitycalculator.com/images/Lorentz_Transformation_Equations/Lorentz_Transformation_Equations.png)
-
