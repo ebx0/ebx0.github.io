@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-image: url('background.png');
+            background-size: cover; /* Adjust the size to cover the entire body */
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        h1 {
+            text-align: center;
+        }
+        
+        input[type="range"], input[type="number"] {
+            background-color: white;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>LORENTZ TRANSFORM</h1>
+    <p>Every t unit is equivalent to 1 second, and every X unit is 299 792 458 m (C); meaning light, that goes 299 792 458 m every second, is  drawn at a perfect 45º angle.</p>
+    
+    <!-- Canvas container -->
+    <div id="canvasContainer">
+        <script src="p5.js"></script>
+        <!-- Canvas will be inserted here -->
+    </div>
+    
+    <!-- Input blocks container -->
+    <div id="inputsContainer">
+        <input id="input1" oninput="change(this.value)" type="range" min="-1"  max="1" value="0" step="0.001" class="slider">
+        <input id="input2" onkeypress="textboxUpdate(event)" type="number" min="-1" max="1" value="0" step="0.001">
+        xC
+    </div>
+
+</body>
+</html>
+
+
+
+<script>
+    var SpaceSize = 10  //space between pixels
+    var C = 299792458 //speed of light
+    var RelativeVelocity = 0
+    var points= []
+
+    var GridBottom = null
+    var GridCenter = null
+    var pop = null
+
+    function setup(){
+        createCanvas(1000, 480)
+         
+        strokeWeight(3); // Make the points 10 pixels in size
+
+        var amountOfPointsY = height / SpaceSize
+        var amountOfPointsX = width / SpaceSize
+        pop = new popup()
+        for(var i = 0; i < amountOfPointsX; i++){
+             var Rowcolor = color(100)
+
+             for (var j = 0; j < amountOfPointsY; j++) {
+
+                var isSide = i == 0 || i == amountOfPointsX - 1 || j == 0;
+                var newDot = new Dot((i * SpaceSize - (width / 2)), j * SpaceSize, Rowcolor, false, isSide)
+                if(newDot.originalVelocity.toFixed(4) == 1.00 || newDot.originalVelocity.toFixed(4) == -1.00){
+                    //going the speed of light
+                    newDot.lined = true;
+                    newDot.color = color("yellow")
+                }
+                points.push(newDot);
+            }
+        }
+        GridBottom = amountOfPointsY * SpaceSize;
+        GridCenter = width / 2
+
+    }
+    function change(v){
+        console.log(v)
+        translateAll(v * C)
+        document.getElementById("input2").value = v
+    }
+    function textboxUpdate(e){
+        if (e.keyCode == 13) {
+            console.log(e.target.value)
+            translateAll(e.target.value * C)
+            document.getElementById("input1").value = e.target.value
+        }
+    }
+    function draw(){
+        background(0);
+       
+       for(var i = 0; i < points.length; i ++){
+           points[i].update()
+       }
+
+      
+        stroke(0)
+       
+        line(GridCenter, GridBottom, GridCenter, 0)
+        for (var i = 0; i < (height / SpaceSize) / 2; i++) {
+            line(GridCenter - 5, i * (SpaceSize * 2), GridCenter + 5, i * (SpaceSize * 2))
+        }
+        line(0, GridBottom, 0, 0)
+        for (var i = 0; i < (height / SpaceSize) / 2; i++) {
+            line( - 5, i * (SpaceSize * 2),  5, i * (SpaceSize * 2))
+        }
+        line(width, GridBottom, width, 0)
+        for (var i = 0; i < (height / SpaceSize) / 2; i++) {
+            line(width - 5, i * (SpaceSize * 2), width + 5, i * (SpaceSize * 2))
+        }
+        line(0, GridBottom, width, GridBottom)
+        for (var i = 0; i < (width / SpaceSize) / 2; i++) {
+            line(i * (SpaceSize * 2), height + 5, i * (SpaceSize * 2), height -5)
+        }
+        line(0, 0, width, 0)
+        for (var i = 0; i < (width / SpaceSize) / 2; i++) {
+            line(i * (SpaceSize * 2),  5, i * (SpaceSize * 2), - 5)
+        }
+        
+         for (var i = 0; i < points.length; i++) {
+            points[i].updateLines()
+        }
+        for (var i = 0; i < points.length; i++) {
+            points[i].updatePopups()
+        }
+    }
+    function translateAll(vel){
+        var Y = 1 / sqrt(1 - sq(vel / C))
+
+        for (var i = 0; i < points.length; i++) {
+            points[i].changeReferenceFrame(vel, Y)
+        }
+    }
+    
+    function mouseClicked() {
+        
+        for (var i = 0; i < points.length; i++) {
+            if(dist(points[i].Xrender + (width / 2), height - points[i].Trender, mouseX , mouseY) < 5){
+
+                if(points[i].lined){
+                    if(points[i].TragVel < 1 && points[i].TragVel > -1){
+                        var velo = points[i].originalVelocity
+                        smoothit(((x) => {
+                            translateAll(x * C);
+                            document.getElementById("input2").value = x;
+                            document.getElementById("input1").value = x;
+                        }), document.getElementById("input1").value , velo );
+                    }else{
+                        //trying to go to reference frame faster that C
+                        console.log("sorry cant go the speed of light")
+                    }
+                }else{
+                    points[i].lined = true;
+                    points[i].color = color(floor(random(50, 255)), floor(random(50, 255)), floor(random(50, 125)))
+                }
+               
+            }
+        }
+    }
+     function smoothit(funct, value1, value2) {
+            var val =Number(JSON.parse(JSON.stringify(value1)))
+            var step = 0.05 * (Number(value2) - Number(value1))
+            let timer = setInterval(function() {
+                if (val.toFixed(2)== value2.toFixed(2)) {
+                    clearInterval(timer);
+                    val = value2
+                    console.log(val)
+                    funct(val)
+                    console.log("finnished")
+                }
+                else {
+                    val += step
+                    console.log(val)
+                    funct(val)
+                }
+            }, 20)
+
+        }
+    
+    class Dot {
+            color = 0
+            Xpos = 0
+            Tpos = 0
+            Xrender = 0
+            Trender = 0
+            TragVel = 0
+            originalVelocity = 0
+            lined = false
+            isSide = false
+            
+            constructor(Xpos, Ypos, color, lined, isSide) {
+                this.Xpos = Xpos
+                this.Tpos = height - Ypos
+                this.Xrender = this.Xpos
+                this.Trender = this.Tpos
+                this.color = color
+                this.lined = lined
+                this.isSide = isSide
+                this.changeReferenceFrame(0, 1)
+                this.originalVelocity = this.TragVel
+            }
+
+            update() {
+                stroke(this.color); // Change the color
+                if (this.isSide) {
+                    stroke("red")
+                }
+                point(this.Xrender + (width / 2), height - this.Trender);
+                
+            }
+            updateLines(){
+                 stroke(this.color); // Change the color
+                if (this.lined) {
+                    line(GridCenter, GridBottom, this.Xrender + (width / 2), height - this.Trender);
+
+                }
+                
+            }
+            updatePopups(){
+                stroke(this.color); // Change the color
+                 if (dist(this.Xrender + (width / 2), height - this.Trender, mouseX, mouseY) < 5) {
+                    line(GridCenter, GridBottom, this.Xrender + (width / 2), height - this.Trender);
+                    pop.update(this.Xrender + (width / 2), height - this.Trender, "X: " + (this.Xrender / 10).toFixed(4) + "xC  t: " + (this.Trender / 10).toFixed(4) + "s  V: " + (this.TragVel).toFixed(8) + "xC m/s ", color(0), this.color, dist(this.Xrender + (width / 2), height - this.Trender, mouseX, mouseY))
+                }
+            }
+            changeReferenceFrame(velocity, Y) {
+                this.Trender = Y * (this.Tpos - ((velocity * this.Xpos * C) / sq(C)))
+                this.Xrender = (Y * (this.Xpos * C - velocity * this.Tpos)) / C
+
+                this.TragVel = this.Xrender / this.Trender
+            }
+        }
+        class popup{
+           
+            update(posX, posY, message, colorF, colorB, dist){
+                stroke(colorB)
+                fill(200)
+                rect(posX, posY, textWidth(message) + 15, 25, 5);
+                textSize(15);
+                stroke(200)
+                fill(colorF);
+                text(message, posX + 10, posY + 15);
+                
+
+            }
+           
+        }
+</script>
