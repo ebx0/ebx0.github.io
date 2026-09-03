@@ -1,5 +1,7 @@
 # Fetched at build time from the library repository, never committed here.
-CHANGELOG.md
+# Anchored: an unanchored `CHANGELOG.md` also matches `docs/changelog.md` on a
+# case-insensitive checkout, which silently kept that page out of the build.
+/CHANGELOG.md
 
 site/
 __pycache__/
