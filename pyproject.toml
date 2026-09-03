@@ -1,0 +1,6 @@
+# Not a package -- this file exists so pytest finds its configuration and the
+# repository root, nothing here is built or installed.
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q -ra"
+pythonpath = ["."]

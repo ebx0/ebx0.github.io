@@ -1,0 +1,92 @@
+name: Build the caustica site
+
+# The sources live on this branch; the rendered site is committed to `main`
+# under `caustica/`, which is what GitHub Pages serves at
+# https://ebx0.github.io/caustica/ .
+#
+# The API reference is generated from caustica's docstrings, so the site can go
+# stale without anything changing here. That is what the schedule and the
+# dispatch trigger are for: `workflow_dispatch` to rebuild on demand, and
+# `repository_dispatch` so a caustica release can ask for one.
+on:
+  push:
+    branches: [caustica-docs]
+  workflow_dispatch:
+  repository_dispatch:
+    types: [caustica-updated]
+  schedule:
+    - cron: "17 4 * * 1"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: caustica-site
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: caustica-docs
+          path: src
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: src/requirements.txt
+
+      - name: Install
+        working-directory: src
+        run: python -m pip install -r requirements.txt
+
+      # docs/changelog.md includes the library's CHANGELOG rather than copying
+      # it. Across two repositories that means fetching it, and failing loudly
+      # if it cannot be fetched -- a silently missing snippet would publish a
+      # changelog page with no changelog on it.
+      - name: Fetch the library's CHANGELOG
+        working-directory: src
+        run: |
+          curl -fsSL --retry 3 \
+            https://raw.githubusercontent.com/ebx0/caustica/master/CHANGELOG.md \
+            -o CHANGELOG.md
+          test -s CHANGELOG.md
+
+      # The pages that are a contract, checked against the installed library.
+      # These ran in caustica's own suite until the docs moved out; they run
+      # here now, before anything is published.
+      - name: The contract pages still match the library
+        working-directory: src
+        run: python -m pytest
+
+      - name: Build
+        working-directory: src
+        run: python -m mkdocs build --strict --site-dir "$GITHUB_WORKSPACE/_site"
+
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+          path: publish
+
+      - name: Publish into main:/caustica
+        working-directory: publish
+        run: |
+          rm -rf caustica
+          cp -r "$GITHUB_WORKSPACE/_site" caustica
+          # Pages builds this repository with Jekyll, which drops any path
+          # beginning with an underscore -- and mkdocstrings emits
+          # assets/_mkdocstrings.css, so without this marker the API reference
+          # publishes unstyled. Measured, not precautionary.
+          touch .nojekyll
+          git add -A caustica .nojekyll
+          if git diff --cached --quiet; then
+            echo "the rendered site is unchanged"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "docs(caustica): rebuild the site from ${GITHUB_SHA::7}"
+          git push

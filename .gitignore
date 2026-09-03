@@ -1,0 +1,8 @@
+# Fetched at build time from the library repository, never committed here.
+CHANGELOG.md
+
+site/
+__pycache__/
+.venv/
+.pytest_cache/
+_site/
