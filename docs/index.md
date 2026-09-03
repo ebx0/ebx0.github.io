@@ -169,10 +169,10 @@ One API, a registry of engines:
 
 | name | physics | dims | backend | status |
 |---|---|---|---|---|
-| `linear` | linear full-wave k-space PSTD | 1/2/3-D | numpy (cupy: M7) | validated |
-| `westervelt` | nonlinear Westervelt k-space PSTD, multi-harmonic capture | 1/2/3-D | numpy (cupy: M7) | validated |
+| `linear` | linear full-wave k-space PSTD | 1/2/3-D | numpy (cupy: provisional) | validated |
+| `westervelt` | nonlinear Westervelt k-space PSTD, multi-harmonic capture | 1/2/3-D | numpy (cupy: provisional) | validated |
 | `kwave` | [k-Wave](http://www.k-wave.org) `kspaceFirstOrder` via `k-wave-python` | 2/3-D | external binary | wrapped + cross-validated |
-| `kzk` | parabolic KZK (z-marching) | planned | — | M9 |
+| `kzk` | parabolic KZK (z-marching) | planned | — | planned |
 
 Swapping engines is one string: `solver="kwave"` runs the same job through the real k-Wave
 binary, on the same grid, and the two results are compared in CI.

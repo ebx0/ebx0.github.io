@@ -1,4 +1,4 @@
-"""M10m gate: ``caustica schema`` is real JSON Schema, and the docs cannot rot.
+"""``caustica schema`` is real JSON Schema, and the docs cannot rot.
 
 Two documents describe the job format — the generated schema and
 ``docs/job_reference.md``. Only one of them is written by hand, so the risk is
@@ -26,7 +26,7 @@ def core_kinds(registry) -> tuple[str, ...]:
     """The kinds caustica itself ships, ignoring any installed plugin.
 
     A third-party kind in the same environment is the whole point of the
-    registry — it must not turn caustica's own suite red (found by the M10m
+    registry — it must not turn caustica's own suite red (found by the
     skeptical review: installing a plugin failed six tests that asserted the
     registry's exact contents).
     """
@@ -168,7 +168,7 @@ def test_every_array_kind_has_a_snippet_that_fits_the_documented_grid(kind, tmp_
 
     Model validation alone let the spiral section ship the 100 mm production
     array as its only example — schema-valid, and a focus outside the grid of
-    the job this page opens with (found by the M10m skeptical review). A kind
+    the job this page opens with (found by the skeptical review). A kind
     may show a full-size recipe, but it owes the reader one that works here.
     """
     snippets = doc_snippets_all().get(kind, [])

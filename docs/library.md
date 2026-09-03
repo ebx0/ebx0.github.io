@@ -42,10 +42,10 @@ yourself.
 
 | name | physics | dims | backend | status |
 |---|---|---|---|---|
-| `linear` | linear full-wave k-space PSTD | 1/2/3-D | numpy (cupy: M7) | validated |
-| `westervelt` | nonlinear (Westervelt) k-space PSTD, multi-harmonic capture | 1/2/3-D | numpy (cupy: M7) | validated |
+| `linear` | linear full-wave k-space PSTD | 1/2/3-D | numpy (cupy: provisional) | validated |
+| `westervelt` | nonlinear (Westervelt) k-space PSTD, multi-harmonic capture | 1/2/3-D | numpy (cupy: provisional) | validated |
 | `kwave` | [k-Wave](http://www.k-wave.org) `kspaceFirstOrder` via `k-wave-python` (CPU/OMP binary) | 2/3-D | external | wrapped + cross-validated |
-| `kzk` | parabolic KZK (z-marching) | planned | — | M9 |
+| `kzk` | parabolic KZK (z-marching) | planned | — | planned |
 
 Reaching past the job file, straight at the engine:
 

@@ -1,4 +1,4 @@
-"""M10l gate: ``docs/gui_contract.md`` cannot rot.
+"""``docs/gui_contract.md`` cannot rot.
 
 The contract page exists so a GUI — written later, elsewhere, in a technology
 nobody has picked — can be built against a surface that is frozen *before* it
@@ -314,7 +314,7 @@ def test_the_documented_dry_run_exit_codes_are_the_real_ones(tmp_path, monkeypat
     """The review's process finding, answered.
 
     The rot test pins the page's field LISTS rigorously — and none of them
-    were ever wrong. Every finding of the M10l review was a prose claim in
+    were ever wrong. Every finding of the review was a prose claim in
     the sentences between the lists, which is exactly the class a list
     comparison cannot reach. The cheap ones get assertions of their own,
     starting with the sentence that said "--dry-run exits 0" when a memory
@@ -349,7 +349,7 @@ def test_the_page_points_at_the_import_direction_gate():
 
 
 def test_freezing_the_contract_added_no_gui_dependency():
-    """M10l's own rule: writing the contract down must not smuggle a GUI in."""
+    """The contract's own rule: writing it down must not smuggle a GUI in."""
     meta = metadata("caustica")
     declared = " ".join(meta.get_all("Requires-Dist") or []).lower()
     assert "gui" not in declared, declared

@@ -86,8 +86,8 @@ whole recorded region. Harmonics you do not ask for are not stored, for that rea
 
 **There are no measured GPU numbers on this page, and there will not be until there
 are.** The CuPy backend is packaged and has run on A100 hardware, but its parity and
-full-size gates (milestone M7) are not closed, and a dedicated GPU performance round
-(M19) has not happened yet. Quoting a speed-up before those two things would be
+full-size gates are not closed, and a dedicated GPU performance round
+has not happened yet. Quoting a speed-up before those two things would be
 advertising, not measurement.
 
 What exists today is the planner's device database — datasheet figures, from which it

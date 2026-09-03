@@ -140,7 +140,7 @@ class RingArrayConfig(ArrayKindConfig):
         return self.roc_mm
 
     def derived(self) -> dict:
-        """Numbers a reload re-derives and compares — the M6f "nothing is baked" rule."""
+        """Numbers a reload re-derives and compares — the "nothing is baked" rule."""
         return {"n_elements": float(self.n_elements), "ring_radius_mm": self.ring_radius_mm}
 
     def build_source(self, grid, drive, apex_vox, focus, phases_rad):
@@ -266,7 +266,7 @@ Two things `"auto"` will not do for you:
   two built-ins, not a poll of the registry: a third-party backend is opted
   into by name, never guessed at.
 * **The runner's CPU gate and GPU reporting key on the names `numpy` and
-  `cupy`.** A backend called anything else skips the slow-CPU refusal (D20) and
+  `cupy`.** A backend called anything else skips the slow-CPU refusal and
   reports no GPU environment in `run_meta.json`.
 
 Name your backend in a job with `"backend": "my_backend"`, on the CLI with

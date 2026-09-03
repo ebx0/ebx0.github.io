@@ -20,7 +20,7 @@ something that is not on this page, the fix is to add it here first.
 the tables, and the literal names, numbers and format strings on this page are
 compared against the running code by `tests/test_gui_contract.py`; they cannot
 rot silently. The prose between them is explanatory — reviewed, not executed.
-Every finding of the M10l review, and one of the mutation round that followed
+Every finding of the review, and one of the mutation round that followed
 it, was a sentence rather than a list, which is the class a list comparison
 cannot reach; where such a sentence makes a claim precise enough to test, the
 answer is to add the test, not to trust the sentence. **If prose and a list
@@ -140,7 +140,7 @@ attribute, not in the class hierarchy.
 
 Rewritten atomically at most every `--status-interval` seconds while solving,
 and once on each terminal state. This is the file to poll: it survives a Drive
-sync, needs no open connection, and its numbers are the ones M8's Colab gates
+sync, needs no open connection, and its numbers are the ones the Colab gates
 were calibrated against.
 
 `state` is one of `solving`, `writing`, `done`, `interrupted`, `failed`.
@@ -493,7 +493,7 @@ carries on.
   purpose: the contract is files in a folder, which works identically for a
   local run, an SSH'd machine and a Colab session writing into a Drive folder
   the *user* mounted. caustica never mounts one itself.
-- `caustica.colab` (M10f). It is a convenience entry point for a human in a
+- `caustica.colab`. It is a convenience entry point for a human in a
   notebook: it prints an environment verdict, requires a GPU, picks a default
   folder under `/content` and hands the runner's own failures back readably.
   Every decision in it is an opinion about where it is running, which is
