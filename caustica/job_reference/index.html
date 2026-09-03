@@ -1,0 +1,2582 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="GPU-accelerated, multi-solver acoustic simulation for HIFU and therapeutic ultrasound. Pure Python, one JSON job, the same run on a laptop and on Colab.">
+      
+      
+        <meta name="author" content="eren bulbul">
+      
+      
+        <link rel="canonical" href="https://ebx0.github.io/caustica/job_reference/">
+      
+      
+        <link rel="prev" href="../install/">
+      
+      
+        <link rel="next" href="../conventions/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/favicon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Writing a job - caustica</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#caustica-job1-reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="caustica" class="md-header__button md-logo" aria-label="caustica" data-md-component="logo">
+      
+  <img src="../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            caustica
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Writing a job
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ebx0/caustica" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ebx0/caustica
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../install/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Get started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../examples/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Examples
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../api/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  API reference
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../validation/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Evidence
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../extending/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Extending
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../changelog/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Project
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="caustica" class="md-nav__button md-logo" aria-label="caustica" data-md-component="logo">
+      
+  <img src="../assets/logo.svg" alt="logo">
+
+    </a>
+    caustica
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ebx0/caustica" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ebx0/caustica
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Get started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Get started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Writing a job
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Writing a job
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-smallest-complete-job" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The smallest complete job
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#top-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Top level
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#medium-kinds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Medium kinds
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Medium kinds">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#homogeneous" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        homogeneous
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scene" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        scene
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#volume_import" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        volume_import
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#medium_volume" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        medium_volume
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Source
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#array-kinds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Array kinds
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Array kinds">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#archimedean_spiral" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        archimedean_spiral
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bowl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        bowl
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#elements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        elements
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grid
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#drive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Drive
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Run
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#command-line" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command line
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extending-the-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extending the schema
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../conventions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conventions that bite
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../library/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    From Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../api/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/simulate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Running a simulation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Grid, media, materials
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/geometry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Geometry
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/arrays/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transducers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/analytic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Analytic references
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/thermal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Thermal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/planner/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Planner and results
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Evidence
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../validation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    What has been measured
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../benchmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extending
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Extending
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extending/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extension points
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gui_contract/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Driving it from a GUI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Project
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-smallest-complete-job" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The smallest complete job
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#top-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Top level
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#medium-kinds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Medium kinds
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Medium kinds">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#homogeneous" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        homogeneous
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scene" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        scene
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#volume_import" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        volume_import
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#medium_volume" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        medium_volume
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Source
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#array-kinds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Array kinds
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Array kinds">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#archimedean_spiral" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        archimedean_spiral
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bowl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        bowl
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#elements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        elements
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grid
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#drive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Drive
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Run
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#command-line" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command line
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extending-the-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extending the schema
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="caustica-job1-reference"><code>caustica-job/1</code> reference<a class="headerlink" href="#caustica-job1-reference" title="Permanent link">&para;</a></h1>
+<p>One JSON file describes one complete solve. <code>caustica validate</code> checks it
+without a GPU, <code>caustica run</code> executes it, <code>caustica report</code> renders it.</p>
+<p>Read <a href="../conventions/">conventions.md</a> first if you have not: units, the phasor
+convention and what <code>amplitude</code> means are assumptions this file does not repeat.</p>
+<p>The machine-readable version of everything below is:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>caustica<span class="w"> </span>schema<span class="w">            </span><span class="c1"># JSON Schema, generated from the models</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>caustica<span class="w"> </span>schema<span class="w"> </span>--kinds<span class="w">    </span><span class="c1"># just the registered medium/array kind names</span>
+</code></pre></div>
+<p>Nothing here is hand-maintained twice: the schema comes from the same pydantic
+models the runner uses, and a test compares the kind headings in <em>this</em> document
+against <code>caustica schema</code> output so it cannot go stale.</p>
+<hr />
+<h2 id="the-smallest-complete-job">The smallest complete job<a class="headerlink" href="#the-smallest-complete-job" title="Permanent link">&para;</a></h2>
+<p>A bowl in water, ~15 lines, seconds on a CPU. This is the packaged example
+(<code>caustica example water_bowl_mini</code>) verbatim:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">"format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"caustica-job/1"</span><span class="p">,</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"explicit"</span><span class="p">,</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"water_bowl_mini"</span><span class="p">,</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="nt">"medium"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"homogeneous"</span><span class="p">},</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="nt">"grid"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="nt">"ndim"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="nt">"dx_mm"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="nt">"size_mm"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">18</span><span class="p">,</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w"> </span><span class="mi">24</span><span class="p">],</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">    </span><span class="nt">"pml"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"thickness_mm"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.0</span><span class="p">}</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">  </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">    </span><span class="nt">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"array"</span><span class="p">,</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">    </span><span class="nt">"array"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bowl"</span><span class="p">,</span><span class="w"> </span><span class="nt">"d_outer_mm"</span><span class="p">:</span><span class="w"> </span><span class="mf">10.0</span><span class="p">,</span><span class="w"> </span><span class="nt">"roc_mm"</span><span class="p">:</span><span class="w"> </span><span class="mf">12.0</span><span class="p">},</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">    </span><span class="nt">"apex_mm"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">9.0</span><span class="p">,</span><span class="w"> </span><span class="mf">9.0</span><span class="p">,</span><span class="w"> </span><span class="mf">6.0</span><span class="p">]</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">  </span><span class="nt">"drive"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"f0_mhz"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="nt">"amplitude_kpa"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.0</span><span class="p">},</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">  </span><span class="nt">"run"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">    </span><span class="nt">"spec"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"min_settle_periods"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="nt">"max_settle_periods"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">},</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">    </span><span class="nt">"harmonics"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">  </span><span class="nt">"solver"</span><span class="p">:</span><span class="w"> </span><span class="s2">"linear"</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="p">}</span>
+</code></pre></div>
+<h2 id="top-level">Top level<a class="headerlink" href="#top-level" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Default</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>format</code></td>
+<td><code>"caustica-job/1"</code></td>
+<td>Refused if it differs — a wrong format tag is not a warning.</td>
+</tr>
+<tr>
+<td><code>kind</code></td>
+<td><code>"explicit"</code></td>
+<td>The only job kind: the file describes the whole setup.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><strong>required</strong></td>
+<td>Used for the default output folder (<code>runs/&lt;name&gt;</code>).</td>
+</tr>
+<tr>
+<td><code>medium</code></td>
+<td><strong>required</strong></td>
+<td>One of the <a href="#medium-kinds">medium kinds</a>.</td>
+</tr>
+<tr>
+<td><code>grid</code></td>
+<td><code>null</code></td>
+<td>Required <strong>unless</strong> the medium supplies the grid (<code>medium_volume</code>).</td>
+</tr>
+<tr>
+<td><code>source</code></td>
+<td><strong>required</strong></td>
+<td>See <a href="#source">Source</a>.</td>
+</tr>
+<tr>
+<td><code>drive</code></td>
+<td><strong>required</strong></td>
+<td>See <a href="#drive">Drive</a>.</td>
+</tr>
+<tr>
+<td><code>run</code></td>
+<td>defaults</td>
+<td>See <a href="#run">Run</a>.</td>
+</tr>
+<tr>
+<td><code>solver</code></td>
+<td><code>"westervelt"</code></td>
+<td><code>linear</code>, <code>westervelt</code>, <code>kwave</code>, or any registered solver.</td>
+</tr>
+<tr>
+<td><code>backend</code></td>
+<td><code>"auto"</code></td>
+<td><code>auto</code> | <code>numpy</code> | <code>cupy</code>, or any registered backend (<a href="../extending/">docs/extending.md</a>). <code>auto</code> = CuPy if a GPU is present.</td>
+</tr>
+<tr>
+<td><code>output</code></td>
+<td>defaults</td>
+<td>See <a href="#output">Output</a>.</td>
+</tr>
+</tbody>
+</table>
+<p>Unknown keys are <strong>errors</strong>, everywhere, at every level. A typo is never a
+silent no-op.</p>
+<p>Relative paths (element tables, volumes, the output folder) resolve against the
+<strong>job file's directory</strong>, never the current directory — so <code>caustica run
+../jobs/x.json --resume</code> finds the same checkpoint from anywhere.</p>
+<hr />
+<h2 id="medium-kinds">Medium kinds<a class="headerlink" href="#medium-kinds" title="Permanent link">&para;</a></h2>
+<p>Exactly one <code>kind</code> per job. <code>caustica schema --kinds</code> lists what is registered
+in <em>your</em> install, including kinds added by third-party packages.</p>
+<h3 id="homogeneous"><code>homogeneous</code><a class="headerlink" href="#homogeneous" title="Permanent link">&para;</a></h3>
+<p>Uniform medium. The default material is water; give any material explicitly to
+change it.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">{</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"homogeneous"</span><span class="p">,</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nt">"material"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"water"</span><span class="p">,</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="nt">"c"</span><span class="p">:</span><span class="w"> </span><span class="mf">1500.0</span><span class="p">,</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="nt">"rho"</span><span class="p">:</span><span class="w"> </span><span class="mf">1000.0</span><span class="p">,</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="nt">"alpha_np_m"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.025</span><span class="p">,</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span><span class="nt">"beta"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.5</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="p">}</span>
+</code></pre></div>
+<p>Omit <code>material</code> entirely and you get <code>water()</code>: c = 1500 m/s, ρ = 1000 kg/m³,
+<strong>α = 0 and β = 0</strong> — a lossless, <em>linear</em> reference medium, because the fields
+this default exists to check (O'Neil, Rayleigh) are themselves lossless. That
+is not real water: the snippet above is the override you want for a nonlinear
+water tank (β = 3.5, and α ≈ 0.025 Np/m at 1 MHz). A <code>westervelt</code> run against
+the bare default is a linear run with extra steps.</p>
+<h3 id="scene"><code>scene</code><a class="headerlink" href="#scene" title="Permanent link">&para;</a></h3>
+<p>COMSOL-style constructive solid geometry rasterized onto the job grid: build
+shapes, combine them with booleans, paint each with an integer label, and map
+labels to materials here.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">{</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"scene"</span><span class="p">,</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="nt">"scene"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="nt">"ndim"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="nt">"background"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="nt">"objects"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">      </span><span class="p">{</span><span class="nt">"shape"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ball"</span><span class="p">,</span><span class="w"> </span><span class="nt">"center_mm"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="mi">14</span><span class="p">],</span><span class="w"> </span><span class="nt">"radius_mm"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">},</span><span class="w"> </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">}</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="p">]</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">  </span><span class="nt">"materials"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">    </span><span class="nt">"0"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"water"</span><span class="p">,</span><span class="w"> </span><span class="nt">"c"</span><span class="p">:</span><span class="w"> </span><span class="mf">1500.0</span><span class="p">,</span><span class="w"> </span><span class="nt">"rho"</span><span class="p">:</span><span class="w"> </span><span class="mf">1000.0</span><span class="p">,</span><span class="w"> </span><span class="nt">"alpha_np_m"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="nt">"beta"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">},</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">    </span><span class="nt">"2"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fat"</span><span class="p">,</span><span class="w"> </span><span class="nt">"c"</span><span class="p">:</span><span class="w"> </span><span class="mf">1450.0</span><span class="p">,</span><span class="w"> </span><span class="nt">"rho"</span><span class="p">:</span><span class="w"> </span><span class="mf">932.0</span><span class="p">,</span><span class="w"> </span><span class="nt">"alpha_np_m"</span><span class="p">:</span><span class="w"> </span><span class="mf">6.0</span><span class="p">,</span><span class="w"> </span><span class="nt">"beta"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.5</span><span class="p">}</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">  </span><span class="nt">"supersample"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="p">}</span>
+</code></pre></div>
+<p>Shapes: <code>ball</code>, <code>box</code>, <code>ellipsoid</code>, <code>cylinder</code>, <code>halfspace</code>, plus the operators
+<code>union</code>, <code>intersection</code>, <code>difference</code>, <code>complement</code> and <code>transform</code> (scale /
+rotate / translate). <code>scene.imports</code> places external label volumes into the same
+scene. Every label a scene paints — background included — must have a material
+entry, or the job is refused naming the missing labels.</p>
+<p><code>supersample</code> (default <code>1</code>, max <code>7</code>) is the per-axis subdivision used when
+rasterizing: <code>3</code> evaluates 27 sub-points per voxel and assigns the majority
+label. Default 1 because supersampling costs <code>n³</code> shape evaluations and matters
+only where a curved interface is a fraction of a voxel.</p>
+<h3 id="volume_import"><code>volume_import</code><a class="headerlink" href="#volume_import" title="Permanent link">&para;</a></h3>
+<p>One imported label volume placed on the job grid — the shortcut for
+"my phantom is a <code>.npz</code> of integer labels".</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="p">{</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nt">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"volume_import"</span><span class="p">,</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="nt">"volume"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="nt">"format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"npz"</span><span class="p">,</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"phantom.npz"</span><span class="p">,</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="nt">"position_mm"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">],</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="nt">"ignore_labels"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span><span class="nt">"resample_dx_mm"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">    </span><span class="nt">"resample_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nearest"</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">  </span><span class="nt">"materials"</span><span class="p">:</span><span class="w"> </span><span class="s2">"breast_default"</span><span class="p">,</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">  </span><span class="nt">"background"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="p">}</span>
+</code></pre></div>
+<p>The <code>.npz</code> is a <code>LabelVolume</code>, and it needs <strong>three</strong> arrays — <code>labels</code>, <code>dx</code>
+and <code>origin</code>. A file with only <code>labels</code> and <code>dx</code> fails with
+<code>KeyError: 'origin is not a file in the archive'</code>, so write it with the
+library rather than by hand:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">caustica.geometry</span><span class="w"> </span><span class="kn">import</span> <span class="n">LabelVolume</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">LabelVolume</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="mf">0.5e-3</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">))</span><span class="o">.</span><span class="n">save_npz</span><span class="p">(</span><span class="s2">"phantom.npz"</span><span class="p">)</span>
+</code></pre></div>
+<p><code>materials</code> is either the string <code>"breast_default"</code> (the built-in generic
+soft-tissue table) or an explicit <code>{label: material}</code> map. <code>resample_dx_mm</code>
+resamples the volume to another spacing before placement — <code>nearest</code> preserves
+labels exactly, <code>smooth</code> reduces staircasing on curved interfaces. Unlike
+<code>medium_volume</code>, the <strong>job's</strong> grid wins here: the volume is placed into it.</p>
+<h3 id="medium_volume"><code>medium_volume</code><a class="headerlink" href="#medium_volume" title="Permanent link">&para;</a></h3>
+<p>The one door for a fully specified volume medium — a <code>.npz</code> carrying labels + a
+material table (or dense per-voxel <code>c</code> / <code>rho</code> / <code>alpha</code> / <code>beta</code> arrays).</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="p">{</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="nt">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"medium_volume"</span><span class="p">,</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span><span class="nt">"file"</span><span class="p">:</span><span class="w"> </span><span class="s2">"my_medium.npz"</span><span class="p">,</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span><span class="nt">"pml_mm"</span><span class="p">:</span><span class="w"> </span><span class="mf">5.0</span><span class="p">,</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">  </span><span class="nt">"linear"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">  </span><span class="nt">"water_label"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="p">}</span>
+</code></pre></div>
+<p><strong>This kind supplies the grid.</strong> Shape and <code>dx</code> come from the file, so a job
+using it must have <strong>no <code>grid</code> section</strong> — only <code>pml_mm</code> is yours to choose.
+That rule exists so a job can never silently run a resampled ghost of the data
+it claims to have run.</p>
+<p>Write one from Python:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">caustica.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">write_medium_volume</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">write_medium_volume</span><span class="p">(</span><span class="s2">"my_medium.npz"</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="mf">0.5e-3</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">materials</span><span class="o">=</span><span class="n">db</span><span class="p">)</span>
+</code></pre></div>
+<p>Two guards worth knowing:</p>
+<ul>
+<li>If the file records the frequency its absorption was baked at, a job driving
+  another <code>f0</code> is <strong>refused</strong> (α is frequency-independent in v1 — see
+  conventions §2).</li>
+<li><code>water_label</code> (default <code>0</code>) is the label treated as coupling water: if the
+  focus voxel lands in it, the run is refused, because it would characterize a
+  water focus instead of the target. Set it to <code>null</code> to disable the check when
+  label 0 is not water in your file.</li>
+</ul>
+<p><code>linear: true</code> zeroes the nonlinearity, which lets the <code>linear</code> solver run a
+medium whose table has <code>beta &gt; 0</code>.</p>
+<hr />
+<h2 id="source">Source<a class="headerlink" href="#source" title="Permanent link">&para;</a></h2>
+<p>One shape today: an <code>array</code> — a transducer recipe, placed and focused.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="p">{</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span><span class="nt">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"array"</span><span class="p">,</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">  </span><span class="nt">"array"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bowl"</span><span class="p">,</span><span class="w"> </span><span class="nt">"d_outer_mm"</span><span class="p">:</span><span class="w"> </span><span class="mf">10.0</span><span class="p">,</span><span class="w"> </span><span class="nt">"roc_mm"</span><span class="p">:</span><span class="w"> </span><span class="mf">12.0</span><span class="p">},</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">  </span><span class="nt">"apex_mm"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">9.0</span><span class="p">,</span><span class="w"> </span><span class="mf">9.0</span><span class="p">,</span><span class="w"> </span><span class="mf">6.0</span><span class="p">],</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">  </span><span class="nt">"focus"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"natural"</span><span class="p">},</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">  </span><span class="nt">"phases_rad"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="p">}</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Default</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>array</code></td>
+<td><strong>required</strong></td>
+<td>One of the <a href="#array-kinds">array kinds</a>.</td>
+</tr>
+<tr>
+<td><code>apex_mm</code></td>
+<td><strong>required</strong></td>
+<td>Apex position in the <strong>grid</strong> frame [mm]; the beam runs +z.</td>
+</tr>
+<tr>
+<td><code>focus.mode</code></td>
+<td><code>"natural"</code></td>
+<td><code>natural</code> = the array's own geometric focus, all phases zero. <code>steered</code> = delay-and-sum phases toward <code>focus.target_mm</code>.</td>
+</tr>
+<tr>
+<td><code>focus.target_mm</code></td>
+<td><code>null</code></td>
+<td>Required for <code>steered</code>, refused for <code>natural</code>.</td>
+</tr>
+<tr>
+<td><code>phases_rad</code></td>
+<td><code>null</code></td>
+<td>Explicit per-element phases; overrides <code>focus.mode</code>. Multi-element kinds only.</td>
+</tr>
+</tbody>
+</table>
+<p>Steering assumes water on the path (<code>c₀ = 1500 m/s</code>). Aberration correction
+through tissue is a planning problem, not a job knob.</p>
+<p>A run records <code>derived</code> geometry (aperture radius, f-number, half angle, how
+many elements survived voxelization) into <code>run_meta.json</code>. Those numbers are not
+inputs — they are re-derived on reload and compared, so a library change that
+silently builds a different transducer is caught instead of trusted.</p>
+<h2 id="array-kinds">Array kinds<a class="headerlink" href="#array-kinds" title="Permanent link">&para;</a></h2>
+<h3 id="archimedean_spiral"><code>archimedean_spiral</code><a class="headerlink" href="#archimedean_spiral" title="Permanent link">&para;</a></h3>
+<p>Elements placed at equal arc length along a spiral wound between an inner and
+outer aperture radius, on a spherical shell. The production multi-element
+layout.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="p">{</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">  </span><span class="nt">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"archimedean_spiral"</span><span class="p">,</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">  </span><span class="nt">"n_elements"</span><span class="p">:</span><span class="w"> </span><span class="mi">64</span><span class="p">,</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">  </span><span class="nt">"d_outer_mm"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.0</span><span class="p">,</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">  </span><span class="nt">"d_inner_mm"</span><span class="p">:</span><span class="w"> </span><span class="mf">44.0</span><span class="p">,</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">  </span><span class="nt">"roc_mm"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.0</span><span class="p">,</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">  </span><span class="nt">"active_fraction"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.6</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="p">}</span>
+</code></pre></div>
+<p><code>active_fraction</code> (default <code>0.6</code>) is the fraction of the shell area that is
+active surface; it sets the element radius (<code>area/n</code> per element). 0.6 is the
+production geometry's fill factor — real arrays leave kerf between elements.
+<code>n_elements</code> defaults to 64; the shipped default geometry is the 128-element
+one.</p>
+<p><strong>That snippet is a 100 mm production array</strong> — dropped into the small example
+job at the top of this page its focus lands outside the grid (<code>validate</code> says
+so). A spiral sized for that 18 × 18 × 24 mm grid:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="p">{</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">  </span><span class="nt">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"archimedean_spiral"</span><span class="p">,</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">  </span><span class="nt">"n_elements"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">  </span><span class="nt">"d_outer_mm"</span><span class="p">:</span><span class="w"> </span><span class="mf">10.0</span><span class="p">,</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">  </span><span class="nt">"d_inner_mm"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.0</span><span class="p">,</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">  </span><span class="nt">"roc_mm"</span><span class="p">:</span><span class="w"> </span><span class="mf">12.0</span><span class="p">,</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">  </span><span class="nt">"active_fraction"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.6</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="p">}</span>
+</code></pre></div>
+<p>Can be steered and phased.</p>
+<h3 id="bowl"><code>bowl</code><a class="headerlink" href="#bowl" title="Permanent link">&para;</a></h3>
+<p>A single focused spherical cap. One element, so there is nothing to phase: a
+<code>steered</code> focus or a <code>phases_rad</code> list on a bowl is an error telling you to use
+a multi-element kind or move the apex.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="p">{</span><span class="nt">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bowl"</span><span class="p">,</span><span class="w"> </span><span class="nt">"d_outer_mm"</span><span class="p">:</span><span class="w"> </span><span class="mf">10.0</span><span class="p">,</span><span class="w"> </span><span class="nt">"roc_mm"</span><span class="p">:</span><span class="w"> </span><span class="mf">12.0</span><span class="p">}</span>
+</code></pre></div>
+<p><code>d_outer_mm / 2 &gt; roc_mm</code> (more than a hemisphere) is refused.</p>
+<h3 id="elements"><code>elements</code><a class="headerlink" href="#elements" title="Permanent link">&para;</a></h3>
+<p><strong>Bring your own transducer.</strong> Explicit element centers, from a file or inline.
+Everything is millimetres in the array's apex frame: apex at the origin, beam
+axis +z, geometric focus at <code>(0, 0, roc_mm)</code>.</p>
+<p>From a file — <code>.npz</code> with a <code>positions</code> array (and optionally <code>normals</code>), or a
+3/6-column <code>.csv</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="p">{</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">  </span><span class="nt">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"elements"</span><span class="p">,</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">  </span><span class="nt">"file"</span><span class="p">:</span><span class="w"> </span><span class="s2">"my_array.npz"</span><span class="p">,</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">  </span><span class="nt">"elem_radius_mm"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.2</span><span class="p">,</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="w">  </span><span class="nt">"roc_mm"</span><span class="p">:</span><span class="w"> </span><span class="mf">12.0</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="p">}</span>
+</code></pre></div>
+<p>Inline, for a handful of elements:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="p">{</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">  </span><span class="nt">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"elements"</span><span class="p">,</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">  </span><span class="nt">"positions_mm"</span><span class="p">:</span><span class="w"> </span><span class="p">[[</span><span class="mf">4.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.69</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">4.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.69</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">-4.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.69</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">-4.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.69</span><span class="p">]],</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">  </span><span class="nt">"elem_radius_mm"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.2</span><span class="p">,</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">  </span><span class="nt">"roc_mm"</span><span class="p">:</span><span class="w"> </span><span class="mf">12.0</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="p">}</span>
+</code></pre></div>
+<p>Give exactly one of <code>file</code> or <code>positions_mm</code>. <strong>Normals are optional</strong>: omit
+them and every element is aimed at <code>(0, 0, roc_mm)</code>, which is what you want for
+a conventional focused array. Supply them (<code>normals_mm</code> inline, or a <code>normals</code>
+array / 6-column csv in the file) for a non-focusing layout; they are normalized
+for you, so direction vectors of any length are fine.</p>
+<p>Writing the file from Python:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="n">np</span><span class="o">.</span><span class="n">savez</span><span class="p">(</span><span class="s2">"my_array.npz"</span><span class="p">,</span> <span class="n">positions</span><span class="o">=</span><span class="n">positions_mm</span><span class="p">)</span>         <span class="c1"># (n, 3), millimetres</span>
+</code></pre></div>
+<p>or as csv (a header line is optional, <code>#</code> comments are skipped):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>x,y,z
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>4.0,0.0,0.69
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>0.0,4.0,0.69
+</code></pre></div>
+<p><strong>What a run records about your table.</strong> <code>run_meta.json</code>'s <code>derived</code> block
+carries the aperture numbers (<code>n_elements</code>, <code>r_max_mm</code>, <code>shell_depth_mm</code>,
+<code>f_number</code>, <code>half_angle_deg</code>) <em>and</em> <code>table_sha256</code>, a digest of the positions
+and normals actually used. The digest is the part that matters: aperture
+numbers are order statistics, and they survive mirroring the array, rotating
+it, re-scattering all but the outermost element, or changing every normal —
+each of which moves the field by tens of per cent. A reload compares both, so
+"the table under this job changed" is an error rather than a surprise. The
+digest is of the <em>geometry</em>, not the file, so the same array given inline, as
+<code>.npz</code> or as <code>.csv</code> digests identically.</p>
+<p>(The other array kinds need no digest: their geometry is generated from the
+handful of numbers already in the job, so pinning the aperture pins the
+transducer.)</p>
+<p><strong>Normals set the element plane, not a direction.</strong> Voxelization tilts each
+element's disc into the plane its normal defines; the sign is not used, so
+<code>[0,0,1]</code> and <code>[0,0,-1]</code> build the identical source. Do not expect a flipped
+normal to mean anything.</p>
+<p>Can be steered and phased, exactly like a spiral array. Refusals you may meet:</p>
+<ul>
+<li><code>elem_radius_mm &gt;= roc_mm</code> — that is one element the size of the whole bowl.</li>
+<li>elements more than a metre off-axis — a metres/millimetres mix-up, refused
+  rather than run.</li>
+<li>an element that loses all its voxels to deduplication — <code>dx</code> is too coarse for
+  your element radius or pitch; the message names how many elements were lost.</li>
+<li>the voxelized source overlapping the PML — see conventions §5.</li>
+</ul>
+<p>The same table from Python, without a job file:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">caustica.arrays</span><span class="w"> </span><span class="kn">import</span> <span class="n">elements_array</span><span class="p">,</span> <span class="n">read_element_file</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="n">positions_mm</span><span class="p">,</span> <span class="n">normals</span> <span class="o">=</span> <span class="n">read_element_file</span><span class="p">(</span><span class="s2">"my_array.npz"</span><span class="p">)</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="n">array</span> <span class="o">=</span> <span class="n">elements_array</span><span class="p">(</span>                       <span class="c1"># NOTE: the Python API is SI</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>    <span class="n">positions</span><span class="o">=</span><span class="n">positions_mm</span> <span class="o">*</span> <span class="mf">1e-3</span><span class="p">,</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>    <span class="n">normals</span><span class="o">=</span><span class="n">normals</span><span class="p">,</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>    <span class="n">elem_radius</span><span class="o">=</span><span class="mf">1.2e-3</span><span class="p">,</span>
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>    <span class="n">focal_length</span><span class="o">=</span><span class="mf">12e-3</span><span class="p">,</span>
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="p">)</span>
+</code></pre></div>
+<p>Going the other way — export an array the library built, to edit or reuse as a
+table — reads the same four attributes off any <code>TransducerArray</code>
+(<code>positions</code> and <code>normals</code>, both <code>(n, 3)</code> in metres, plus <code>elem_radius</code> and
+<code>focal_length</code> in metres):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">caustica.arrays</span><span class="w"> </span><span class="kn">import</span> <span class="n">archimedean_spiral</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="n">arr</span> <span class="o">=</span> <span class="n">archimedean_spiral</span><span class="p">(</span><span class="n">n_elements</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span> <span class="n">d_outer</span><span class="o">=</span><span class="mf">0.012</span><span class="p">,</span> <span class="n">d_inner</span><span class="o">=</span><span class="mf">0.004</span><span class="p">,</span> <span class="n">roc</span><span class="o">=</span><span class="mf">0.016</span><span class="p">)</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="n">np</span><span class="o">.</span><span class="n">savez</span><span class="p">(</span><span class="s2">"spiral_table.npz"</span><span class="p">,</span> <span class="n">positions</span><span class="o">=</span><span class="n">arr</span><span class="o">.</span><span class="n">positions</span> <span class="o">*</span> <span class="mf">1e3</span><span class="p">,</span> <span class="n">normals</span><span class="o">=</span><span class="n">arr</span><span class="o">.</span><span class="n">normals</span><span class="p">)</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">arr</span><span class="o">.</span><span class="n">elem_radius</span> <span class="o">*</span> <span class="mf">1e3</span><span class="p">)</span>                  <span class="c1"># -&gt; elem_radius_mm for the job</span>
+</code></pre></div>
+<p>The <code>elements</code> job kind reading that file produces a <strong>bit-identical</strong> source to
+the <code>archimedean_spiral</code> kind it came from — the two kinds share one
+voxelization path.</p>
+<hr />
+<h2 id="grid">Grid<a class="headerlink" href="#grid" title="Permanent link">&para;</a></h2>
+<p>Required unless the medium supplies it.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="p">{</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">  </span><span class="nt">"ndim"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">  </span><span class="nt">"dx_mm"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="w">  </span><span class="nt">"size_mm"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">18</span><span class="p">,</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w"> </span><span class="mi">24</span><span class="p">],</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="w">  </span><span class="nt">"pml"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"thickness_mm"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.0</span><span class="p">,</span><span class="w"> </span><span class="nt">"edge"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.0</span><span class="p">}</span>
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="p">}</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Default</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ndim</code></td>
+<td><code>3</code></td>
+<td>1, 2 or 3. Array sources need 3.</td>
+</tr>
+<tr>
+<td><code>dx_mm</code></td>
+<td><strong>required</strong></td>
+<td>Isotropic spacing.</td>
+</tr>
+<tr>
+<td><code>size_mm</code></td>
+<td><strong>required</strong></td>
+<td><strong>Total</strong> extent per axis, PML included.</td>
+</tr>
+<tr>
+<td><code>pml.thickness_mm</code></td>
+<td><code>5.0</code></td>
+<td>Sponge thickness. <code>0</code> disables it.</td>
+</tr>
+<tr>
+<td><code>pml.edge</code></td>
+<td><code>2.0</code></td>
+<td>Gaussian edge factor; larger damps harder at the outer cell.</td>
+</tr>
+</tbody>
+</table>
+<p>Voxel counts are <strong>derived</strong> (<code>round(size/dx)</code>) and cannot be written by hand,
+so a job can never carry an inconsistent mm/voxel pair. An axis under 4 voxels
+is refused.</p>
+<p>Choosing <code>dx</code>: you need at least 3 points per wavelength <strong>for every harmonic
+you record</strong>, at the <em>lowest</em> sound speed in the medium. <code>caustica validate</code>
+prints the ppw at <code>f0</code> and warns per harmonic below 3. It warns rather than
+blocks because the production setting is a deliberate 1.88 ppw at <code>2f₀</code> — under-
+resolved second-harmonic amplitude, accepted knowingly.</p>
+<h2 id="drive">Drive<a class="headerlink" href="#drive" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="p">{</span><span class="nt">"f0_mhz"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="nt">"amplitude_kpa"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.0</span><span class="p">,</span><span class="w"> </span><span class="nt">"ramp_periods"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.0</span><span class="p">}</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Default</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>f0_mhz</code></td>
+<td><strong>required</strong></td>
+<td>Drive frequency [MHz].</td>
+</tr>
+<tr>
+<td><code>amplitude_kpa</code></td>
+<td><strong>required</strong></td>
+<td>Realized source pressure amplitude [kPa] — see conventions §4.</td>
+</tr>
+<tr>
+<td><code>ramp_periods</code></td>
+<td><code>3.0</code></td>
+<td>Cosine taper at switch-on [periods].</td>
+</tr>
+</tbody>
+</table>
+<p><code>ramp_periods = 3</code> because a step-on source rings: the taper suppresses the
+transient that would otherwise contaminate the settling estimate. Shorter ramps
+settle sooner and ring more.</p>
+<h2 id="run">Run<a class="headerlink" href="#run" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="p">{</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">  </span><span class="nt">"spec"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="w">    </span><span class="nt">"cfl"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.48</span><span class="p">,</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="w">    </span><span class="nt">"cfl_hard_max"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span>
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="w">    </span><span class="nt">"min_settle_periods"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span>
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="w">    </span><span class="nt">"max_settle_periods"</span><span class="p">:</span><span class="w"> </span><span class="mi">96</span><span class="p">,</span>
+<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="w">    </span><span class="nt">"convergence_tol"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span>
+<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="w">    </span><span class="nt">"n_record_periods"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="w">    </span><span class="nt">"t_end_min_us"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a><span class="w">  </span><span class="nt">"harmonics"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">],</span>
+<a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a><span class="w">  </span><span class="nt">"record_region_vox"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a><span class="p">}</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Default</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>spec.cfl</code></td>
+<td><code>0.48</code></td>
+<td>Courant number; <code>dt</code> is derived from it and <code>c_max</code>.</td>
+</tr>
+<tr>
+<td><code>spec.cfl_hard_max</code></td>
+<td><code>0.5</code></td>
+<td>Refuse anything above this — the k-space PSTD stability edge.</td>
+</tr>
+<tr>
+<td><code>spec.min_settle_periods</code></td>
+<td><code>8</code></td>
+<td>Never declare convergence before this many periods.</td>
+</tr>
+<tr>
+<td><code>spec.max_settle_periods</code></td>
+<td><code>96</code></td>
+<td>Give up waiting after this many (recorded as <code>settle_capped</code>).</td>
+</tr>
+<tr>
+<td><code>spec.convergence_tol</code></td>
+<td><code>0.01</code></td>
+<td>Relative change between periods that counts as settled.</td>
+</tr>
+<tr>
+<td><code>spec.n_record_periods</code></td>
+<td><code>2</code></td>
+<td>Periods averaged into the recorded phasor.</td>
+</tr>
+<tr>
+<td><code>spec.t_end_min_us</code></td>
+<td><code>null</code></td>
+<td>Force a minimum simulated time, e.g. to let a reflection arrive.</td>
+</tr>
+<tr>
+<td><code>harmonics</code></td>
+<td><code>[1]</code></td>
+<td>Which harmonics to record. Strictly increasing, must start at 1.</td>
+</tr>
+<tr>
+<td><code>record_region_vox</code></td>
+<td><code>null</code></td>
+<td>Per-axis <code>[start, stop]</code> voxel bounds. <code>null</code> records the <strong>full grid</strong>.</td>
+</tr>
+</tbody>
+</table>
+<p><code>record_region_vox</code> is the field that decides whether your result is 40 MB or
+4 GB: the record buffer is 8 bytes per voxel <strong>per harmonic</strong>, and the full grid
+of a large phantom is a multi-GB <code>result.h5</code>. <code>validate</code> always prints the
+region and its cost; it <em>warns</em> only when you left it <code>null</code> and the full grid
+exceeds 10 million voxels — an explicit region is treated as a decision you
+already made, however large. Bounds are in full-grid voxels, PML included.</p>
+<h2 id="output">Output<a class="headerlink" href="#output" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="p">{</span><span class="nt">"folder"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="nt">"quantize"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nt">"max_norm_err"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.001</span><span class="p">}</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Default</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>folder</code></td>
+<td><code>null</code></td>
+<td>Output folder; <code>null</code> → <code>runs/&lt;name&gt;</code> next to the job file.</td>
+</tr>
+<tr>
+<td><code>quantize</code></td>
+<td><code>true</code></td>
+<td>Store the field as float16 + per-slice scale.</td>
+</tr>
+<tr>
+<td><code>max_norm_err</code></td>
+<td><code>0.001</code></td>
+<td>Refuse quantization if it costs more relative error than this.</td>
+</tr>
+</tbody>
+</table>
+<p><code>quantize</code> defaults on because it halves a multi-GB result at a normalized error
+around 1e-4 — well inside the discretization error — and the check makes the
+trade-off falsifiable rather than assumed.</p>
+<p>The output folder is a fixed layout, and <code>--resume</code> depends on it:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>job.json          normalized copy of the job that ran
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>plan.json/.txt    the pre-run VRAM + wall-time estimate
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>status.json       heartbeat (progress, ETA) while running
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>checkpoint.npz    resume point, deleted on success
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>result.h5         the field (caustica-result/1)
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>preview.npz       &lt;=10 MB preview package
+<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>metrics.json      focal metrics
+<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>run_meta.json     environment, planner-vs-actual, derived geometry
+</code></pre></div>
+<hr />
+<h2 id="command-line">Command line<a class="headerlink" href="#command-line" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>caustica<span class="w"> </span>validate<span class="w"> </span>job.json<span class="w">          </span><span class="c1"># schema, files, geometry, PML, focus, ppw (exit 0/2)</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>caustica<span class="w"> </span>validate<span class="w"> </span>job.json<span class="w"> </span>--fast<span class="w">   </span><span class="c1"># skip medium construction (big volumes)</span>
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>caustica<span class="w"> </span>run<span class="w"> </span>job.json<span class="w"> </span>--out<span class="w"> </span>runs/x<span class="w">  </span><span class="c1"># plan first, refuse OOM, solve, stamp</span>
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>caustica<span class="w"> </span>run<span class="w"> </span>job.json<span class="w"> </span>--resume<span class="w">      </span><span class="c1"># continue an interrupted run, bit-exact</span>
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>caustica<span class="w"> </span>report<span class="w"> </span>runs/x<span class="w">              </span><span class="c1"># REPORT.md + index.html + figures</span>
+<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>caustica<span class="w"> </span>schema<span class="w">                     </span><span class="c1"># this document, machine-readable</span>
+<a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a>caustica<span class="w"> </span>example<span class="w">                    </span><span class="c1"># list the packaged zero-data jobs</span>
+</code></pre></div>
+<p><code>run</code> exit codes are disjoint on purpose, so a queue can react: <code>0</code> ok, <code>2</code>
+config, <code>3</code> out of memory, <code>4</code> solver failure, <code>5</code> interrupted but resumable.</p>
+<h2 id="extending-the-schema">Extending the schema<a class="headerlink" href="#extending-the-schema" title="Permanent link">&para;</a></h2>
+<p>Medium kinds and array kinds are a <strong>registry</strong>, not a closed list. A package
+can add its own without touching caustica:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="c1"># my_pkg/job.py</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Literal</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">caustica.config.kinds</span><span class="w"> </span><span class="kn">import</span> <span class="n">MediumKindConfig</span>
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>
+<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="k">class</span><span class="w"> </span><span class="nc">MyPhantomMediumConfig</span><span class="p">(</span><span class="n">MediumKindConfig</span><span class="p">):</span>
+<a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>    <span class="n">kind</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">"my_phantom"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"my_phantom"</span>
+<a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a>    <span class="n">subject</span><span class="p">:</span> <span class="nb">str</span>
+<a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a>
+<a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">c_min</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span> <span class="o">...</span>
+<a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grid</span><span class="p">):</span> <span class="o">...</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="c1"># my_pkg/pyproject.toml</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="k">[project.entry-points.</span><span class="s2">"caustica.medium_kinds"</span><span class="k">]</span>
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="n">my_phantom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"my_pkg.job:MyPhantomMediumConfig"</span>
+</code></pre></div>
+<p>Array kinds use the group <code>caustica.array_kinds</code> and subclass <code>ArrayKindConfig</code>.
+Once installed, <code>caustica schema</code> prints your kind, <code>caustica validate</code> accepts
+it, and jobs using it run — the core kinds register through this same door, so
+if it ever breaks, caustica's own schema breaks first.</p>
+<p>Import your base class from <code>caustica.config.kinds</code>, never from
+<code>caustica.config.job</code>: the job module builds its unions while it is importing,
+and entry points are scanned at that moment.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../install/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Installation">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Installation
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../conventions/" class="md-footer__link md-footer__link--next" aria-label="Next: Conventions that bite">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Conventions that bite
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      MIT-licensed. Pre-alpha: the API still moves between milestones.
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/ebx0/caustica" target="_blank" rel="noopener" title="caustica on GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.footer", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.action.edit", "search.suggest", "search.highlight", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

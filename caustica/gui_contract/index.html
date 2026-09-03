@@ -1,0 +1,2696 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="GPU-accelerated, multi-solver acoustic simulation for HIFU and therapeutic ultrasound. Pure Python, one JSON job, the same run on a laptop and on Colab.">
+      
+      
+        <meta name="author" content="eren bulbul">
+      
+      
+        <link rel="canonical" href="https://ebx0.github.io/caustica/gui_contract/">
+      
+      
+        <link rel="prev" href="../extending/">
+      
+      
+        <link rel="next" href="../changelog/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/favicon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Driving it from a GUI - caustica</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#the-gui-contract" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="caustica" class="md-header__button md-logo" aria-label="caustica" data-md-component="logo">
+      
+  <img src="../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            caustica
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Driving it from a GUI
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ebx0/caustica" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ebx0/caustica
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../install/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Get started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../examples/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Examples
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../api/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  API reference
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../validation/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Evidence
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../extending/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Extending
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../changelog/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Project
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="caustica" class="md-nav__button md-logo" aria-label="caustica" data-md-component="logo">
+      
+  <img src="../assets/logo.svg" alt="logo">
+
+    </a>
+    caustica
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ebx0/caustica" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ebx0/caustica
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Get started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Get started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../job_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Writing a job
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../conventions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conventions that bite
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../library/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    From Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../api/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/simulate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Running a simulation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Grid, media, materials
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/geometry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Geometry
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/arrays/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transducers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/analytic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Analytic references
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/thermal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Thermal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/planner/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Planner and results
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Evidence
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../validation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    What has been measured
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../benchmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extending
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Extending
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extending/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extension points
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Driving it from a GUI
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Driving it from a GUI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-shape-of-the-whole-thing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The shape of the whole thing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#input-caustica-job1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Input: caustica-job/1
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#output-the-run-folder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output: the run folder
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Output: the run folder">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#output-folder-written-by-every-successful-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output folder: written by every successful run
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output-folder-written-only-under-some-conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output folder: written only under some conditions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exit-codes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exit codes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#statusjson-the-live-heartbeat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        status.json — the live heartbeat
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="status.json — the live heartbeat">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#statusjson-fields-in-every-heartbeat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        status.json: fields in every heartbeat
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#statusjson-state-dependent-extras" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        status.json: state-dependent extras
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#errorjson-why-a-run-failed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        error.json — why a run failed
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="error.json — why a run failed">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#errorjson-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        error.json: fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#errorjson-stages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        error.json: stages
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cancel-stopping-a-run-without-killing-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        cancel — stopping a run without killing it
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#planning-without-running-dry-run-and-planjson" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Planning without running: --dry-run and plan.json
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Planning without running: --dry-run and plan.json">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#planjson-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        plan.json: fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#caustica-preview1-the-10-mb-quick-look" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        caustica-preview/1 — the ≤ 10 MB quick-look
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="caustica-preview/1 — the ≤ 10 MB quick-look">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metricsjson-top-level-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        metrics.json: top-level fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#caustica-result1-the-field-itself" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        caustica-result/1 — the field itself
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#env_report-what-machine-is-this" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        env_report() — what machine is this
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="env_report() — what machine is this">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#env_report-keys-on-every-machine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        env_report(): keys on every machine
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#env_report-keys-added-on-the-cupy-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        env_report(): keys added on the cupy backend
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-progress-payload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The progress payload
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The progress payload">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#progress-payload-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Progress payload: keys
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run_metajson-the-audit-stamp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        run_meta.json — the audit stamp
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="run_meta.json — the audit stamp">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#run_metajson-top-level-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        run_meta.json: top-level fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#format-identifiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Format identifiers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#explicitly-not-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Explicitly not contract
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Project
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-shape-of-the-whole-thing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The shape of the whole thing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#input-caustica-job1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Input: caustica-job/1
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#output-the-run-folder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output: the run folder
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Output: the run folder">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#output-folder-written-by-every-successful-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output folder: written by every successful run
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output-folder-written-only-under-some-conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output folder: written only under some conditions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exit-codes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exit codes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#statusjson-the-live-heartbeat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        status.json — the live heartbeat
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="status.json — the live heartbeat">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#statusjson-fields-in-every-heartbeat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        status.json: fields in every heartbeat
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#statusjson-state-dependent-extras" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        status.json: state-dependent extras
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#errorjson-why-a-run-failed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        error.json — why a run failed
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="error.json — why a run failed">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#errorjson-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        error.json: fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#errorjson-stages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        error.json: stages
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cancel-stopping-a-run-without-killing-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        cancel — stopping a run without killing it
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#planning-without-running-dry-run-and-planjson" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Planning without running: --dry-run and plan.json
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Planning without running: --dry-run and plan.json">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#planjson-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        plan.json: fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#caustica-preview1-the-10-mb-quick-look" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        caustica-preview/1 — the ≤ 10 MB quick-look
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="caustica-preview/1 — the ≤ 10 MB quick-look">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metricsjson-top-level-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        metrics.json: top-level fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#caustica-result1-the-field-itself" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        caustica-result/1 — the field itself
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#env_report-what-machine-is-this" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        env_report() — what machine is this
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="env_report() — what machine is this">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#env_report-keys-on-every-machine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        env_report(): keys on every machine
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#env_report-keys-added-on-the-cupy-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        env_report(): keys added on the cupy backend
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-progress-payload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The progress payload
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The progress payload">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#progress-payload-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Progress payload: keys
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run_metajson-the-audit-stamp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        run_meta.json — the audit stamp
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="run_meta.json — the audit stamp">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#run_metajson-top-level-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        run_meta.json: top-level fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#format-identifiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Format identifiers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#explicitly-not-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Explicitly not contract
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="the-gui-contract">The GUI contract<a class="headerlink" href="#the-gui-contract" title="Permanent link">&para;</a></h1>
+<p>caustica has no GUI, no GUI dependency and no <code>gui</code> extra, and this document
+does not propose one. It exists because a GUI will eventually be written —
+in a separate repository, in a technology nobody has picked yet — and it must
+sit on a surface that is stable <em>before</em> it starts,
+not one discovered by reading the library's internals.</p>
+<p>So this page lists that surface: the file formats a GUI reads and writes, the
+exit codes it routes on, the fields it may display, and the two signals it may
+send. Every list here is either generated from the code or pinned by
+<code>tests/test_gui_contract.py</code>, which fails if the code and this page disagree.</p>
+<p><strong>Nothing that is not listed here is a contract.</strong> Anything else in the
+library — module layout, private helpers, log text, stdout prose, the shape of
+<code>checkpoint.npz</code> — may change in any release without notice. If a GUI needs
+something that is not on this page, the fix is to add it here first.</p>
+<p><strong>What on this page is machine-checked, and what is not.</strong> The bullet lists,
+the tables, and the literal names, numbers and format strings on this page are
+compared against the running code by <code>tests/test_gui_contract.py</code>; they cannot
+rot silently. The prose between them is explanatory — reviewed, not executed.
+Every finding of the M10l review, and one of the mutation round that followed
+it, was a sentence rather than a list, which is the class a list comparison
+cannot reach; where such a sentence makes a claim precise enough to test, the
+answer is to add the test, not to trust the sentence. <strong>If prose and a list
+disagree, the list is the contract.</strong></p>
+<p>The layering is enforced too: <code>tests/test_import_direction.py</code> AST-scans every
+module under <code>src/caustica</code> and fails if any of them imports <code>apps</code>,
+<code>uwcem_phantoms</code>, or a <code>caustica_gui*</code> package. Arrows point down only. A GUI
+imports caustica; caustica never learns that a GUI exists.</p>
+<hr />
+<h2 id="the-shape-of-the-whole-thing">The shape of the whole thing<a class="headerlink" href="#the-shape-of-the-whole-thing" title="Permanent link">&para;</a></h2>
+<p><strong>Input is ONE file.</strong> A <code>caustica-job/1</code> JSON document describes a run
+completely. The single exception is a voxel medium, which references a volume
+file by path — a 4.5 GB array does not belong inside a JSON document.</p>
+<p><strong>Output is ONE folder.</strong> Deliberately a folder and not a single file: resume
+and live progress cannot work through one file. What a GUI needs in order to
+<em>show</em> a finished run is nevertheless one small package — <code>preview.npz</code> plus
+<code>metrics.json</code>, where the preview is budgeted at ≤ 10 MB and the metrics are a
+couple of KB — so a remote run stays viewable over a slow link without
+downloading a multi-GB <code>result.h5</code>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>caustica run job.json --out &lt;folder&gt;      # one job file in, one folder out
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>caustica validate job.json                # exit 0/2, before anything expensive
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>caustica schema                           # JSON Schema for caustica-job/1
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>caustica run job.json --out &lt;f&gt; --dry-run # plan.json only: VRAM, time, advice
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>caustica report &lt;folder&gt;                  # renders the preview package
+</code></pre></div>
+<p>The same three things are available in-process, with the same semantics:
+<code>caustica.simulate(...)</code>, <code>caustica.config.job.validate_job(...)</code>,
+<code>caustica.config.job.job_schema()</code>.</p>
+<hr />
+<h2 id="input-caustica-job1">Input: <code>caustica-job/1</code><a class="headerlink" href="#input-caustica-job1" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Schema.</strong> <code>caustica schema</code> prints a JSON Schema (draft 2020-12) for the
+  whole job format, with <code>additionalProperties: false</code> and discriminated
+  unions for the medium and array kinds. It is generated from the same pydantic
+  models the runner validates against, so an auto-generated form cannot drift
+  from what the runner accepts. <code>caustica schema --kinds</code> lists the registered
+  medium and array kind tags — including any a plugin added.</li>
+<li><strong>Validation.</strong> <code>caustica validate job.json</code> exits 0 or 2 and prints a
+  report; <code>validate_job(path)</code> returns a <code>JobReport</code> with <code>.ok</code>, <code>.errors</code>,
+  <code>.warnings</code>, <code>.summary</code>, <code>.render()</code>. It checks everything that can be
+  checked <em>without solving and without a GPU</em>: schema, referenced files,
+  source-vs-PML clearance, focus placement, points-per-wavelength.
+  <code>--fast</code> skips building the medium.</li>
+<li><strong>Field reference.</strong> <code>docs/job_reference.md</code> documents every kind with a
+  runnable snippet, and <code>tests/test_schema_doc.py</code> keeps it honest.</li>
+</ul>
+<hr />
+<h2 id="output-the-run-folder">Output: the run folder<a class="headerlink" href="#output-the-run-folder" title="Permanent link">&para;</a></h2>
+<h3 id="output-folder-written-by-every-successful-run">Output folder: written by every successful run<a class="headerlink" href="#output-folder-written-by-every-successful-run" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>job.json</code> — the normalized copy of the job that actually ran</li>
+<li><code>plan.json</code> — the planner's verdict, written BEFORE solving</li>
+<li><code>plan.txt</code> — the same verdict as printed text</li>
+<li><code>status.json</code> — the live heartbeat (see below)</li>
+<li><code>result.h5</code> — the field, as <code>caustica-result/1</code></li>
+<li><code>preview.npz</code> — the ≤ 10 MB quick-look package, <code>caustica-preview/1</code></li>
+<li><code>metrics.json</code> — focal metrics, <code>caustica-metrics/1</code></li>
+<li><code>run_meta.json</code> — the stamp: environment, git commit, planner vs actual</li>
+</ul>
+<p>With <code>--preview-only</code> there is no <code>result.h5</code>; the preview package is the
+output. A non-native solver (<code>kwave</code>) writes no <code>plan.json</code>/<code>plan.txt</code>,
+because the planner models the native engine only.</p>
+<h3 id="output-folder-written-only-under-some-conditions">Output folder: written only under some conditions<a class="headerlink" href="#output-folder-written-only-under-some-conditions" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>checkpoint.npz</code> — in-run state; present while a run is interrupted, removed
+  on success. Its internal format is NOT contract: treat it as opaque</li>
+<li><code>error.json</code> — present if and only if this folder's last attempt FAILED</li>
+<li><code>cancel</code> — an input, not an output: a caller creates it to stop the run</li>
+</ul>
+<hr />
+<h2 id="exit-codes">Exit codes<a class="headerlink" href="#exit-codes" title="Permanent link">&para;</a></h2>
+<p>The exit-code set is the queue's API. It is disjoint so that a caller can
+route without parsing text, and it is <strong>closed</strong> — a new failure mode reuses an
+existing code rather than adding a sixth.</p>
+<table>
+<thead>
+<tr>
+<th>code</th>
+<th>constant</th>
+<th>meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0</code></td>
+<td><code>EXIT_OK</code></td>
+<td>success, or the folder already held a complete result</td>
+</tr>
+<tr>
+<td><code>2</code></td>
+<td><code>EXIT_CONFIG</code></td>
+<td>config error: bad job, unknown backend/GPU, checkpoint conflict, CPU-time refusal</td>
+</tr>
+<tr>
+<td><code>3</code></td>
+<td><code>EXIT_OOM</code></td>
+<td>refused before solving: the run does not fit in memory</td>
+</tr>
+<tr>
+<td><code>4</code></td>
+<td><code>EXIT_SOLVER</code></td>
+<td>the solve or the store failed</td>
+</tr>
+<tr>
+<td><code>5</code></td>
+<td><code>EXIT_INTERRUPTED</code></td>
+<td>stopped cleanly and resumably (<code>--max-hours</code>, or a <code>cancel</code> file)</td>
+</tr>
+</tbody>
+</table>
+<p>One code is deliberately absent from the table: <strong>1</strong>. It is what Python
+returns when an exception escapes the runner's own classification — a bug, not
+a verdict, and it comes with a traceback and no <code>error.json</code>. A caller that
+sees 1 should report it, not retry it. (<code>caustica report</code> and
+<code>caustica example</code> also use 2 for their own argument errors.)</p>
+<p>Exit 5 is not a failure: a checkpoint is on disk and <code>--resume</code> finishes the
+run. A resumed run reproduces the uninterrupted one bit for bit on one backend
+(the documented band is rel &lt; 1e-6).</p>
+<p>In-process the same codes arrive as ONE exception carrying the same number:
+<code>caustica.SimulationError</code>, with <code>.exit_code</code>. A pre-run gate raises it with
+code 2 or 3, a failed solve with code 4 — the classification lives in the
+attribute, not in the class hierarchy.</p>
+<hr />
+<h2 id="statusjson-the-live-heartbeat"><code>status.json</code> — the live heartbeat<a class="headerlink" href="#statusjson-the-live-heartbeat" title="Permanent link">&para;</a></h2>
+<p>Rewritten atomically at most every <code>--status-interval</code> seconds while solving,
+and once on each terminal state. This is the file to poll: it survives a Drive
+sync, needs no open connection, and its numbers are the ones M8's Colab gates
+were calibrated against.</p>
+<p><code>state</code> is one of <code>solving</code>, <code>writing</code>, <code>done</code>, <code>interrupted</code>, <code>failed</code>.</p>
+<h3 id="statusjson-fields-in-every-heartbeat">status.json: fields in every heartbeat<a class="headerlink" href="#statusjson-fields-in-every-heartbeat" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>job</code> — the job's name</li>
+<li><code>solver</code> — the solver that is running</li>
+<li><code>backend</code> — the backend that was actually resolved</li>
+<li><code>pid</code> — the process id writing this file</li>
+<li><code>ppw_warnings</code> — low-resolution warnings, repeated here on purpose</li>
+<li><code>state</code> — see above</li>
+<li><code>periods_done</code> — acoustic periods completed (resume offset included)</li>
+<li><code>steps_done</code> — derived: <code>periods_done * spp</code></li>
+<li><code>steps_expected</code> — the planner's expected step count (may be null)</li>
+<li><code>steps_worst</code> — the worst-case step count (may be null)</li>
+<li><code>eta_s</code> — seconds remaining, measured from THIS session's cadence</li>
+<li><code>elapsed_s</code> — seconds since this session started solving</li>
+<li><code>written_at</code> — UTC ISO-8601 timestamp of this write</li>
+</ul>
+<h3 id="statusjson-state-dependent-extras">status.json: state-dependent extras<a class="headerlink" href="#statusjson-state-dependent-extras" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>result</code> — <code>state: "done"</code> only: the path of the final artifact</li>
+<li><code>detail</code> — <code>state: "interrupted"</code> only: why it stopped</li>
+<li><code>error</code> — <code>state: "failed"</code> only: the classified failure text</li>
+</ul>
+<p>Known and accepted: the period boundary fires once more just before the record
+window, so a run that reaches recording reports <code>periods_done</code> one higher than
+its settle count. Status numbers are telemetry, not provenance — the exact
+counters live in <code>run_meta.json</code>.</p>
+<hr />
+<h2 id="errorjson-why-a-run-failed"><code>error.json</code> — why a run failed<a class="headerlink" href="#errorjson-why-a-run-failed" title="Permanent link">&para;</a></h2>
+<p>Written to the output folder on every non-zero exit that has a folder to write
+into, including the failures that happen <em>before</em> solving starts and therefore
+before <code>status.json</code> exists. It is an <strong>addition</strong> to the failure contract, never
+a replacement: the exit code and the stderr message are unchanged and stay
+authoritative. A GUI never has to parse stderr.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">"format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"caustica-error/1"</span><span class="p">,</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">"stage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gate"</span><span class="p">,</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nt">"exit_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="nt">"error_class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VramRefusal"</span><span class="p">,</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REFUSED before solving: this run needs 41.20 GiB but free device VRAM (NVIDIA A100-SXM4-40GB) is 38.88 GiB."</span><span class="p">,</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span><span class="nt">"advice"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"coarsen dx to 0.30 mm"</span><span class="p">,</span><span class="w"> </span><span class="s2">"or record only the focal region"</span><span class="p">],</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span><span class="nt">"written_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-08-22T16:19:34+00:00"</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="p">}</span>
+</code></pre></div>
+<h3 id="errorjson-fields">error.json: fields<a class="headerlink" href="#errorjson-fields" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>format</code> — always <code>caustica-error/1</code></li>
+<li><code>stage</code> — where it failed; see below</li>
+<li><code>exit_code</code> — the same code the process returned</li>
+<li><code>error_class</code> — the exception type, or a gate's name (<code>VramRefusal</code>,
+  <code>CpuTimeRefusal</code>, <code>CheckpointConflict</code>) — this is what a GUI switches on</li>
+<li><code>message</code> — one human-readable line</li>
+<li><code>advice</code> — a list of actionable strings, possibly empty. For a memory
+  refusal these are the planner's own suggestions, not generic prose</li>
+<li><code>written_at</code> — UTC ISO-8601 timestamp</li>
+</ul>
+<h3 id="errorjson-stages">error.json: stages<a class="headerlink" href="#errorjson-stages" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>config</code> — the job would not load or build; nothing was planned</li>
+<li><code>plan</code> — the planner itself failed (e.g. an unknown <code>--gpu</code> name)</li>
+<li><code>gate</code> — a pre-run gate refused: memory, or CPU wall time</li>
+<li><code>checkpoint</code> — a checkpoint exists and <code>--resume</code> was not given</li>
+<li><code>solve</code> — the solver raised</li>
+<li><code>store</code> — the solve finished and writing the result failed</li>
+</ul>
+<p>Two rules a GUI may rely on:</p>
+<ol>
+<li>A <strong>successful</strong> run writes no <code>error.json</code>, and a new attempt on a folder
+   deletes the previous one. Its presence means "this folder's last real
+   attempt failed".</li>
+<li>An <strong>interrupted</strong> run (exit 5) writes no <code>error.json</code> either. Stopping on
+   request is not failing; <code>status.json</code> says <code>interrupted</code> and the exit code
+   says 5.</li>
+<li><code>--dry-run</code> touches it in neither direction: a fit-check is a probe, not an
+   attempt, so it never deletes an existing record and never writes one.</li>
+</ol>
+<p>The converse does <strong>not</strong> hold, and a GUI must not assume it: a process that is
+killed (the ordinary Colab session death) writes nothing at all, and leaves
+<code>status.json</code> reading <code>solving</code> with no process behind it. Absence of
+<code>error.json</code> means "no <em>classified</em> failure was recorded", not "the run is
+fine". The exit code, when there is one, is the authority.</p>
+<p>There is one case with nowhere to write: the job would not load <em>and</em> no
+explicit <code>--out</code> was given, so the folder's own name — which comes from the
+job — was never known. Nothing is invented in that case; the stderr message
+and exit code are all there is. A GUI that always passes <code>--out</code> never meets
+it.</p>
+<hr />
+<h2 id="cancel-stopping-a-run-without-killing-it"><code>cancel</code> — stopping a run without killing it<a class="headerlink" href="#cancel-stopping-a-run-without-killing-it" title="Permanent link">&para;</a></h2>
+<p>A GUI's Stop button creates an (empty) file named <code>cancel</code> in the run's output
+folder. Nothing else is required, and no signal, socket or process handle is
+involved.</p>
+<ul>
+<li>The solve polls for it <strong>once per acoustic period boundary</strong> — one <code>stat</code>,
+  never per step. A per-step poll would put a filesystem round-trip between
+  GPU kernels. (There is one extra poll just before the record window, so the
+  count is periods + 1.) The poll asks whether <code>cancel</code> is a <em>file</em>: a
+  directory of that name is not a request and is ignored.</li>
+<li>On seeing it the run writes a checkpoint, stops, and exits <strong>5</strong>.</li>
+<li>The runner then <strong>deletes</strong> the file, so a stopped folder never advertises
+  a stop request nobody will honor: once the process has exited, <code>cancel</code> is
+  gone. This is belt-and-braces rather than the load-bearing part — the clear
+  at the start of every real run (next bullet) already carries the <code>--resume</code>
+  on its own, measured with the handler's delete removed — but a GUI may rely
+  on both. The resumed run finishes bit-identically to an uninterrupted one.</li>
+<li>A <code>cancel</code> left behind by a process that was killed before it could honor it
+  is cleared when the next attempt on that folder starts, rather than
+  cancelling every resume forever. This clear is the one that matters, and it
+  is what makes <code>--resume</code> safe after any kind of death. The consequence is
+  honest: <code>cancel</code> is a signal to a run that is <em>already going</em>, not a way to
+  pre-cancel one.</li>
+<li>Only the native solvers (<code>linear</code>, <code>westervelt</code>) can be cancelled, because
+  only they take checkpoints. A <code>kwave</code> job says so on stdout and ignores the
+  file — stopping it would lose the run rather than pause it, which is the
+  opposite of what the file is for.</li>
+</ul>
+<p><code>--max-hours</code> is the same stop on a timer, and produces the same exit 5.</p>
+<hr />
+<h2 id="planning-without-running-dry-run-and-planjson">Planning without running: <code>--dry-run</code> and <code>plan.json</code><a class="headerlink" href="#planning-without-running-dry-run-and-planjson" title="Permanent link">&para;</a></h2>
+<p><code>caustica run job.json --out &lt;folder&gt; --dry-run</code> exits 0 having written
+<code>job.json</code>, <code>plan.json</code> and <code>plan.txt</code> and nothing else — no solve, no result,
+no status. This is how a GUI answers "will this fit, and how long will it
+take?" before committing a GPU. A non-native solver writes only <code>job.json</code>:
+there is nothing to plan, so there is no <code>plan.json</code> to read.</p>
+<p>Two things a caller must expect. A dry run exits <strong>0</strong> when the run fits — but
+a memory refusal still exits <strong>3</strong>, because "it does not fit" is the answer to
+the question, not a malfunction. (The CPU-time gate is different: under
+<code>--dry-run</code> it prints its verdict and still exits 0, since planning a
+Colab-bound job from a laptop is a normal thing to do.) And a dry run writes
+neither <code>error.json</code> nor anything else beyond the plan — it will not disturb
+the record of a real run in the same folder.</p>
+<h3 id="planjson-fields">plan.json: fields<a class="headerlink" href="#planjson-fields" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>source</code> — where the timing came from: <code>db</code>, <code>calibrated</code> or <code>measured</code></li>
+<li><code>spp</code> — steps per acoustic period</li>
+<li><code>dt_s</code> — the timestep</li>
+<li><code>t_step_s</code> — seconds per step</li>
+<li><code>warmup_s</code> — the ONE-TIME cost before steady stepping (cuFFT plans, kernel
+  compilation, first allocations). <code>t_expected_s = warmup_s + steps_expected *
+  t_step_s</code>, so a short GPU run can be mostly warmup and still be healthy</li>
+<li><code>steps_expected</code> — expected step count</li>
+<li><code>steps_worst</code> — worst-case step count</li>
+<li><code>t_expected_s</code> — expected wall time on THIS machine</li>
+<li><code>t_worst_s</code> — worst-case wall time</li>
+<li><code>vram_gib</code> — device memory this run needs</li>
+<li><code>vram_breakdown_bytes</code> — what that memory is spent on</li>
+<li><code>result_size_mb_expected</code> — how big <code>result.h5</code> will be</li>
+<li><code>gpu</code> — the datasheet GPU the second estimate targets</li>
+<li><code>gpu_t_expected_s</code> — expected wall time on that GPU</li>
+<li><code>gpu_fits</code> — whether it fits on that GPU</li>
+<li><code>warnings</code> — planner warnings</li>
+<li><code>advice</code> — actionable suggestions (the same strings <code>error.json</code> carries)</li>
+<li><code>ppw_warnings</code> — low-resolution warnings</li>
+</ul>
+<p>A run that does not fit is refused with exit 3 <em>before</em> anything expensive
+happens, and the same <code>advice</code> list is written to <code>error.json</code>.</p>
+<hr />
+<h2 id="caustica-preview1-the-10-mb-quick-look"><code>caustica-preview/1</code> — the ≤ 10 MB quick-look<a class="headerlink" href="#caustica-preview1-the-10-mb-quick-look" title="Permanent link">&para;</a></h2>
+<p><code>preview.npz</code> is the package a GUI displays. It holds peak-plane slices per
+harmonic, one <code>p_max</code> plane, a block-mean coarse amplitude volume, mm axes
+measured from the transducer apex, the convergence history, and a <code>meta_json</code>
+entry carrying the format tag, grid geometry, the realized peak voxel and the
+coarsening step.
+The 10 MB budget is <em>measured</em> on the compressed bytes, not estimated.</p>
+<p>Read it with <code>caustica.report.preview.load_preview(path)</code>; render it with
+<code>caustica report &lt;folder&gt;</code>. In-process, <code>simulate(...).preview()</code> returns the
+identical package without touching disk.</p>
+<p><code>metrics.json</code> is the numeric companion, <code>caustica-metrics/1</code>.</p>
+<h3 id="metricsjson-top-level-fields">metrics.json: top-level fields<a class="headerlink" href="#metricsjson-top-level-fields" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>format</code> — always <code>caustica-metrics/1</code></li>
+<li><code>job</code> — the job's name</li>
+<li><code>generated</code> — UTC ISO-8601 timestamp</li>
+<li><code>peak</code> — peak pressure and where it is</li>
+<li><code>focal_spot</code> — the −6 dB focal spot</li>
+<li><code>target</code> — the requested focus, and the miss distance</li>
+<li><code>run</code> — solver/steps/convergence provenance</li>
+<li><code>warnings</code> — caveats about the numbers above; a list, empty when there are
+  none, never absent <em>(added 2026-08-23)</em></li>
+</ul>
+<p>A run that recorded a second harmonic also carries <code>harmonics</code>. Its
+<code>a2_peak_pa</code> is a whole-interior maximum, so it can land on the PML's own
+harmonic-DFT residue rather than on the beam: <code>a2_peak_distance_to_pml_vox</code>
+<em>(added 2026-08-23)</em> says how far that voxel is from the absorber, and under 8
+voxels a <code>warnings</code> entry (and the REPORT.md row) says to read
+<code>a2_at_fundamental_peak_pa</code> instead. Existing fields are unchanged.</p>
+<hr />
+<h2 id="caustica-result1-the-field-itself"><code>caustica-result/1</code> — the field itself<a class="headerlink" href="#caustica-result1-the-field-itself" title="Permanent link">&para;</a></h2>
+<p>An HDF5 file. Root attributes carry the format tag, caustica version, solver,
+backend, <code>f0_hz</code>, <code>dt_s</code>, <code>spp</code>, <code>steps_total</code>, <code>t_end_s</code>, <code>tof_periods</code>,
+<code>converged_period</code>, <code>settle_capped</code>, <code>harmonics</code>, <code>dx_m</code>, <code>grid_shape</code>,
+<code>pml_vox</code>, <code>region_start</code>, <code>region_stop</code>, plus the runner's stamp
+(<code>job_name</code>, <code>job_kind</code>, <code>git_commit</code>, <code>runner</code>, <code>apex_vox</code>, <code>focus_vox</code>) and
+two conventions in prose: <code>phase_convention</code> and <code>absorption_model</code>.</p>
+<p><code>input/</code> holds the source geometry and drive; <code>output/</code> holds
+<code>p_real_h{n}</code> / <code>p_imag_h{n}</code> per harmonic and <code>p_max</code>, each with the <code>scale</code>
+attribute needed to restore it from float16; <code>convergence/history</code> holds
+<code>(period, peak_pa, rel_change)</code> rows.</p>
+<p>Amplitude and phase are never stored — they are always recomputed. Read the
+file with <code>caustica.io.store.load_result(path)</code>; check one with
+<code>validate_result_file(path)</code>.</p>
+<hr />
+<h2 id="env_report-what-machine-is-this"><code>env_report()</code> — what machine is this<a class="headerlink" href="#env_report-what-machine-is-this" title="Permanent link">&para;</a></h2>
+<p><code>caustica.env_report()</code> never raises, on any machine, with any CUDA stack in
+any state. The runner stamps its output into <code>run_meta.json</code> and a notebook
+prints the same function's output, so the two cannot disagree.</p>
+<h3 id="env_report-keys-on-every-machine">env_report(): keys on every machine<a class="headerlink" href="#env_report-keys-on-every-machine" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>caustica</code> — the library version</li>
+<li><code>python</code> — the interpreter version</li>
+<li><code>platform</code> — the platform string</li>
+<li><code>numpy</code> — the numpy version</li>
+<li><code>scipy</code> — the scipy version, or null</li>
+<li><code>pydantic</code> — the pydantic version, or null</li>
+<li><code>h5py</code> — the h5py version, or null</li>
+<li><code>resolved_backend</code> — the backend this run actually resolved (for a bare
+  <code>env_report()</code> call, what <code>auto</code> would pick here); on a failed probe it
+  reads <code>probe_error: &lt;ExceptionType&gt;</code> instead of a backend name</li>
+</ul>
+<h3 id="env_report-keys-added-on-the-cupy-backend">env_report(): keys added on the cupy backend<a class="headerlink" href="#env_report-keys-added-on-the-cupy-backend" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>gpu_name</code> — the device name</li>
+<li><code>driver_version</code> — the CUDA driver version</li>
+<li><code>cuda_runtime_version</code> — the CUDA runtime version</li>
+<li><code>cupy_version</code> — the cupy version</li>
+<li><code>vram_total_gib</code> — total device memory</li>
+<li><code>vram_free_gib</code> — free device memory; this is what the memory gate uses</li>
+</ul>
+<p>A failed GPU probe replaces those six with a single <code>gpu_probe_error</code> string
+instead of raising.</p>
+<p><code>caustica.require_gpu()</code> returns the cupy backend or raises with the fix for
+<em>this</em> machine. It never calls pip.</p>
+<hr />
+<h2 id="the-progress-payload">The progress payload<a class="headerlink" href="#the-progress-payload" title="Permanent link">&para;</a></h2>
+<p>One dict is emitted per acoustic period boundary — never per step, because a
+per-step device→host sync destroys GPU throughput. Pass a callable as
+<code>progress=</code> to <code>caustica.simulate(...)</code> or <code>RunnerOptions</code>, or the strings
+<code>"auto"</code> / <code>"plain"</code> for the built-in console display.</p>
+<h3 id="progress-payload-keys">Progress payload: keys<a class="headerlink" href="#progress-payload-keys" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>period</code> — periods completed</li>
+<li><code>periods_expected</code> — how many are expected in total</li>
+<li><code>step</code> — steps completed</li>
+<li><code>steps_expected</code> — how many are expected in total</li>
+<li><code>peak</code> — this period's peak pressure, Pa</li>
+<li><code>converge_delta</code> — relative change against the previous period</li>
+<li><code>elapsed_s</code> — seconds since this session started</li>
+<li><code>eta_s</code> — seconds remaining, or null</li>
+<li><code>stage</code> — <code>settle</code> or <code>record</code></li>
+<li><code>snapshot</code> — a zero-argument CALLABLE returning a 2-D slice through the focus</li>
+</ul>
+<p>The first nine keys are the serializable contract. <code>snapshot</code> is the tenth and
+is <strong>not</strong> serializable: a consumer that serializes the payload — a socket, a
+<code>status.json</code> writer — MUST drop it. It is lazy on purpose, so a consumer that
+draws a preview every eight periods pays exactly one device→host copy on those
+periods and none on the others.</p>
+<p>A consumer that raises does not kill the solve; the engine warns once and
+carries on.</p>
+<hr />
+<h2 id="run_metajson-the-audit-stamp"><code>run_meta.json</code> — the audit stamp<a class="headerlink" href="#run_metajson-the-audit-stamp" title="Permanent link">&para;</a></h2>
+<h3 id="run_metajson-top-level-fields">run_meta.json: top-level fields<a class="headerlink" href="#run_metajson-top-level-fields" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>format</code> — always <code>caustica-run-meta/1</code></li>
+<li><code>job</code> — the job's name</li>
+<li><code>job_kind</code> — the job kind that ran</li>
+<li><code>solver</code> — the solver that ran</li>
+<li><code>backend</code> — the backend that was resolved</li>
+<li><code>generated</code> — UTC ISO-8601 timestamp</li>
+<li><code>git_commit</code> — which caustica ran: the checkout's commit when the package
+  is imported from a git work tree, otherwise the commit frozen into the
+  package at build time (so a wheel install — Colab — is traceable too),
+  and <code>unknown</code> only when neither exists</li>
+<li><code>environment</code> — <code>env_report()</code> output</li>
+<li><code>ppw_warnings</code> — low-resolution warnings</li>
+<li><code>planner</code> — the <code>plan.json</code> payload, or null for a non-native solver</li>
+<li><code>actual</code> — measured wall time, steps, convergence, resume offset, VRAM peak.
+  Inside it, <code>t_step_measured_s</code> is <code>elapsed / steps</code> and therefore bundles
+  the one-time warmup into a per-step average; <code>t_step_steady_s</code> is the
+  median rate BETWEEN period boundaries and <code>warmup_s</code> is what the total
+  does not explain. Both are <code>null</code> on a run too short to measure them
+  (fewer than three period boundaries). No existing key changed meaning</li>
+<li><code>derived</code> — re-derivable geometry (apex voxel, f-number, …)</li>
+</ul>
+<hr />
+<h2 id="format-identifiers">Format identifiers<a class="headerlink" href="#format-identifiers" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>format</th>
+<th>written by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>caustica-job/1</code></td>
+<td>the input job document</td>
+</tr>
+<tr>
+<td><code>caustica-result/1</code></td>
+<td><code>result.h5</code></td>
+</tr>
+<tr>
+<td><code>caustica-preview/1</code></td>
+<td><code>preview.npz</code></td>
+</tr>
+<tr>
+<td><code>caustica-metrics/1</code></td>
+<td><code>metrics.json</code></td>
+</tr>
+<tr>
+<td><code>caustica-run-meta/1</code></td>
+<td><code>run_meta.json</code></td>
+</tr>
+<tr>
+<td><code>caustica-error/1</code></td>
+<td><code>error.json</code></td>
+</tr>
+<tr>
+<td><code>caustica-checkpoint/1</code></td>
+<td><code>checkpoint.npz</code> (opaque; listed so a stale one is recognizable)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="explicitly-not-contract">Explicitly not contract<a class="headerlink" href="#explicitly-not-contract" title="Permanent link">&para;</a></h2>
+<ul>
+<li>The Python module layout below the documented entry points, and every
+  underscore-prefixed name.</li>
+<li>stdout prose. stderr messages are stable enough to show a user, but a GUI
+  routes on the exit code and <code>error.json</code>, never on the text.</li>
+<li>The internal structure of <code>checkpoint.npz</code>, and <code>plan.txt</code>'s layout.</li>
+<li>Log records and their wording.</li>
+<li>Any framework, transport, socket or IPC mechanism. There is none, on
+  purpose: the contract is files in a folder, which works identically for a
+  local run, an SSH'd machine and a Colab session writing into a Drive folder
+  the <em>user</em> mounted. caustica never mounts one itself.</li>
+<li><code>caustica.colab</code> (M10f). It is a convenience entry point for a human in a
+  notebook: it prints an environment verdict, requires a GPU, picks a default
+  folder under <code>/content</code> and hands the runner's own failures back readably.
+  Every decision in it is an opinion about where it is running, which is
+  exactly what a contract must not be. It adds nothing a program cannot get
+  from <code>caustica run</code> / <code>caustica.simulate</code> plus this page, and a driving
+  program should use those.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../extending/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Extension points">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Extension points
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../changelog/" class="md-footer__link md-footer__link--next" aria-label="Next: Changelog">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Changelog
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      MIT-licensed. Pre-alpha: the API still moves between milestones.
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/ebx0/caustica" target="_blank" rel="noopener" title="caustica on GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.footer", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.action.edit", "search.suggest", "search.highlight", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
