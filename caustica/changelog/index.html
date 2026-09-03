@@ -1376,6 +1376,16 @@ sections below describe what is on <code>master</code> today. The rule behind ev
 is that nothing is claimed without a measurement to point at; what has been
 measured, and how, is <a href="https://ebx0.github.io/caustica/validation/">documented here</a>.</p>
 <h2 id="unreleased"><a href="https://github.com/ebx0/caustica/commits/master">Unreleased</a><a class="headerlink" href="#unreleased" title="Permanent link">&para;</a></h2>
+<h3 id="changed">Changed<a class="headerlink" href="#changed" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>The validation gates lost their milestone prefixes.</strong> <code>M4.planewave</code> is now
+  <code>planewave</code>, <code>M8.vram</code> is <code>vram</code>, <code>M21.PH1-SC1</code> is <code>PH1-SC1</code>, and so on for
+  every gate the analytic, compare, gpu-gates and ITRUSST suites write. The
+  second half of the name always said what the gate measured; the first half
+  indexed a ledger that no longer ships with the repository. Reports written
+  before this change carry the old ids, so a diff across that boundary has to
+  map them by hand.</li>
+</ul>
 <h3 id="added">Added<a class="headerlink" href="#added" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Solvers.</strong> A shared k-space PSTD CW engine behind two registered solvers,
@@ -1424,7 +1434,7 @@ measured, and how, is <a href="https://ebx0.github.io/caustica/validation/">docu
 <li><strong><code>result.h5</code> carries its numerics generation</strong> — <code>numerics_scheme</code> and
   <code>source_discretization</code> at the root, so a pressure in pascals says which
   side of the 2026-08-24 source changes it came from.</li>
-<li><strong>An absolute-amplitude gate</strong> (<code>M30.absolute</code> in the analytic suite). Every
+<li><strong>An absolute-amplitude gate</strong> (<code>absolute</code> in the analytic suite). Every
   other check in that suite grades a normalized quantity, which is how two
   independent 13–18 % absolute errors survived months of green gates. Its
   tolerance came from measurement: the error follows <code>3.7 * ppw^-2.5</code>, so a
@@ -1479,7 +1489,7 @@ measured, and how, is <a href="https://ebx0.github.io/caustica/validation/">docu
   mask was the whole grid regardless of <code>record_region</code>. On the ITRUSST
   geometry that was 731 MB in and 1.6 GB out per run.</li>
 </ul>
-<h3 id="changed">Changed<a class="headerlink" href="#changed" title="Permanent link">&para;</a></h3>
+<h3 id="changed_1">Changed<a class="headerlink" href="#changed_1" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>A focused bowl is now a band-limited source carrying the cap's area, not a
   voxel shell.</strong> This changes every absolute pressure the library produces from

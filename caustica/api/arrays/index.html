@@ -1896,7 +1896,7 @@ wrapped to [0, 2 pi) and offset so min(phase) = 0.</p>
 <p>Elements are collapsed to points carrying their full piston area —
 accurate away from the aperture (&gt;= a few element radii), which is
 exactly the array-design use case. This is the future GUI's live
-beam preview and the KZK initial-plane projector (M9).</p>
+beam preview and the KZK initial-plane projector.</p>
 
 
             <details class="mkdocstrings-source">
@@ -1933,7 +1933,7 @@ beam preview and the KZK initial-plane projector (M9).</p>
 <a id="__codelineno-0-88" name="__codelineno-0-88"></a><span class="sd">    Elements are collapsed to points carrying their full piston area —</span>
 <a id="__codelineno-0-89" name="__codelineno-0-89"></a><span class="sd">    accurate away from the aperture (&gt;= a few element radii), which is</span>
 <a id="__codelineno-0-90" name="__codelineno-0-90"></a><span class="sd">    exactly the array-design use case. This is the future GUI's live</span>
-<a id="__codelineno-0-91" name="__codelineno-0-91"></a><span class="sd">    beam preview and the KZK initial-plane projector (M9).</span>
+<a id="__codelineno-0-91" name="__codelineno-0-91"></a><span class="sd">    beam preview and the KZK initial-plane projector.</span>
 <a id="__codelineno-0-92" name="__codelineno-0-92"></a><span class="sd">    """</span>
 <a id="__codelineno-0-93" name="__codelineno-0-93"></a>    <span class="n">ph</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_elements</span><span class="p">)</span> <span class="k">if</span> <span class="n">phases</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">phases</span><span class="p">)</span>
 <a id="__codelineno-0-94" name="__codelineno-0-94"></a>    <span class="n">v_n</span> <span class="o">=</span> <span class="n">u0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">ph</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">))</span>
@@ -2138,7 +2138,7 @@ beam preview and the KZK initial-plane projector (M9).</p>
 <a id="__codelineno-0-157" name="__codelineno-0-157"></a>        <span class="c1"># z is sheared onto the element plane afterwards, so a tilted</span>
 <a id="__codelineno-0-158" name="__codelineno-0-158"></a>        <span class="c1"># element's patch has area ~pi r^2 / cos(tilt) (~14% extra at the</span>
 <a id="__codelineno-0-159" name="__codelineno-0-159"></a>        <span class="c1"># production rim, ~28 deg). Kept for dataset parity; an</span>
-<a id="__codelineno-0-160" name="__codelineno-0-160"></a>        <span class="c1"># in-plane-projected test is the M12 candidate fix.</span>
+<a id="__codelineno-0-160" name="__codelineno-0-160"></a>        <span class="c1"># in-plane-projected test is the candidate fix.</span>
 <a id="__codelineno-0-161" name="__codelineno-0-161"></a>        <span class="k">for</span> <span class="n">ox</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="n">r_vox</span><span class="p">,</span> <span class="n">r_vox</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
 <a id="__codelineno-0-162" name="__codelineno-0-162"></a>            <span class="k">for</span> <span class="n">oy</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="n">r_vox</span><span class="p">,</span> <span class="n">r_vox</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
 <a id="__codelineno-0-163" name="__codelineno-0-163"></a>                <span class="k">if</span> <span class="p">(</span><span class="n">ox</span> <span class="o">*</span> <span class="n">dx_mm</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">oy</span> <span class="o">*</span> <span class="n">dx_mm</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">&lt;=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elem_radius</span> <span class="o">*</span> <span class="mf">1e3</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">:</span>
@@ -2628,7 +2628,7 @@ element count, maximum radius, shell depth — are order statistics: they
 survive mirroring the array, rotating it, re-scattering every element but
 the outermost, swapping two elements' radii, or changing every normal.
 Each of those changes the radiated field by tens of per cent while every
-recorded number stays put (measured, M10m review). So a <em>table</em>-backed
+recorded number stays put (measured). So a <em>table</em>-backed
 kind records a digest of the table itself, and a reload that reads a
 different table says so.</p>
 <p>Deliberately not a checksum of the FILE: the same geometry given inline,
@@ -2666,7 +2666,7 @@ bytes changed without its geometry changing is not drift.</p>
 <a id="__codelineno-0-109" name="__codelineno-0-109"></a><span class="sd">    survive mirroring the array, rotating it, re-scattering every element but</span>
 <a id="__codelineno-0-110" name="__codelineno-0-110"></a><span class="sd">    the outermost, swapping two elements' radii, or changing every normal.</span>
 <a id="__codelineno-0-111" name="__codelineno-0-111"></a><span class="sd">    Each of those changes the radiated field by tens of per cent while every</span>
-<a id="__codelineno-0-112" name="__codelineno-0-112"></a><span class="sd">    recorded number stays put (measured, M10m review). So a *table*-backed</span>
+<a id="__codelineno-0-112" name="__codelineno-0-112"></a><span class="sd">    recorded number stays put (measured). So a *table*-backed</span>
 <a id="__codelineno-0-113" name="__codelineno-0-113"></a><span class="sd">    kind records a digest of the table itself, and a reload that reads a</span>
 <a id="__codelineno-0-114" name="__codelineno-0-114"></a><span class="sd">    different table says so.</span>
 <a id="__codelineno-0-115" name="__codelineno-0-115"></a>

@@ -3076,7 +3076,7 @@ third-party backend is opted into by name, never guessed at.</p>
 <a id="__codelineno-0-250" name="__codelineno-0-250"></a>            <span class="k">return</span> <span class="n">_checked</span><span class="p">(</span><span class="s2">"cupy"</span><span class="p">,</span> <span class="n">backends</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"cupy"</span><span class="p">))</span>
 <a id="__codelineno-0-251" name="__codelineno-0-251"></a>        <span class="k">global</span> <span class="n">_AUTO_FALLBACK_WARNED</span>
 <a id="__codelineno-0-252" name="__codelineno-0-252"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">_AUTO_FALLBACK_WARNED</span><span class="p">:</span>
-<a id="__codelineno-0-253" name="__codelineno-0-253"></a>            <span class="c1"># ONCE per process (D33): the old INFO log had no handler and was</span>
+<a id="__codelineno-0-253" name="__codelineno-0-253"></a>            <span class="c1"># ONCE per process: the old INFO log had no handler and was</span>
 <a id="__codelineno-0-254" name="__codelineno-0-254"></a>            <span class="c1"># never seen by anyone; a warning is visible in notebooks and CI,</span>
 <a id="__codelineno-0-255" name="__codelineno-0-255"></a>            <span class="c1"># and once is signal — per-call would be noise (the suite calls</span>
 <a id="__codelineno-0-256" name="__codelineno-0-256"></a>            <span class="c1"># this hundreds of times).</span>
@@ -3213,7 +3213,7 @@ is not free, and availability does not change mid-process in practice.</p>
 the runner passes the backend it actually resolved so the stamp
 describes the run, not a hypothetical. The historical stamp keys
 (<code>caustica</code>/<code>python</code>/<code>numpy</code>/<code>platform</code> + the GPU fields) keep
-their names — M8's Colab gates measure from them; new facts are ADDED.</p>
+their names — the Colab gates measure from them; new facts are ADDED.</p>
 
 
             <details class="mkdocstrings-source">
@@ -3265,7 +3265,7 @@ their names — M8's Colab gates measure from them; new facts are ADDED.</p>
 <a id="__codelineno-0-69" name="__codelineno-0-69"></a><span class="sd">    the runner passes the backend it actually resolved so the stamp</span>
 <a id="__codelineno-0-70" name="__codelineno-0-70"></a><span class="sd">    describes the run, not a hypothetical. The historical stamp keys</span>
 <a id="__codelineno-0-71" name="__codelineno-0-71"></a><span class="sd">    (``caustica``/``python``/``numpy``/``platform`` + the GPU fields) keep</span>
-<a id="__codelineno-0-72" name="__codelineno-0-72"></a><span class="sd">    their names — M8's Colab gates measure from them; new facts are ADDED.</span>
+<a id="__codelineno-0-72" name="__codelineno-0-72"></a><span class="sd">    their names — the Colab gates measure from them; new facts are ADDED.</span>
 <a id="__codelineno-0-73" name="__codelineno-0-73"></a><span class="sd">    """</span>
 <a id="__codelineno-0-74" name="__codelineno-0-74"></a>    <span class="n">report</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{}</span>
 <a id="__codelineno-0-75" name="__codelineno-0-75"></a>    <span class="k">try</span><span class="p">:</span>
@@ -3281,7 +3281,7 @@ their names — M8's Colab gates measure from them; new facts are ADDED.</p>
 <a id="__codelineno-0-85" name="__codelineno-0-85"></a>        <span class="k">pass</span>
 <a id="__codelineno-0-86" name="__codelineno-0-86"></a>    <span class="c1"># numpy via the imported module, like the historical stamp — it can never</span>
 <a id="__codelineno-0-87" name="__codelineno-0-87"></a>    <span class="c1"># be None there, and a gate reading environment["numpy"] may assume str.</span>
-<a id="__codelineno-0-88" name="__codelineno-0-88"></a>    <span class="c1"># The ADDED keys use dist metadata (kept import-free: h5py stays lazy, T6)</span>
+<a id="__codelineno-0-88" name="__codelineno-0-88"></a>    <span class="c1"># The ADDED keys use dist metadata (kept import-free: h5py stays lazy)</span>
 <a id="__codelineno-0-89" name="__codelineno-0-89"></a>    <span class="c1"># and may honestly be None on exotic installs.</span>
 <a id="__codelineno-0-90" name="__codelineno-0-90"></a>    <span class="k">try</span><span class="p">:</span>
 <a id="__codelineno-0-91" name="__codelineno-0-91"></a>        <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>  <span class="c1"># noqa: PLC0415</span>

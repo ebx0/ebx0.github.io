@@ -2105,7 +2105,7 @@ something that is not on this page, the fix is to add it here first.</p>
 the tables, and the literal names, numbers and format strings on this page are
 compared against the running code by <code>tests/test_gui_contract.py</code>; they cannot
 rot silently. The prose between them is explanatory — reviewed, not executed.
-Every finding of the M10l review, and one of the mutation round that followed
+Every finding of the review, and one of the mutation round that followed
 it, was a sentence rather than a list, which is the class a list comparison
 cannot reach; where such a sentence makes a claim precise enough to test, the
 answer is to add the test, not to trust the sentence. <strong>If prose and a list
@@ -2232,7 +2232,7 @@ attribute, not in the class hierarchy.</p>
 <h2 id="statusjson-the-live-heartbeat"><code>status.json</code> — the live heartbeat<a class="headerlink" href="#statusjson-the-live-heartbeat" title="Permanent link">&para;</a></h2>
 <p>Rewritten atomically at most every <code>--status-interval</code> seconds while solving,
 and once on each terminal state. This is the file to poll: it survives a Drive
-sync, needs no open connection, and its numbers are the ones M8's Colab gates
+sync, needs no open connection, and its numbers are the ones the Colab gates
 were calibrated against.</p>
 <p><code>state</code> is one of <code>solving</code>, <code>writing</code>, <code>done</code>, <code>interrupted</code>, <code>failed</code>.</p>
 <h3 id="statusjson-fields-in-every-heartbeat">status.json: fields in every heartbeat<a class="headerlink" href="#statusjson-fields-in-every-heartbeat" title="Permanent link">&para;</a></h3>
@@ -2569,7 +2569,7 @@ carries on.</p>
   purpose: the contract is files in a folder, which works identically for a
   local run, an SSH'd machine and a Colab session writing into a Drive folder
   the <em>user</em> mounted. caustica never mounts one itself.</li>
-<li><code>caustica.colab</code> (M10f). It is a convenience entry point for a human in a
+<li><code>caustica.colab</code>. It is a convenience entry point for a human in a
   notebook: it prints an environment verdict, requires a GPU, picks a default
   folder under <code>/content</code> and hands the runner's own failures back readably.
   Every decision in it is an opinion about where it is running, which is

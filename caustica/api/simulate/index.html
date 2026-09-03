@@ -2427,7 +2427,7 @@ file-bound ones — an in-memory run has no folder to resume from.</p>
 <a id="__codelineno-0-412" name="__codelineno-0-412"></a>    <span class="k">if</span> <span class="n">progress</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">_KEEP</span><span class="p">:</span>
 <a id="__codelineno-0-413" name="__codelineno-0-413"></a>        <span class="n">opts</span><span class="o">.</span><span class="n">progress</span> <span class="o">=</span> <span class="n">progress</span>  <span class="c1"># includes an explicit progress=None (silence)</span>
 <a id="__codelineno-0-414" name="__codelineno-0-414"></a>    <span class="k">elif</span> <span class="n">opts</span><span class="o">.</span><span class="n">progress</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-0-415" name="__codelineno-0-415"></a>        <span class="c1"># D21/K11: the FACADE's default is progress on, while the library-level</span>
+<a id="__codelineno-0-415" name="__codelineno-0-415"></a>        <span class="c1"># The FACADE's default is progress on, while the library-level</span>
 <a id="__codelineno-0-416" name="__codelineno-0-416"></a>        <span class="c1"># RunnerOptions default stays silent. An `options=` that names a</span>
 <a id="__codelineno-0-417" name="__codelineno-0-417"></a>        <span class="c1"># renderer keeps it.</span>
 <a id="__codelineno-0-418" name="__codelineno-0-418"></a>        <span class="n">opts</span><span class="o">.</span><span class="n">progress</span> <span class="o">=</span> <span class="s2">"auto"</span>
