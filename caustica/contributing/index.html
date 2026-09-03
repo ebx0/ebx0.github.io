@@ -1531,10 +1531,10 @@ The library repository holds no pages.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>caustica-docs<span class="w"> </span>https://github.com/ebx0/ebx0.github.io<span class="w"> </span>caustica-docs
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">cd</span><span class="w"> </span>caustica-docs
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>.venv/bin/pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://raw.githubusercontent.com/ebx0/caustica/master/CHANGELOG.md<span class="w"> </span>-o<span class="w"> </span>CHANGELOG.md
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://raw.githubusercontent.com/ebx0/caustica/develop/CHANGELOG.md<span class="w"> </span>-o<span class="w"> </span>CHANGELOG.md
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>.venv/bin/python<span class="w"> </span>-m<span class="w"> </span>mkdocs<span class="w"> </span>serve
 </code></pre></div>
-<p><code>requirements.txt</code> installs caustica from <code>master</code>, because the API reference is generated
+<p><code>requirements.txt</code> installs caustica from <code>develop</code>, because the API reference is generated
 from its docstrings rather than written here.</p>
 <p>Two gates run before anything is published. <code>mkdocs build --strict</code> fails on a broken internal
 link or a page missing from the nav. <code>pytest</code> grades the four pages that are a <em>contract</em> —

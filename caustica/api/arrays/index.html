@@ -1850,27 +1850,27 @@ wrapped to [0, 2 pi) and offset so min(phase) = 0.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>caustica/arrays/transducer.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-59">59</a></span>
-<span class="normal"><a href="#__codelineno-0-60">60</a></span>
-<span class="normal"><a href="#__codelineno-0-61">61</a></span>
-<span class="normal"><a href="#__codelineno-0-62">62</a></span>
-<span class="normal"><a href="#__codelineno-0-63">63</a></span>
-<span class="normal"><a href="#__codelineno-0-64">64</a></span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-64">64</a></span>
 <span class="normal"><a href="#__codelineno-0-65">65</a></span>
 <span class="normal"><a href="#__codelineno-0-66">66</a></span>
 <span class="normal"><a href="#__codelineno-0-67">67</a></span>
 <span class="normal"><a href="#__codelineno-0-68">68</a></span>
-<span class="normal"><a href="#__codelineno-0-69">69</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-59" name="__codelineno-0-59"></a><span class="k">def</span><span class="w"> </span><span class="nf">das_phases</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target_m</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">f0</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">c0</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1500.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-<a id="__codelineno-0-60" name="__codelineno-0-60"></a><span class="w">    </span><span class="sd">"""Delay-and-sum focusing phases for a target point (apex frame, [m]).</span>
-<a id="__codelineno-0-61" name="__codelineno-0-61"></a>
-<a id="__codelineno-0-62" name="__codelineno-0-62"></a><span class="sd">    Port of the notebook's ``calc_das_phases``: phase = -k * distance,</span>
-<a id="__codelineno-0-63" name="__codelineno-0-63"></a><span class="sd">    wrapped to [0, 2 pi) and offset so min(phase) = 0.</span>
-<a id="__codelineno-0-64" name="__codelineno-0-64"></a><span class="sd">    """</span>
-<a id="__codelineno-0-65" name="__codelineno-0-65"></a>    <span class="n">k0</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">f0</span> <span class="o">/</span> <span class="n">c0</span>
-<a id="__codelineno-0-66" name="__codelineno-0-66"></a>    <span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">positions</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">target_m</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<a id="__codelineno-0-67" name="__codelineno-0-67"></a>    <span class="n">phase</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">k0</span> <span class="o">*</span> <span class="n">d</span><span class="p">)</span> <span class="o">%</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
-<a id="__codelineno-0-68" name="__codelineno-0-68"></a>    <span class="n">phase</span> <span class="o">-=</span> <span class="n">phase</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
-<a id="__codelineno-0-69" name="__codelineno-0-69"></a>    <span class="k">return</span> <span class="n">phase</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="normal"><a href="#__codelineno-0-69">69</a></span>
+<span class="normal"><a href="#__codelineno-0-70">70</a></span>
+<span class="normal"><a href="#__codelineno-0-71">71</a></span>
+<span class="normal"><a href="#__codelineno-0-72">72</a></span>
+<span class="normal"><a href="#__codelineno-0-73">73</a></span>
+<span class="normal"><a href="#__codelineno-0-74">74</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-64" name="__codelineno-0-64"></a><span class="k">def</span><span class="w"> </span><span class="nf">das_phases</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target_m</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">f0</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">c0</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1500.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<a id="__codelineno-0-65" name="__codelineno-0-65"></a><span class="w">    </span><span class="sd">"""Delay-and-sum focusing phases for a target point (apex frame, [m]).</span>
+<a id="__codelineno-0-66" name="__codelineno-0-66"></a>
+<a id="__codelineno-0-67" name="__codelineno-0-67"></a><span class="sd">    Port of the notebook's ``calc_das_phases``: phase = -k * distance,</span>
+<a id="__codelineno-0-68" name="__codelineno-0-68"></a><span class="sd">    wrapped to [0, 2 pi) and offset so min(phase) = 0.</span>
+<a id="__codelineno-0-69" name="__codelineno-0-69"></a><span class="sd">    """</span>
+<a id="__codelineno-0-70" name="__codelineno-0-70"></a>    <span class="n">k0</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">f0</span> <span class="o">/</span> <span class="n">c0</span>
+<a id="__codelineno-0-71" name="__codelineno-0-71"></a>    <span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">positions</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">target_m</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-0-72" name="__codelineno-0-72"></a>    <span class="n">phase</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">k0</span> <span class="o">*</span> <span class="n">d</span><span class="p">)</span> <span class="o">%</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+<a id="__codelineno-0-73" name="__codelineno-0-73"></a>    <span class="n">phase</span> <span class="o">-=</span> <span class="n">phase</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+<a id="__codelineno-0-74" name="__codelineno-0-74"></a>    <span class="k">return</span> <span class="n">phase</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -1901,12 +1901,7 @@ beam preview and the KZK initial-plane projector (M9).</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>caustica/arrays/transducer.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-73">73</a></span>
-<span class="normal"><a href="#__codelineno-0-74">74</a></span>
-<span class="normal"><a href="#__codelineno-0-75">75</a></span>
-<span class="normal"><a href="#__codelineno-0-76">76</a></span>
-<span class="normal"><a href="#__codelineno-0-77">77</a></span>
-<span class="normal"><a href="#__codelineno-0-78">78</a></span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-78">78</a></span>
 <span class="normal"><a href="#__codelineno-0-79">79</a></span>
 <span class="normal"><a href="#__codelineno-0-80">80</a></span>
 <span class="normal"><a href="#__codelineno-0-81">81</a></span>
@@ -1920,26 +1915,31 @@ beam preview and the KZK initial-plane projector (M9).</p>
 <span class="normal"><a href="#__codelineno-0-89">89</a></span>
 <span class="normal"><a href="#__codelineno-0-90">90</a></span>
 <span class="normal"><a href="#__codelineno-0-91">91</a></span>
-<span class="normal"><a href="#__codelineno-0-92">92</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-73" name="__codelineno-0-73"></a><span class="k">def</span><span class="w"> </span><span class="nf">rayleigh_preview</span><span class="p">(</span>
-<a id="__codelineno-0-74" name="__codelineno-0-74"></a>    <span class="bp">self</span><span class="p">,</span>
-<a id="__codelineno-0-75" name="__codelineno-0-75"></a>    <span class="n">field_points</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
-<a id="__codelineno-0-76" name="__codelineno-0-76"></a>    <span class="n">f0</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-<a id="__codelineno-0-77" name="__codelineno-0-77"></a>    <span class="n">phases</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-78" name="__codelineno-0-78"></a>    <span class="n">c0</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1500.0</span><span class="p">,</span>
-<a id="__codelineno-0-79" name="__codelineno-0-79"></a>    <span class="n">u0</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
-<a id="__codelineno-0-80" name="__codelineno-0-80"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-<a id="__codelineno-0-81" name="__codelineno-0-81"></a><span class="w">    </span><span class="sd">"""Complex CW pressure at ``field_points`` from element-center pistons.</span>
-<a id="__codelineno-0-82" name="__codelineno-0-82"></a>
-<a id="__codelineno-0-83" name="__codelineno-0-83"></a><span class="sd">    Elements are collapsed to points carrying their full piston area —</span>
-<a id="__codelineno-0-84" name="__codelineno-0-84"></a><span class="sd">    accurate away from the aperture (&gt;= a few element radii), which is</span>
-<a id="__codelineno-0-85" name="__codelineno-0-85"></a><span class="sd">    exactly the array-design use case. This is the future GUI's live</span>
-<a id="__codelineno-0-86" name="__codelineno-0-86"></a><span class="sd">    beam preview and the KZK initial-plane projector (M9).</span>
-<a id="__codelineno-0-87" name="__codelineno-0-87"></a><span class="sd">    """</span>
-<a id="__codelineno-0-88" name="__codelineno-0-88"></a>    <span class="n">ph</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_elements</span><span class="p">)</span> <span class="k">if</span> <span class="n">phases</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">phases</span><span class="p">)</span>
-<a id="__codelineno-0-89" name="__codelineno-0-89"></a>    <span class="n">v_n</span> <span class="o">=</span> <span class="n">u0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">ph</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">))</span>
-<a id="__codelineno-0-90" name="__codelineno-0-90"></a>    <span class="n">areas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_elements</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">elem_radius</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-<a id="__codelineno-0-91" name="__codelineno-0-91"></a>    <span class="n">k</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">f0</span> <span class="o">/</span> <span class="n">c0</span>
-<a id="__codelineno-0-92" name="__codelineno-0-92"></a>    <span class="k">return</span> <span class="n">rayleigh_pressure</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">positions</span><span class="p">,</span> <span class="n">areas</span><span class="p">,</span> <span class="n">v_n</span><span class="p">,</span> <span class="n">field_points</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">c0</span><span class="p">)</span>
+<span class="normal"><a href="#__codelineno-0-92">92</a></span>
+<span class="normal"><a href="#__codelineno-0-93">93</a></span>
+<span class="normal"><a href="#__codelineno-0-94">94</a></span>
+<span class="normal"><a href="#__codelineno-0-95">95</a></span>
+<span class="normal"><a href="#__codelineno-0-96">96</a></span>
+<span class="normal"><a href="#__codelineno-0-97">97</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-78" name="__codelineno-0-78"></a><span class="k">def</span><span class="w"> </span><span class="nf">rayleigh_preview</span><span class="p">(</span>
+<a id="__codelineno-0-79" name="__codelineno-0-79"></a>    <span class="bp">self</span><span class="p">,</span>
+<a id="__codelineno-0-80" name="__codelineno-0-80"></a>    <span class="n">field_points</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+<a id="__codelineno-0-81" name="__codelineno-0-81"></a>    <span class="n">f0</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+<a id="__codelineno-0-82" name="__codelineno-0-82"></a>    <span class="n">phases</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-83" name="__codelineno-0-83"></a>    <span class="n">c0</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1500.0</span><span class="p">,</span>
+<a id="__codelineno-0-84" name="__codelineno-0-84"></a>    <span class="n">u0</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
+<a id="__codelineno-0-85" name="__codelineno-0-85"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<a id="__codelineno-0-86" name="__codelineno-0-86"></a><span class="w">    </span><span class="sd">"""Complex CW pressure at ``field_points`` from element-center pistons.</span>
+<a id="__codelineno-0-87" name="__codelineno-0-87"></a>
+<a id="__codelineno-0-88" name="__codelineno-0-88"></a><span class="sd">    Elements are collapsed to points carrying their full piston area —</span>
+<a id="__codelineno-0-89" name="__codelineno-0-89"></a><span class="sd">    accurate away from the aperture (&gt;= a few element radii), which is</span>
+<a id="__codelineno-0-90" name="__codelineno-0-90"></a><span class="sd">    exactly the array-design use case. This is the future GUI's live</span>
+<a id="__codelineno-0-91" name="__codelineno-0-91"></a><span class="sd">    beam preview and the KZK initial-plane projector (M9).</span>
+<a id="__codelineno-0-92" name="__codelineno-0-92"></a><span class="sd">    """</span>
+<a id="__codelineno-0-93" name="__codelineno-0-93"></a>    <span class="n">ph</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_elements</span><span class="p">)</span> <span class="k">if</span> <span class="n">phases</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">phases</span><span class="p">)</span>
+<a id="__codelineno-0-94" name="__codelineno-0-94"></a>    <span class="n">v_n</span> <span class="o">=</span> <span class="n">u0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">ph</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">))</span>
+<a id="__codelineno-0-95" name="__codelineno-0-95"></a>    <span class="n">areas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_elements</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">elem_radius</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-0-96" name="__codelineno-0-96"></a>    <span class="n">k</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">f0</span> <span class="o">/</span> <span class="n">c0</span>
+<a id="__codelineno-0-97" name="__codelineno-0-97"></a>    <span class="k">return</span> <span class="n">rayleigh_pressure</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">positions</span><span class="p">,</span> <span class="n">areas</span><span class="p">,</span> <span class="n">v_n</span><span class="p">,</span> <span class="n">field_points</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">c0</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -1954,26 +1954,41 @@ beam preview and the KZK initial-plane projector (M9).</p>
 
 
 <a href="#caustica.arrays.transducer.TransducerArray.voxelize" class="headerlink" title="Permanent link">&para;</a></h4>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">voxelize</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">apex_vox</span><span class="p">,</span> <span class="n">f0</span><span class="p">,</span> <span class="n">amplitude</span><span class="p">,</span> <span class="n">phases</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">voxelize</span><span class="p">(</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">grid</span><span class="p">,</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">apex_vox</span><span class="p">,</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">f0</span><span class="p">,</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">amplitude</span><span class="p">,</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">phases</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="o">*</span><span class="p">,</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="n">discretization</span><span class="o">=</span><span class="s2">"offgrid"</span><span class="p">,</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="n">bli_tolerance</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="n">upsampling</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="p">)</span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
 
-        <p>Project elements onto the grid as 1-voxel curved shells.</p>
-<p>Port of the notebook's source-placement loop: each element becomes a
-disc of in-plane radius <code>elem_radius</code> whose z-offset follows the
-element's normal plane; overlapping voxels keep the FIRST element's
-phase (deduplicated exactly like the notebook's <code>np.unique</code>).</p>
+        <p>Project elements onto the grid.</p>
+<p><code>discretization</code> chooses how:</p>
+<p><code>"offgrid"</code> (default)
+    Each element is a flat disc of area <code>pi r^2</code> sampled at its own
+    position in metres and deposited through a band-limited
+    interpolant, and overlapping contributions are summed as complex
+    phasors rather than one of them being discarded. See
+    :func:<code>~caustica.arrays.transducer.TransducerArray._offgrid</code>.</p>
+<p><code>"binary"</code>
+    The pre-2026-08-24 behaviour, kept for reproducing older results:
+    each element becomes a disc of in-plane radius <code>elem_radius</code>
+    whose z-offset follows the element's normal plane, and overlapping
+    voxels keep the FIRST element's phase (deduplicated exactly like
+    the notebook's <code>np.unique</code>). Its element CENTRES are rounded to
+    voxels, which is what costs the focus 12-18 % of its coherent sum.</p>
 
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>caustica/arrays/transducer.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-96"> 96</a></span>
-<span class="normal"><a href="#__codelineno-0-97"> 97</a></span>
-<span class="normal"><a href="#__codelineno-0-98"> 98</a></span>
-<span class="normal"><a href="#__codelineno-0-99"> 99</a></span>
-<span class="normal"><a href="#__codelineno-0-100">100</a></span>
-<span class="normal"><a href="#__codelineno-0-101">101</a></span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-101">101</a></span>
 <span class="normal"><a href="#__codelineno-0-102">102</a></span>
 <span class="normal"><a href="#__codelineno-0-103">103</a></span>
 <span class="normal"><a href="#__codelineno-0-104">104</a></span>
@@ -2035,74 +2050,127 @@ phase (deduplicated exactly like the notebook's <code>np.unique</code>).</p>
 <span class="normal"><a href="#__codelineno-0-160">160</a></span>
 <span class="normal"><a href="#__codelineno-0-161">161</a></span>
 <span class="normal"><a href="#__codelineno-0-162">162</a></span>
-<span class="normal"><a href="#__codelineno-0-163">163</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-96" name="__codelineno-0-96"></a><span class="k">def</span><span class="w"> </span><span class="nf">voxelize</span><span class="p">(</span>
-<a id="__codelineno-0-97" name="__codelineno-0-97"></a>    <span class="bp">self</span><span class="p">,</span>
-<a id="__codelineno-0-98" name="__codelineno-0-98"></a>    <span class="n">grid</span><span class="p">:</span> <span class="n">Grid</span><span class="p">,</span>
-<a id="__codelineno-0-99" name="__codelineno-0-99"></a>    <span class="n">apex_vox</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span>
-<a id="__codelineno-0-100" name="__codelineno-0-100"></a>    <span class="n">f0</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-<a id="__codelineno-0-101" name="__codelineno-0-101"></a>    <span class="n">amplitude</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-<a id="__codelineno-0-102" name="__codelineno-0-102"></a>    <span class="n">phases</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-103" name="__codelineno-0-103"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ArraySource</span><span class="p">:</span>
-<a id="__codelineno-0-104" name="__codelineno-0-104"></a><span class="w">    </span><span class="sd">"""Project elements onto the grid as 1-voxel curved shells.</span>
-<a id="__codelineno-0-105" name="__codelineno-0-105"></a>
-<a id="__codelineno-0-106" name="__codelineno-0-106"></a><span class="sd">    Port of the notebook's source-placement loop: each element becomes a</span>
-<a id="__codelineno-0-107" name="__codelineno-0-107"></a><span class="sd">    disc of in-plane radius ``elem_radius`` whose z-offset follows the</span>
-<a id="__codelineno-0-108" name="__codelineno-0-108"></a><span class="sd">    element's normal plane; overlapping voxels keep the FIRST element's</span>
-<a id="__codelineno-0-109" name="__codelineno-0-109"></a><span class="sd">    phase (deduplicated exactly like the notebook's ``np.unique``).</span>
-<a id="__codelineno-0-110" name="__codelineno-0-110"></a><span class="sd">    """</span>
-<a id="__codelineno-0-111" name="__codelineno-0-111"></a>    <span class="k">if</span> <span class="n">grid</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
-<a id="__codelineno-0-112" name="__codelineno-0-112"></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"voxelize requires a 3-D grid"</span><span class="p">)</span>
-<a id="__codelineno-0-113" name="__codelineno-0-113"></a>    <span class="n">ph</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_elements</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="k">if</span> <span class="n">phases</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">phases</span>
-<a id="__codelineno-0-114" name="__codelineno-0-114"></a>    <span class="n">ph</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">ph</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
-<a id="__codelineno-0-115" name="__codelineno-0-115"></a>    <span class="k">if</span> <span class="n">ph</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_elements</span><span class="p">,):</span>
-<a id="__codelineno-0-116" name="__codelineno-0-116"></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"phases must be (</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">n_elements</span><span class="si">}</span><span class="s2">,), got </span><span class="si">{</span><span class="n">ph</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<a id="__codelineno-0-117" name="__codelineno-0-117"></a>
-<a id="__codelineno-0-118" name="__codelineno-0-118"></a>    <span class="n">dx_mm</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">dx</span> <span class="o">*</span> <span class="mf">1e3</span>
-<a id="__codelineno-0-119" name="__codelineno-0-119"></a>    <span class="n">pos_mm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">positions</span> <span class="o">*</span> <span class="mf">1e3</span>
-<a id="__codelineno-0-120" name="__codelineno-0-120"></a>    <span class="n">r_vox</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elem_radius</span> <span class="o">*</span> <span class="mf">1e3</span> <span class="o">/</span> <span class="n">dx_mm</span><span class="p">))</span> <span class="o">+</span> <span class="mi">1</span>
-<a id="__codelineno-0-121" name="__codelineno-0-121"></a>    <span class="n">rows</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
-<a id="__codelineno-0-122" name="__codelineno-0-122"></a>    <span class="n">elem_ids</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-<a id="__codelineno-0-123" name="__codelineno-0-123"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_elements</span><span class="p">):</span>
-<a id="__codelineno-0-124" name="__codelineno-0-124"></a>        <span class="n">p0</span><span class="p">,</span> <span class="n">nv</span> <span class="o">=</span> <span class="n">pos_mm</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">normals</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-<a id="__codelineno-0-125" name="__codelineno-0-125"></a>        <span class="n">ex</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">p0</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">dx_mm</span><span class="p">))</span> <span class="o">+</span> <span class="n">apex_vox</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<a id="__codelineno-0-126" name="__codelineno-0-126"></a>        <span class="n">ey</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">p0</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">dx_mm</span><span class="p">))</span> <span class="o">+</span> <span class="n">apex_vox</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-<a id="__codelineno-0-127" name="__codelineno-0-127"></a>        <span class="n">ez</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">p0</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">/</span> <span class="n">dx_mm</span><span class="p">))</span> <span class="o">+</span> <span class="n">apex_vox</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
-<a id="__codelineno-0-128" name="__codelineno-0-128"></a>        <span class="c1"># Verbatim notebook port: the disc test runs in the xy-plane and</span>
-<a id="__codelineno-0-129" name="__codelineno-0-129"></a>        <span class="c1"># z is sheared onto the element plane afterwards, so a tilted</span>
-<a id="__codelineno-0-130" name="__codelineno-0-130"></a>        <span class="c1"># element's patch has area ~pi r^2 / cos(tilt) (~14% extra at the</span>
-<a id="__codelineno-0-131" name="__codelineno-0-131"></a>        <span class="c1"># production rim, ~28 deg). Kept for dataset parity; an</span>
-<a id="__codelineno-0-132" name="__codelineno-0-132"></a>        <span class="c1"># in-plane-projected test is the M12 candidate fix.</span>
-<a id="__codelineno-0-133" name="__codelineno-0-133"></a>        <span class="k">for</span> <span class="n">ox</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="n">r_vox</span><span class="p">,</span> <span class="n">r_vox</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-<a id="__codelineno-0-134" name="__codelineno-0-134"></a>            <span class="k">for</span> <span class="n">oy</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="n">r_vox</span><span class="p">,</span> <span class="n">r_vox</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-<a id="__codelineno-0-135" name="__codelineno-0-135"></a>                <span class="k">if</span> <span class="p">(</span><span class="n">ox</span> <span class="o">*</span> <span class="n">dx_mm</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">oy</span> <span class="o">*</span> <span class="n">dx_mm</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">&lt;=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elem_radius</span> <span class="o">*</span> <span class="mf">1e3</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">:</span>
-<a id="__codelineno-0-136" name="__codelineno-0-136"></a>                    <span class="n">oz</span> <span class="o">=</span> <span class="p">(</span>
-<a id="__codelineno-0-137" name="__codelineno-0-137"></a>                        <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">nv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">ox</span> <span class="o">+</span> <span class="n">nv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">oy</span><span class="p">)</span> <span class="o">/</span> <span class="n">nv</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
-<a id="__codelineno-0-138" name="__codelineno-0-138"></a>                        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">nv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mf">1e-6</span>
-<a id="__codelineno-0-139" name="__codelineno-0-139"></a>                        <span class="k">else</span> <span class="mi">0</span>
-<a id="__codelineno-0-140" name="__codelineno-0-140"></a>                    <span class="p">)</span>
-<a id="__codelineno-0-141" name="__codelineno-0-141"></a>                    <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">ex</span> <span class="o">+</span> <span class="n">ox</span><span class="p">,</span> <span class="n">ey</span> <span class="o">+</span> <span class="n">oy</span><span class="p">,</span> <span class="n">ez</span> <span class="o">+</span> <span class="n">oz</span><span class="p">))</span>
-<a id="__codelineno-0-142" name="__codelineno-0-142"></a>                    <span class="n">elem_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-<a id="__codelineno-0-143" name="__codelineno-0-143"></a>    <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
-<a id="__codelineno-0-144" name="__codelineno-0-144"></a>    <span class="n">elem</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">elem_ids</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
-<a id="__codelineno-0-145" name="__codelineno-0-145"></a>    <span class="n">uniq</span><span class="p">,</span> <span class="n">first</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">return_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<a id="__codelineno-0-146" name="__codelineno-0-146"></a>    <span class="n">elem_of_voxel</span> <span class="o">=</span> <span class="n">elem</span><span class="p">[</span><span class="n">first</span><span class="p">]</span>
-<a id="__codelineno-0-147" name="__codelineno-0-147"></a>
-<a id="__codelineno-0-148" name="__codelineno-0-148"></a>    <span class="n">missing</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_elements</span><span class="p">))</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">elem_of_voxel</span><span class="o">.</span><span class="n">tolist</span><span class="p">()))</span>
-<a id="__codelineno-0-149" name="__codelineno-0-149"></a>    <span class="k">if</span> <span class="n">missing</span><span class="p">:</span>
-<a id="__codelineno-0-150" name="__codelineno-0-150"></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<a id="__codelineno-0-151" name="__codelineno-0-151"></a>            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">missing</span><span class="p">)</span><span class="si">}</span><span class="s2"> element(s) lost all voxels to deduplication "</span>
-<a id="__codelineno-0-152" name="__codelineno-0-152"></a>            <span class="sa">f</span><span class="s2">"(first: </span><span class="si">{</span><span class="n">missing</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span><span class="si">}</span><span class="s2">); the grid dx is too coarse for this "</span>
-<a id="__codelineno-0-153" name="__codelineno-0-153"></a>            <span class="sa">f</span><span class="s2">"element radius/pitch."</span>
-<a id="__codelineno-0-154" name="__codelineno-0-154"></a>        <span class="p">)</span>
-<a id="__codelineno-0-155" name="__codelineno-0-155"></a>    <span class="n">source</span> <span class="o">=</span> <span class="n">CWSource</span><span class="p">(</span>
-<a id="__codelineno-0-156" name="__codelineno-0-156"></a>        <span class="n">indices</span><span class="o">=</span><span class="n">uniq</span><span class="p">,</span>
-<a id="__codelineno-0-157" name="__codelineno-0-157"></a>        <span class="n">phases</span><span class="o">=</span><span class="n">ph</span><span class="p">[</span><span class="n">elem_of_voxel</span><span class="p">],</span>
-<a id="__codelineno-0-158" name="__codelineno-0-158"></a>        <span class="n">amplitude</span><span class="o">=</span><span class="n">amplitude</span><span class="p">,</span>
-<a id="__codelineno-0-159" name="__codelineno-0-159"></a>        <span class="n">f0</span><span class="o">=</span><span class="n">f0</span><span class="p">,</span>
-<a id="__codelineno-0-160" name="__codelineno-0-160"></a>        <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">"array(n=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">n_elements</span><span class="si">}</span><span class="s2">, r_elem=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">elem_radius</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">1e3</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">mm)"</span><span class="p">,</span>
-<a id="__codelineno-0-161" name="__codelineno-0-161"></a>    <span class="p">)</span>
-<a id="__codelineno-0-162" name="__codelineno-0-162"></a>    <span class="n">source</span><span class="o">.</span><span class="n">check_inside</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
-<a id="__codelineno-0-163" name="__codelineno-0-163"></a>    <span class="k">return</span> <span class="n">ArraySource</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">,</span> <span class="n">element_of_voxel</span><span class="o">=</span><span class="n">elem_of_voxel</span><span class="p">)</span>
+<span class="normal"><a href="#__codelineno-0-163">163</a></span>
+<span class="normal"><a href="#__codelineno-0-164">164</a></span>
+<span class="normal"><a href="#__codelineno-0-165">165</a></span>
+<span class="normal"><a href="#__codelineno-0-166">166</a></span>
+<span class="normal"><a href="#__codelineno-0-167">167</a></span>
+<span class="normal"><a href="#__codelineno-0-168">168</a></span>
+<span class="normal"><a href="#__codelineno-0-169">169</a></span>
+<span class="normal"><a href="#__codelineno-0-170">170</a></span>
+<span class="normal"><a href="#__codelineno-0-171">171</a></span>
+<span class="normal"><a href="#__codelineno-0-172">172</a></span>
+<span class="normal"><a href="#__codelineno-0-173">173</a></span>
+<span class="normal"><a href="#__codelineno-0-174">174</a></span>
+<span class="normal"><a href="#__codelineno-0-175">175</a></span>
+<span class="normal"><a href="#__codelineno-0-176">176</a></span>
+<span class="normal"><a href="#__codelineno-0-177">177</a></span>
+<span class="normal"><a href="#__codelineno-0-178">178</a></span>
+<span class="normal"><a href="#__codelineno-0-179">179</a></span>
+<span class="normal"><a href="#__codelineno-0-180">180</a></span>
+<span class="normal"><a href="#__codelineno-0-181">181</a></span>
+<span class="normal"><a href="#__codelineno-0-182">182</a></span>
+<span class="normal"><a href="#__codelineno-0-183">183</a></span>
+<span class="normal"><a href="#__codelineno-0-184">184</a></span>
+<span class="normal"><a href="#__codelineno-0-185">185</a></span>
+<span class="normal"><a href="#__codelineno-0-186">186</a></span>
+<span class="normal"><a href="#__codelineno-0-187">187</a></span>
+<span class="normal"><a href="#__codelineno-0-188">188</a></span>
+<span class="normal"><a href="#__codelineno-0-189">189</a></span>
+<span class="normal"><a href="#__codelineno-0-190">190</a></span>
+<span class="normal"><a href="#__codelineno-0-191">191</a></span>
+<span class="normal"><a href="#__codelineno-0-192">192</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-101" name="__codelineno-0-101"></a><span class="k">def</span><span class="w"> </span><span class="nf">voxelize</span><span class="p">(</span>
+<a id="__codelineno-0-102" name="__codelineno-0-102"></a>    <span class="bp">self</span><span class="p">,</span>
+<a id="__codelineno-0-103" name="__codelineno-0-103"></a>    <span class="n">grid</span><span class="p">:</span> <span class="n">Grid</span><span class="p">,</span>
+<a id="__codelineno-0-104" name="__codelineno-0-104"></a>    <span class="n">apex_vox</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span>
+<a id="__codelineno-0-105" name="__codelineno-0-105"></a>    <span class="n">f0</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+<a id="__codelineno-0-106" name="__codelineno-0-106"></a>    <span class="n">amplitude</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+<a id="__codelineno-0-107" name="__codelineno-0-107"></a>    <span class="n">phases</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-108" name="__codelineno-0-108"></a>    <span class="o">*</span><span class="p">,</span>
+<a id="__codelineno-0-109" name="__codelineno-0-109"></a>    <span class="n">discretization</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"offgrid"</span><span class="p">,</span>
+<a id="__codelineno-0-110" name="__codelineno-0-110"></a>    <span class="n">bli_tolerance</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span>
+<a id="__codelineno-0-111" name="__codelineno-0-111"></a>    <span class="n">upsampling</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
+<a id="__codelineno-0-112" name="__codelineno-0-112"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ArraySource</span><span class="p">:</span>
+<a id="__codelineno-0-113" name="__codelineno-0-113"></a><span class="w">    </span><span class="sd">"""Project elements onto the grid.</span>
+<a id="__codelineno-0-114" name="__codelineno-0-114"></a>
+<a id="__codelineno-0-115" name="__codelineno-0-115"></a><span class="sd">    ``discretization`` chooses how:</span>
+<a id="__codelineno-0-116" name="__codelineno-0-116"></a>
+<a id="__codelineno-0-117" name="__codelineno-0-117"></a><span class="sd">    ``"offgrid"`` (default)</span>
+<a id="__codelineno-0-118" name="__codelineno-0-118"></a><span class="sd">        Each element is a flat disc of area ``pi r^2`` sampled at its own</span>
+<a id="__codelineno-0-119" name="__codelineno-0-119"></a><span class="sd">        position in metres and deposited through a band-limited</span>
+<a id="__codelineno-0-120" name="__codelineno-0-120"></a><span class="sd">        interpolant, and overlapping contributions are summed as complex</span>
+<a id="__codelineno-0-121" name="__codelineno-0-121"></a><span class="sd">        phasors rather than one of them being discarded. See</span>
+<a id="__codelineno-0-122" name="__codelineno-0-122"></a><span class="sd">        :func:`~caustica.arrays.transducer.TransducerArray._offgrid`.</span>
+<a id="__codelineno-0-123" name="__codelineno-0-123"></a>
+<a id="__codelineno-0-124" name="__codelineno-0-124"></a><span class="sd">    ``"binary"``</span>
+<a id="__codelineno-0-125" name="__codelineno-0-125"></a><span class="sd">        The pre-2026-08-24 behaviour, kept for reproducing older results:</span>
+<a id="__codelineno-0-126" name="__codelineno-0-126"></a><span class="sd">        each element becomes a disc of in-plane radius ``elem_radius``</span>
+<a id="__codelineno-0-127" name="__codelineno-0-127"></a><span class="sd">        whose z-offset follows the element's normal plane, and overlapping</span>
+<a id="__codelineno-0-128" name="__codelineno-0-128"></a><span class="sd">        voxels keep the FIRST element's phase (deduplicated exactly like</span>
+<a id="__codelineno-0-129" name="__codelineno-0-129"></a><span class="sd">        the notebook's ``np.unique``). Its element CENTRES are rounded to</span>
+<a id="__codelineno-0-130" name="__codelineno-0-130"></a><span class="sd">        voxels, which is what costs the focus 12-18 % of its coherent sum.</span>
+<a id="__codelineno-0-131" name="__codelineno-0-131"></a><span class="sd">    """</span>
+<a id="__codelineno-0-132" name="__codelineno-0-132"></a>    <span class="k">if</span> <span class="n">grid</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
+<a id="__codelineno-0-133" name="__codelineno-0-133"></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"voxelize requires a 3-D grid"</span><span class="p">)</span>
+<a id="__codelineno-0-134" name="__codelineno-0-134"></a>    <span class="k">if</span> <span class="n">discretization</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"offgrid"</span><span class="p">,</span> <span class="s2">"binary"</span><span class="p">):</span>
+<a id="__codelineno-0-135" name="__codelineno-0-135"></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<a id="__codelineno-0-136" name="__codelineno-0-136"></a>            <span class="sa">f</span><span class="s2">"discretization must be 'offgrid' or 'binary', got </span><span class="si">{</span><span class="n">discretization</span><span class="si">!r}</span><span class="s2">"</span>
+<a id="__codelineno-0-137" name="__codelineno-0-137"></a>        <span class="p">)</span>
+<a id="__codelineno-0-138" name="__codelineno-0-138"></a>    <span class="n">ph</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_elements</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="k">if</span> <span class="n">phases</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">phases</span>
+<a id="__codelineno-0-139" name="__codelineno-0-139"></a>    <span class="n">ph</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">ph</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<a id="__codelineno-0-140" name="__codelineno-0-140"></a>    <span class="k">if</span> <span class="n">ph</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_elements</span><span class="p">,):</span>
+<a id="__codelineno-0-141" name="__codelineno-0-141"></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"phases must be (</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">n_elements</span><span class="si">}</span><span class="s2">,), got </span><span class="si">{</span><span class="n">ph</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<a id="__codelineno-0-142" name="__codelineno-0-142"></a>
+<a id="__codelineno-0-143" name="__codelineno-0-143"></a>    <span class="k">if</span> <span class="n">discretization</span> <span class="o">==</span> <span class="s2">"offgrid"</span><span class="p">:</span>
+<a id="__codelineno-0-144" name="__codelineno-0-144"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_offgrid</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">apex_vox</span><span class="p">,</span> <span class="n">f0</span><span class="p">,</span> <span class="n">amplitude</span><span class="p">,</span> <span class="n">ph</span><span class="p">,</span> <span class="n">bli_tolerance</span><span class="p">,</span> <span class="n">upsampling</span><span class="p">)</span>
+<a id="__codelineno-0-145" name="__codelineno-0-145"></a>
+<a id="__codelineno-0-146" name="__codelineno-0-146"></a>    <span class="n">dx_mm</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">dx</span> <span class="o">*</span> <span class="mf">1e3</span>
+<a id="__codelineno-0-147" name="__codelineno-0-147"></a>    <span class="n">pos_mm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">positions</span> <span class="o">*</span> <span class="mf">1e3</span>
+<a id="__codelineno-0-148" name="__codelineno-0-148"></a>    <span class="n">r_vox</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elem_radius</span> <span class="o">*</span> <span class="mf">1e3</span> <span class="o">/</span> <span class="n">dx_mm</span><span class="p">))</span> <span class="o">+</span> <span class="mi">1</span>
+<a id="__codelineno-0-149" name="__codelineno-0-149"></a>    <span class="n">rows</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-0-150" name="__codelineno-0-150"></a>    <span class="n">elem_ids</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-0-151" name="__codelineno-0-151"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_elements</span><span class="p">):</span>
+<a id="__codelineno-0-152" name="__codelineno-0-152"></a>        <span class="n">p0</span><span class="p">,</span> <span class="n">nv</span> <span class="o">=</span> <span class="n">pos_mm</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">normals</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<a id="__codelineno-0-153" name="__codelineno-0-153"></a>        <span class="n">ex</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">p0</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">dx_mm</span><span class="p">))</span> <span class="o">+</span> <span class="n">apex_vox</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-0-154" name="__codelineno-0-154"></a>        <span class="n">ey</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">p0</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">dx_mm</span><span class="p">))</span> <span class="o">+</span> <span class="n">apex_vox</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<a id="__codelineno-0-155" name="__codelineno-0-155"></a>        <span class="n">ez</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">p0</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">/</span> <span class="n">dx_mm</span><span class="p">))</span> <span class="o">+</span> <span class="n">apex_vox</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<a id="__codelineno-0-156" name="__codelineno-0-156"></a>        <span class="c1"># Verbatim notebook port: the disc test runs in the xy-plane and</span>
+<a id="__codelineno-0-157" name="__codelineno-0-157"></a>        <span class="c1"># z is sheared onto the element plane afterwards, so a tilted</span>
+<a id="__codelineno-0-158" name="__codelineno-0-158"></a>        <span class="c1"># element's patch has area ~pi r^2 / cos(tilt) (~14% extra at the</span>
+<a id="__codelineno-0-159" name="__codelineno-0-159"></a>        <span class="c1"># production rim, ~28 deg). Kept for dataset parity; an</span>
+<a id="__codelineno-0-160" name="__codelineno-0-160"></a>        <span class="c1"># in-plane-projected test is the M12 candidate fix.</span>
+<a id="__codelineno-0-161" name="__codelineno-0-161"></a>        <span class="k">for</span> <span class="n">ox</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="n">r_vox</span><span class="p">,</span> <span class="n">r_vox</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+<a id="__codelineno-0-162" name="__codelineno-0-162"></a>            <span class="k">for</span> <span class="n">oy</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="n">r_vox</span><span class="p">,</span> <span class="n">r_vox</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+<a id="__codelineno-0-163" name="__codelineno-0-163"></a>                <span class="k">if</span> <span class="p">(</span><span class="n">ox</span> <span class="o">*</span> <span class="n">dx_mm</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">oy</span> <span class="o">*</span> <span class="n">dx_mm</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">&lt;=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">elem_radius</span> <span class="o">*</span> <span class="mf">1e3</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">:</span>
+<a id="__codelineno-0-164" name="__codelineno-0-164"></a>                    <span class="n">oz</span> <span class="o">=</span> <span class="p">(</span>
+<a id="__codelineno-0-165" name="__codelineno-0-165"></a>                        <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">nv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">ox</span> <span class="o">+</span> <span class="n">nv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">oy</span><span class="p">)</span> <span class="o">/</span> <span class="n">nv</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+<a id="__codelineno-0-166" name="__codelineno-0-166"></a>                        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">nv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mf">1e-6</span>
+<a id="__codelineno-0-167" name="__codelineno-0-167"></a>                        <span class="k">else</span> <span class="mi">0</span>
+<a id="__codelineno-0-168" name="__codelineno-0-168"></a>                    <span class="p">)</span>
+<a id="__codelineno-0-169" name="__codelineno-0-169"></a>                    <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">ex</span> <span class="o">+</span> <span class="n">ox</span><span class="p">,</span> <span class="n">ey</span> <span class="o">+</span> <span class="n">oy</span><span class="p">,</span> <span class="n">ez</span> <span class="o">+</span> <span class="n">oz</span><span class="p">))</span>
+<a id="__codelineno-0-170" name="__codelineno-0-170"></a>                    <span class="n">elem_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<a id="__codelineno-0-171" name="__codelineno-0-171"></a>    <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
+<a id="__codelineno-0-172" name="__codelineno-0-172"></a>    <span class="n">elem</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">elem_ids</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+<a id="__codelineno-0-173" name="__codelineno-0-173"></a>    <span class="n">uniq</span><span class="p">,</span> <span class="n">first</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">return_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-0-174" name="__codelineno-0-174"></a>    <span class="n">elem_of_voxel</span> <span class="o">=</span> <span class="n">elem</span><span class="p">[</span><span class="n">first</span><span class="p">]</span>
+<a id="__codelineno-0-175" name="__codelineno-0-175"></a>
+<a id="__codelineno-0-176" name="__codelineno-0-176"></a>    <span class="n">missing</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_elements</span><span class="p">))</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">elem_of_voxel</span><span class="o">.</span><span class="n">tolist</span><span class="p">()))</span>
+<a id="__codelineno-0-177" name="__codelineno-0-177"></a>    <span class="k">if</span> <span class="n">missing</span><span class="p">:</span>
+<a id="__codelineno-0-178" name="__codelineno-0-178"></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<a id="__codelineno-0-179" name="__codelineno-0-179"></a>            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">missing</span><span class="p">)</span><span class="si">}</span><span class="s2"> element(s) lost all voxels to deduplication "</span>
+<a id="__codelineno-0-180" name="__codelineno-0-180"></a>            <span class="sa">f</span><span class="s2">"(first: </span><span class="si">{</span><span class="n">missing</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span><span class="si">}</span><span class="s2">); the grid dx is too coarse for this "</span>
+<a id="__codelineno-0-181" name="__codelineno-0-181"></a>            <span class="sa">f</span><span class="s2">"element radius/pitch."</span>
+<a id="__codelineno-0-182" name="__codelineno-0-182"></a>        <span class="p">)</span>
+<a id="__codelineno-0-183" name="__codelineno-0-183"></a>    <span class="n">source</span> <span class="o">=</span> <span class="n">CWSource</span><span class="p">(</span>
+<a id="__codelineno-0-184" name="__codelineno-0-184"></a>        <span class="n">indices</span><span class="o">=</span><span class="n">uniq</span><span class="p">,</span>
+<a id="__codelineno-0-185" name="__codelineno-0-185"></a>        <span class="n">phases</span><span class="o">=</span><span class="n">ph</span><span class="p">[</span><span class="n">elem_of_voxel</span><span class="p">],</span>
+<a id="__codelineno-0-186" name="__codelineno-0-186"></a>        <span class="n">amplitude</span><span class="o">=</span><span class="n">amplitude</span><span class="p">,</span>
+<a id="__codelineno-0-187" name="__codelineno-0-187"></a>        <span class="n">f0</span><span class="o">=</span><span class="n">f0</span><span class="p">,</span>
+<a id="__codelineno-0-188" name="__codelineno-0-188"></a>        <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">"array(n=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">n_elements</span><span class="si">}</span><span class="s2">, r_elem=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">elem_radius</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">1e3</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">mm) binary"</span><span class="p">,</span>
+<a id="__codelineno-0-189" name="__codelineno-0-189"></a>        <span class="n">discretization</span><span class="o">=</span><span class="s2">"binary"</span><span class="p">,</span>
+<a id="__codelineno-0-190" name="__codelineno-0-190"></a>    <span class="p">)</span>
+<a id="__codelineno-0-191" name="__codelineno-0-191"></a>    <span class="n">source</span><span class="o">.</span><span class="n">check_inside</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
+<a id="__codelineno-0-192" name="__codelineno-0-192"></a>    <span class="k">return</span> <span class="n">ArraySource</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">,</span> <span class="n">element_of_voxel</span><span class="o">=</span><span class="n">elem_of_voxel</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -2146,103 +2214,103 @@ equally. Defaults reproduce the production 128-element geometry.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>caustica/arrays/transducer.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-178">178</a></span>
-<span class="normal"><a href="#__codelineno-0-179">179</a></span>
-<span class="normal"><a href="#__codelineno-0-180">180</a></span>
-<span class="normal"><a href="#__codelineno-0-181">181</a></span>
-<span class="normal"><a href="#__codelineno-0-182">182</a></span>
-<span class="normal"><a href="#__codelineno-0-183">183</a></span>
-<span class="normal"><a href="#__codelineno-0-184">184</a></span>
-<span class="normal"><a href="#__codelineno-0-185">185</a></span>
-<span class="normal"><a href="#__codelineno-0-186">186</a></span>
-<span class="normal"><a href="#__codelineno-0-187">187</a></span>
-<span class="normal"><a href="#__codelineno-0-188">188</a></span>
-<span class="normal"><a href="#__codelineno-0-189">189</a></span>
-<span class="normal"><a href="#__codelineno-0-190">190</a></span>
-<span class="normal"><a href="#__codelineno-0-191">191</a></span>
-<span class="normal"><a href="#__codelineno-0-192">192</a></span>
-<span class="normal"><a href="#__codelineno-0-193">193</a></span>
-<span class="normal"><a href="#__codelineno-0-194">194</a></span>
-<span class="normal"><a href="#__codelineno-0-195">195</a></span>
-<span class="normal"><a href="#__codelineno-0-196">196</a></span>
-<span class="normal"><a href="#__codelineno-0-197">197</a></span>
-<span class="normal"><a href="#__codelineno-0-198">198</a></span>
-<span class="normal"><a href="#__codelineno-0-199">199</a></span>
-<span class="normal"><a href="#__codelineno-0-200">200</a></span>
-<span class="normal"><a href="#__codelineno-0-201">201</a></span>
-<span class="normal"><a href="#__codelineno-0-202">202</a></span>
-<span class="normal"><a href="#__codelineno-0-203">203</a></span>
-<span class="normal"><a href="#__codelineno-0-204">204</a></span>
-<span class="normal"><a href="#__codelineno-0-205">205</a></span>
-<span class="normal"><a href="#__codelineno-0-206">206</a></span>
-<span class="normal"><a href="#__codelineno-0-207">207</a></span>
-<span class="normal"><a href="#__codelineno-0-208">208</a></span>
-<span class="normal"><a href="#__codelineno-0-209">209</a></span>
-<span class="normal"><a href="#__codelineno-0-210">210</a></span>
-<span class="normal"><a href="#__codelineno-0-211">211</a></span>
-<span class="normal"><a href="#__codelineno-0-212">212</a></span>
-<span class="normal"><a href="#__codelineno-0-213">213</a></span>
-<span class="normal"><a href="#__codelineno-0-214">214</a></span>
-<span class="normal"><a href="#__codelineno-0-215">215</a></span>
-<span class="normal"><a href="#__codelineno-0-216">216</a></span>
-<span class="normal"><a href="#__codelineno-0-217">217</a></span>
-<span class="normal"><a href="#__codelineno-0-218">218</a></span>
-<span class="normal"><a href="#__codelineno-0-219">219</a></span>
-<span class="normal"><a href="#__codelineno-0-220">220</a></span>
-<span class="normal"><a href="#__codelineno-0-221">221</a></span>
-<span class="normal"><a href="#__codelineno-0-222">222</a></span>
-<span class="normal"><a href="#__codelineno-0-223">223</a></span>
-<span class="normal"><a href="#__codelineno-0-224">224</a></span>
-<span class="normal"><a href="#__codelineno-0-225">225</a></span>
-<span class="normal"><a href="#__codelineno-0-226">226</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-178" name="__codelineno-0-178"></a><span class="k">def</span><span class="w"> </span><span class="nf">archimedean_spiral</span><span class="p">(</span>
-<a id="__codelineno-0-179" name="__codelineno-0-179"></a>    <span class="n">n_elements</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">128</span><span class="p">,</span>
-<a id="__codelineno-0-180" name="__codelineno-0-180"></a>    <span class="n">d_outer</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.100</span><span class="p">,</span>
-<a id="__codelineno-0-181" name="__codelineno-0-181"></a>    <span class="n">d_inner</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.044</span><span class="p">,</span>
-<a id="__codelineno-0-182" name="__codelineno-0-182"></a>    <span class="n">roc</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.100</span><span class="p">,</span>
-<a id="__codelineno-0-183" name="__codelineno-0-183"></a>    <span class="n">active_fraction</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.60</span><span class="p">,</span>
-<a id="__codelineno-0-184" name="__codelineno-0-184"></a>    <span class="n">n_arc_samples</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10000</span><span class="p">,</span>
-<a id="__codelineno-0-185" name="__codelineno-0-185"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TransducerArray</span><span class="p">:</span>
-<a id="__codelineno-0-186" name="__codelineno-0-186"></a><span class="w">    </span><span class="sd">"""Spherically curved Archimedean-spiral phased array (notebook port).</span>
-<a id="__codelineno-0-187" name="__codelineno-0-187"></a>
-<a id="__codelineno-0-188" name="__codelineno-0-188"></a><span class="sd">    Elements are placed at equal arc-length intervals along a spiral wound</span>
-<a id="__codelineno-0-189" name="__codelineno-0-189"></a><span class="sd">    from ``r_start`` to ``r_end`` (aperture radii inset by one element</span>
-<a id="__codelineno-0-190" name="__codelineno-0-190"></a><span class="sd">    radius); the element radius comes from dividing the active shell area</span>
-<a id="__codelineno-0-191" name="__codelineno-0-191"></a><span class="sd">    equally. Defaults reproduce the production 128-element geometry.</span>
-<a id="__codelineno-0-192" name="__codelineno-0-192"></a><span class="sd">    """</span>
-<a id="__codelineno-0-193" name="__codelineno-0-193"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">d_inner</span> <span class="o">&lt;</span> <span class="n">d_outer</span> <span class="o">&lt;=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">roc</span><span class="p">:</span>
-<a id="__codelineno-0-194" name="__codelineno-0-194"></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<a id="__codelineno-0-195" name="__codelineno-0-195"></a>            <span class="sa">f</span><span class="s2">"need 0 &lt; d_inner &lt; d_outer &lt;= 2*roc, got d_inner=</span><span class="si">{</span><span class="n">d_inner</span><span class="si">}</span><span class="s2">, "</span>
-<a id="__codelineno-0-196" name="__codelineno-0-196"></a>            <span class="sa">f</span><span class="s2">"d_outer=</span><span class="si">{</span><span class="n">d_outer</span><span class="si">}</span><span class="s2">, roc=</span><span class="si">{</span><span class="n">roc</span><span class="si">}</span><span class="s2">"</span>
-<a id="__codelineno-0-197" name="__codelineno-0-197"></a>        <span class="p">)</span>
-<a id="__codelineno-0-198" name="__codelineno-0-198"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">active_fraction</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
-<a id="__codelineno-0-199" name="__codelineno-0-199"></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"active_fraction must be in (0, 1], got </span><span class="si">{</span><span class="n">active_fraction</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<a id="__codelineno-0-200" name="__codelineno-0-200"></a>    <span class="n">r_out</span><span class="p">,</span> <span class="n">r_in</span> <span class="o">=</span> <span class="n">d_outer</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">,</span> <span class="n">d_inner</span> <span class="o">/</span> <span class="mf">2.0</span>
-<a id="__codelineno-0-201" name="__codelineno-0-201"></a>    <span class="n">cap_h</span> <span class="o">=</span> <span class="n">roc</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">roc</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">r_out</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-<a id="__codelineno-0-202" name="__codelineno-0-202"></a>    <span class="n">hole_h</span> <span class="o">=</span> <span class="n">roc</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">roc</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">r_in</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-<a id="__codelineno-0-203" name="__codelineno-0-203"></a>    <span class="n">active_area</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">roc</span> <span class="o">*</span> <span class="p">(</span><span class="n">cap_h</span> <span class="o">-</span> <span class="n">hole_h</span><span class="p">)</span> <span class="o">*</span> <span class="n">active_fraction</span>
-<a id="__codelineno-0-204" name="__codelineno-0-204"></a>    <span class="n">elem_radius</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">active_area</span> <span class="o">/</span> <span class="n">n_elements</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
-<a id="__codelineno-0-205" name="__codelineno-0-205"></a>    <span class="n">r_start</span><span class="p">,</span> <span class="n">r_end</span> <span class="o">=</span> <span class="n">r_in</span> <span class="o">+</span> <span class="n">elem_radius</span><span class="p">,</span> <span class="n">r_out</span> <span class="o">-</span> <span class="n">elem_radius</span>
-<a id="__codelineno-0-206" name="__codelineno-0-206"></a>    <span class="k">if</span> <span class="n">r_start</span> <span class="o">&gt;=</span> <span class="n">r_end</span><span class="p">:</span>
-<a id="__codelineno-0-207" name="__codelineno-0-207"></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<a id="__codelineno-0-208" name="__codelineno-0-208"></a>            <span class="sa">f</span><span class="s2">"element radius </span><span class="si">{</span><span class="n">elem_radius</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">1e3</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> mm does not fit between the "</span>
-<a id="__codelineno-0-209" name="__codelineno-0-209"></a>            <span class="sa">f</span><span class="s2">"apertures; reduce n_elements or active_fraction."</span>
-<a id="__codelineno-0-210" name="__codelineno-0-210"></a>        <span class="p">)</span>
-<a id="__codelineno-0-211" name="__codelineno-0-211"></a>    <span class="n">turns</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(((</span><span class="n">r_end</span> <span class="o">-</span> <span class="n">r_start</span><span class="p">)</span> <span class="o">*</span> <span class="n">n_elements</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="n">r_end</span> <span class="o">+</span> <span class="n">r_start</span><span class="p">)))</span>
-<a id="__codelineno-0-212" name="__codelineno-0-212"></a>    <span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="n">r_end</span> <span class="o">-</span> <span class="n">r_start</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">turns</span><span class="p">)</span>
-<a id="__codelineno-0-213" name="__codelineno-0-213"></a>    <span class="n">theta_hr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">turns</span><span class="p">,</span> <span class="n">n_arc_samples</span><span class="p">)</span>
-<a id="__codelineno-0-214" name="__codelineno-0-214"></a>    <span class="n">arc_len</span> <span class="o">=</span> <span class="n">cumulative_trapezoid</span><span class="p">(</span>
-<a id="__codelineno-0-215" name="__codelineno-0-215"></a>        <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">r_start</span> <span class="o">+</span> <span class="n">b</span> <span class="o">*</span> <span class="n">theta_hr</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">b</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span> <span class="n">theta_hr</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mi">0</span>
-<a id="__codelineno-0-216" name="__codelineno-0-216"></a>    <span class="p">)</span>
-<a id="__codelineno-0-217" name="__codelineno-0-217"></a>    <span class="n">theta</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span><span class="n">arc_len</span><span class="p">,</span> <span class="n">theta_hr</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">"linear"</span><span class="p">)(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">arc_len</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">n_elements</span><span class="p">))</span>
-<a id="__codelineno-0-218" name="__codelineno-0-218"></a>    <span class="n">r</span> <span class="o">=</span> <span class="n">r_start</span> <span class="o">+</span> <span class="n">b</span> <span class="o">*</span> <span class="n">theta</span>
-<a id="__codelineno-0-219" name="__codelineno-0-219"></a>    <span class="n">positions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">(</span>
-<a id="__codelineno-0-220" name="__codelineno-0-220"></a>        <span class="p">(</span><span class="n">r</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="n">r</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="n">roc</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">roc</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">r</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
-<a id="__codelineno-0-221" name="__codelineno-0-221"></a>    <span class="p">)</span>
-<a id="__codelineno-0-222" name="__codelineno-0-222"></a>    <span class="n">normals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">roc</span><span class="p">])</span> <span class="o">-</span> <span class="n">positions</span>
-<a id="__codelineno-0-223" name="__codelineno-0-223"></a>    <span class="n">normals</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">normals</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<a id="__codelineno-0-224" name="__codelineno-0-224"></a>    <span class="k">return</span> <span class="n">TransducerArray</span><span class="p">(</span>
-<a id="__codelineno-0-225" name="__codelineno-0-225"></a>        <span class="n">positions</span><span class="o">=</span><span class="n">positions</span><span class="p">,</span> <span class="n">normals</span><span class="o">=</span><span class="n">normals</span><span class="p">,</span> <span class="n">elem_radius</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">elem_radius</span><span class="p">),</span> <span class="n">focal_length</span><span class="o">=</span><span class="n">roc</span>
-<a id="__codelineno-0-226" name="__codelineno-0-226"></a>    <span class="p">)</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-312">312</a></span>
+<span class="normal"><a href="#__codelineno-0-313">313</a></span>
+<span class="normal"><a href="#__codelineno-0-314">314</a></span>
+<span class="normal"><a href="#__codelineno-0-315">315</a></span>
+<span class="normal"><a href="#__codelineno-0-316">316</a></span>
+<span class="normal"><a href="#__codelineno-0-317">317</a></span>
+<span class="normal"><a href="#__codelineno-0-318">318</a></span>
+<span class="normal"><a href="#__codelineno-0-319">319</a></span>
+<span class="normal"><a href="#__codelineno-0-320">320</a></span>
+<span class="normal"><a href="#__codelineno-0-321">321</a></span>
+<span class="normal"><a href="#__codelineno-0-322">322</a></span>
+<span class="normal"><a href="#__codelineno-0-323">323</a></span>
+<span class="normal"><a href="#__codelineno-0-324">324</a></span>
+<span class="normal"><a href="#__codelineno-0-325">325</a></span>
+<span class="normal"><a href="#__codelineno-0-326">326</a></span>
+<span class="normal"><a href="#__codelineno-0-327">327</a></span>
+<span class="normal"><a href="#__codelineno-0-328">328</a></span>
+<span class="normal"><a href="#__codelineno-0-329">329</a></span>
+<span class="normal"><a href="#__codelineno-0-330">330</a></span>
+<span class="normal"><a href="#__codelineno-0-331">331</a></span>
+<span class="normal"><a href="#__codelineno-0-332">332</a></span>
+<span class="normal"><a href="#__codelineno-0-333">333</a></span>
+<span class="normal"><a href="#__codelineno-0-334">334</a></span>
+<span class="normal"><a href="#__codelineno-0-335">335</a></span>
+<span class="normal"><a href="#__codelineno-0-336">336</a></span>
+<span class="normal"><a href="#__codelineno-0-337">337</a></span>
+<span class="normal"><a href="#__codelineno-0-338">338</a></span>
+<span class="normal"><a href="#__codelineno-0-339">339</a></span>
+<span class="normal"><a href="#__codelineno-0-340">340</a></span>
+<span class="normal"><a href="#__codelineno-0-341">341</a></span>
+<span class="normal"><a href="#__codelineno-0-342">342</a></span>
+<span class="normal"><a href="#__codelineno-0-343">343</a></span>
+<span class="normal"><a href="#__codelineno-0-344">344</a></span>
+<span class="normal"><a href="#__codelineno-0-345">345</a></span>
+<span class="normal"><a href="#__codelineno-0-346">346</a></span>
+<span class="normal"><a href="#__codelineno-0-347">347</a></span>
+<span class="normal"><a href="#__codelineno-0-348">348</a></span>
+<span class="normal"><a href="#__codelineno-0-349">349</a></span>
+<span class="normal"><a href="#__codelineno-0-350">350</a></span>
+<span class="normal"><a href="#__codelineno-0-351">351</a></span>
+<span class="normal"><a href="#__codelineno-0-352">352</a></span>
+<span class="normal"><a href="#__codelineno-0-353">353</a></span>
+<span class="normal"><a href="#__codelineno-0-354">354</a></span>
+<span class="normal"><a href="#__codelineno-0-355">355</a></span>
+<span class="normal"><a href="#__codelineno-0-356">356</a></span>
+<span class="normal"><a href="#__codelineno-0-357">357</a></span>
+<span class="normal"><a href="#__codelineno-0-358">358</a></span>
+<span class="normal"><a href="#__codelineno-0-359">359</a></span>
+<span class="normal"><a href="#__codelineno-0-360">360</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-312" name="__codelineno-0-312"></a><span class="k">def</span><span class="w"> </span><span class="nf">archimedean_spiral</span><span class="p">(</span>
+<a id="__codelineno-0-313" name="__codelineno-0-313"></a>    <span class="n">n_elements</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">128</span><span class="p">,</span>
+<a id="__codelineno-0-314" name="__codelineno-0-314"></a>    <span class="n">d_outer</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.100</span><span class="p">,</span>
+<a id="__codelineno-0-315" name="__codelineno-0-315"></a>    <span class="n">d_inner</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.044</span><span class="p">,</span>
+<a id="__codelineno-0-316" name="__codelineno-0-316"></a>    <span class="n">roc</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.100</span><span class="p">,</span>
+<a id="__codelineno-0-317" name="__codelineno-0-317"></a>    <span class="n">active_fraction</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.60</span><span class="p">,</span>
+<a id="__codelineno-0-318" name="__codelineno-0-318"></a>    <span class="n">n_arc_samples</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10000</span><span class="p">,</span>
+<a id="__codelineno-0-319" name="__codelineno-0-319"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TransducerArray</span><span class="p">:</span>
+<a id="__codelineno-0-320" name="__codelineno-0-320"></a><span class="w">    </span><span class="sd">"""Spherically curved Archimedean-spiral phased array (notebook port).</span>
+<a id="__codelineno-0-321" name="__codelineno-0-321"></a>
+<a id="__codelineno-0-322" name="__codelineno-0-322"></a><span class="sd">    Elements are placed at equal arc-length intervals along a spiral wound</span>
+<a id="__codelineno-0-323" name="__codelineno-0-323"></a><span class="sd">    from ``r_start`` to ``r_end`` (aperture radii inset by one element</span>
+<a id="__codelineno-0-324" name="__codelineno-0-324"></a><span class="sd">    radius); the element radius comes from dividing the active shell area</span>
+<a id="__codelineno-0-325" name="__codelineno-0-325"></a><span class="sd">    equally. Defaults reproduce the production 128-element geometry.</span>
+<a id="__codelineno-0-326" name="__codelineno-0-326"></a><span class="sd">    """</span>
+<a id="__codelineno-0-327" name="__codelineno-0-327"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">d_inner</span> <span class="o">&lt;</span> <span class="n">d_outer</span> <span class="o">&lt;=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">roc</span><span class="p">:</span>
+<a id="__codelineno-0-328" name="__codelineno-0-328"></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<a id="__codelineno-0-329" name="__codelineno-0-329"></a>            <span class="sa">f</span><span class="s2">"need 0 &lt; d_inner &lt; d_outer &lt;= 2*roc, got d_inner=</span><span class="si">{</span><span class="n">d_inner</span><span class="si">}</span><span class="s2">, "</span>
+<a id="__codelineno-0-330" name="__codelineno-0-330"></a>            <span class="sa">f</span><span class="s2">"d_outer=</span><span class="si">{</span><span class="n">d_outer</span><span class="si">}</span><span class="s2">, roc=</span><span class="si">{</span><span class="n">roc</span><span class="si">}</span><span class="s2">"</span>
+<a id="__codelineno-0-331" name="__codelineno-0-331"></a>        <span class="p">)</span>
+<a id="__codelineno-0-332" name="__codelineno-0-332"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">active_fraction</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
+<a id="__codelineno-0-333" name="__codelineno-0-333"></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"active_fraction must be in (0, 1], got </span><span class="si">{</span><span class="n">active_fraction</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<a id="__codelineno-0-334" name="__codelineno-0-334"></a>    <span class="n">r_out</span><span class="p">,</span> <span class="n">r_in</span> <span class="o">=</span> <span class="n">d_outer</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">,</span> <span class="n">d_inner</span> <span class="o">/</span> <span class="mf">2.0</span>
+<a id="__codelineno-0-335" name="__codelineno-0-335"></a>    <span class="n">cap_h</span> <span class="o">=</span> <span class="n">roc</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">roc</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">r_out</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-0-336" name="__codelineno-0-336"></a>    <span class="n">hole_h</span> <span class="o">=</span> <span class="n">roc</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">roc</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">r_in</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-0-337" name="__codelineno-0-337"></a>    <span class="n">active_area</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">roc</span> <span class="o">*</span> <span class="p">(</span><span class="n">cap_h</span> <span class="o">-</span> <span class="n">hole_h</span><span class="p">)</span> <span class="o">*</span> <span class="n">active_fraction</span>
+<a id="__codelineno-0-338" name="__codelineno-0-338"></a>    <span class="n">elem_radius</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">active_area</span> <span class="o">/</span> <span class="n">n_elements</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+<a id="__codelineno-0-339" name="__codelineno-0-339"></a>    <span class="n">r_start</span><span class="p">,</span> <span class="n">r_end</span> <span class="o">=</span> <span class="n">r_in</span> <span class="o">+</span> <span class="n">elem_radius</span><span class="p">,</span> <span class="n">r_out</span> <span class="o">-</span> <span class="n">elem_radius</span>
+<a id="__codelineno-0-340" name="__codelineno-0-340"></a>    <span class="k">if</span> <span class="n">r_start</span> <span class="o">&gt;=</span> <span class="n">r_end</span><span class="p">:</span>
+<a id="__codelineno-0-341" name="__codelineno-0-341"></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<a id="__codelineno-0-342" name="__codelineno-0-342"></a>            <span class="sa">f</span><span class="s2">"element radius </span><span class="si">{</span><span class="n">elem_radius</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">1e3</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> mm does not fit between the "</span>
+<a id="__codelineno-0-343" name="__codelineno-0-343"></a>            <span class="sa">f</span><span class="s2">"apertures; reduce n_elements or active_fraction."</span>
+<a id="__codelineno-0-344" name="__codelineno-0-344"></a>        <span class="p">)</span>
+<a id="__codelineno-0-345" name="__codelineno-0-345"></a>    <span class="n">turns</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(((</span><span class="n">r_end</span> <span class="o">-</span> <span class="n">r_start</span><span class="p">)</span> <span class="o">*</span> <span class="n">n_elements</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="n">r_end</span> <span class="o">+</span> <span class="n">r_start</span><span class="p">)))</span>
+<a id="__codelineno-0-346" name="__codelineno-0-346"></a>    <span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="n">r_end</span> <span class="o">-</span> <span class="n">r_start</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">turns</span><span class="p">)</span>
+<a id="__codelineno-0-347" name="__codelineno-0-347"></a>    <span class="n">theta_hr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">turns</span><span class="p">,</span> <span class="n">n_arc_samples</span><span class="p">)</span>
+<a id="__codelineno-0-348" name="__codelineno-0-348"></a>    <span class="n">arc_len</span> <span class="o">=</span> <span class="n">cumulative_trapezoid</span><span class="p">(</span>
+<a id="__codelineno-0-349" name="__codelineno-0-349"></a>        <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">r_start</span> <span class="o">+</span> <span class="n">b</span> <span class="o">*</span> <span class="n">theta_hr</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">b</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span> <span class="n">theta_hr</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mi">0</span>
+<a id="__codelineno-0-350" name="__codelineno-0-350"></a>    <span class="p">)</span>
+<a id="__codelineno-0-351" name="__codelineno-0-351"></a>    <span class="n">theta</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span><span class="n">arc_len</span><span class="p">,</span> <span class="n">theta_hr</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">"linear"</span><span class="p">)(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">arc_len</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">n_elements</span><span class="p">))</span>
+<a id="__codelineno-0-352" name="__codelineno-0-352"></a>    <span class="n">r</span> <span class="o">=</span> <span class="n">r_start</span> <span class="o">+</span> <span class="n">b</span> <span class="o">*</span> <span class="n">theta</span>
+<a id="__codelineno-0-353" name="__codelineno-0-353"></a>    <span class="n">positions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">(</span>
+<a id="__codelineno-0-354" name="__codelineno-0-354"></a>        <span class="p">(</span><span class="n">r</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="n">r</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="n">roc</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">roc</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">r</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+<a id="__codelineno-0-355" name="__codelineno-0-355"></a>    <span class="p">)</span>
+<a id="__codelineno-0-356" name="__codelineno-0-356"></a>    <span class="n">normals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">roc</span><span class="p">])</span> <span class="o">-</span> <span class="n">positions</span>
+<a id="__codelineno-0-357" name="__codelineno-0-357"></a>    <span class="n">normals</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">normals</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-0-358" name="__codelineno-0-358"></a>    <span class="k">return</span> <span class="n">TransducerArray</span><span class="p">(</span>
+<a id="__codelineno-0-359" name="__codelineno-0-359"></a>        <span class="n">positions</span><span class="o">=</span><span class="n">positions</span><span class="p">,</span> <span class="n">normals</span><span class="o">=</span><span class="n">normals</span><span class="p">,</span> <span class="n">elem_radius</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">elem_radius</span><span class="p">),</span> <span class="n">focal_length</span><span class="o">=</span><span class="n">roc</span>
+<a id="__codelineno-0-360" name="__codelineno-0-360"></a>    <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -2868,85 +2936,236 @@ the fallback fails (geometry too dense for this representation).</p>
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">roc</span><span class="p">,</span>
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="n">apex_vox</span><span class="p">,</span>
 <a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="n">spacing</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="p">)</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="o">*</span><span class="p">,</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="n">discretization</span><span class="o">=</span><span class="s2">"offgrid"</span><span class="p">,</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="n">bli_tolerance</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="n">upsampling</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="p">)</span>
 </code></pre></div>
 
     <div class="doc doc-contents first">
 
-        <p>Focused spherical-cap source voxelized onto a 3-D grid.</p>
+        <p>Focused spherical-cap source on a 3-D grid.</p>
 <p>The cap axis is +z (last grid axis); <code>apex_vox</code> is the voxel of the
-bowl apex, the geometric focus lands at <code>apex_vox + roc/dx</code> along z.
-Sub-voxel cap sampling (default dx/2) is deduplicated to one voxel set,
-uniform phase (natural geometric focusing).</p>
+bowl apex and the geometric focus lands at <code>apex_vox + roc/dx</code> along z.
+Phase is uniform (natural geometric focusing).</p>
+<p><code>discretization</code> chooses how the continuous cap becomes grid quantities:</p>
+<p><code>"offgrid"</code> (default)
+    Weighted, band-limited: the cap's closed-form area is divided over
+    equal-area quadrature points and each is deposited through a
+    band-limited interpolant, so the grid weights sum to the area in
+    grid squares. This is what makes the realized amplitude match the
+    request for a <em>curved</em> source; <code>spacing</code> is ignored and
+    <code>upsampling</code> sets the quadrature density instead. See
+    :mod:<code>caustica.geometry.offgrid</code>.</p>
+<p><code>"binary"</code>
+    The pre-2026-08-24 behaviour: sample the cap at <code>spacing</code>
+    (default dx/2), round to voxels, deduplicate, drive each equally.
+    Kept because it is what every result before that date was computed
+    with, and reproducing one needs it. It over-drives a bowl by 13-25 %
+    and leaves 10 % of the shell undriven; both are measured in
+    <code>benchmarks/reports/geometry/</code>.</p>
 
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>caustica/sources.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-143">143</a></span>
-<span class="normal"><a href="#__codelineno-0-144">144</a></span>
-<span class="normal"><a href="#__codelineno-0-145">145</a></span>
-<span class="normal"><a href="#__codelineno-0-146">146</a></span>
-<span class="normal"><a href="#__codelineno-0-147">147</a></span>
-<span class="normal"><a href="#__codelineno-0-148">148</a></span>
-<span class="normal"><a href="#__codelineno-0-149">149</a></span>
-<span class="normal"><a href="#__codelineno-0-150">150</a></span>
-<span class="normal"><a href="#__codelineno-0-151">151</a></span>
-<span class="normal"><a href="#__codelineno-0-152">152</a></span>
-<span class="normal"><a href="#__codelineno-0-153">153</a></span>
-<span class="normal"><a href="#__codelineno-0-154">154</a></span>
-<span class="normal"><a href="#__codelineno-0-155">155</a></span>
-<span class="normal"><a href="#__codelineno-0-156">156</a></span>
-<span class="normal"><a href="#__codelineno-0-157">157</a></span>
-<span class="normal"><a href="#__codelineno-0-158">158</a></span>
-<span class="normal"><a href="#__codelineno-0-159">159</a></span>
-<span class="normal"><a href="#__codelineno-0-160">160</a></span>
-<span class="normal"><a href="#__codelineno-0-161">161</a></span>
-<span class="normal"><a href="#__codelineno-0-162">162</a></span>
-<span class="normal"><a href="#__codelineno-0-163">163</a></span>
-<span class="normal"><a href="#__codelineno-0-164">164</a></span>
-<span class="normal"><a href="#__codelineno-0-165">165</a></span>
-<span class="normal"><a href="#__codelineno-0-166">166</a></span>
-<span class="normal"><a href="#__codelineno-0-167">167</a></span>
-<span class="normal"><a href="#__codelineno-0-168">168</a></span>
-<span class="normal"><a href="#__codelineno-0-169">169</a></span>
-<span class="normal"><a href="#__codelineno-0-170">170</a></span>
-<span class="normal"><a href="#__codelineno-0-171">171</a></span>
-<span class="normal"><a href="#__codelineno-0-172">172</a></span>
-<span class="normal"><a href="#__codelineno-0-173">173</a></span>
-<span class="normal"><a href="#__codelineno-0-174">174</a></span>
-<span class="normal"><a href="#__codelineno-0-175">175</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-143" name="__codelineno-0-143"></a><span class="k">def</span><span class="w"> </span><span class="nf">bowl_cw_source</span><span class="p">(</span>
-<a id="__codelineno-0-144" name="__codelineno-0-144"></a>    <span class="n">grid</span><span class="p">:</span> <span class="n">Grid</span><span class="p">,</span>
-<a id="__codelineno-0-145" name="__codelineno-0-145"></a>    <span class="n">f0</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-<a id="__codelineno-0-146" name="__codelineno-0-146"></a>    <span class="n">amplitude</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-<a id="__codelineno-0-147" name="__codelineno-0-147"></a>    <span class="n">aperture_radius</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-<a id="__codelineno-0-148" name="__codelineno-0-148"></a>    <span class="n">roc</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-<a id="__codelineno-0-149" name="__codelineno-0-149"></a>    <span class="n">apex_vox</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span>
-<a id="__codelineno-0-150" name="__codelineno-0-150"></a>    <span class="n">spacing</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-151" name="__codelineno-0-151"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CWSource</span><span class="p">:</span>
-<a id="__codelineno-0-152" name="__codelineno-0-152"></a><span class="w">    </span><span class="sd">"""Focused spherical-cap source voxelized onto a 3-D grid.</span>
-<a id="__codelineno-0-153" name="__codelineno-0-153"></a>
-<a id="__codelineno-0-154" name="__codelineno-0-154"></a><span class="sd">    The cap axis is +z (last grid axis); ``apex_vox`` is the voxel of the</span>
-<a id="__codelineno-0-155" name="__codelineno-0-155"></a><span class="sd">    bowl apex, the geometric focus lands at ``apex_vox + roc/dx`` along z.</span>
-<a id="__codelineno-0-156" name="__codelineno-0-156"></a><span class="sd">    Sub-voxel cap sampling (default dx/2) is deduplicated to one voxel set,</span>
-<a id="__codelineno-0-157" name="__codelineno-0-157"></a><span class="sd">    uniform phase (natural geometric focusing).</span>
-<a id="__codelineno-0-158" name="__codelineno-0-158"></a><span class="sd">    """</span>
-<a id="__codelineno-0-159" name="__codelineno-0-159"></a>    <span class="k">if</span> <span class="n">grid</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
-<a id="__codelineno-0-160" name="__codelineno-0-160"></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"bowl_cw_source requires a 3-D grid"</span><span class="p">)</span>
-<a id="__codelineno-0-161" name="__codelineno-0-161"></a>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">apex_vox</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
-<a id="__codelineno-0-162" name="__codelineno-0-162"></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"apex_vox must have 3 entries, got </span><span class="si">{</span><span class="n">apex_vox</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<a id="__codelineno-0-163" name="__codelineno-0-163"></a>    <span class="n">ds</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">dx</span> <span class="o">/</span> <span class="mf">2.0</span> <span class="k">if</span> <span class="n">spacing</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="n">spacing</span><span class="p">)</span>
-<a id="__codelineno-0-164" name="__codelineno-0-164"></a>    <span class="n">points</span><span class="p">,</span> <span class="n">_normals</span><span class="p">,</span> <span class="n">_areas</span> <span class="o">=</span> <span class="n">spherical_cap_points</span><span class="p">(</span><span class="n">aperture_radius</span><span class="p">,</span> <span class="n">roc</span><span class="p">,</span> <span class="n">ds</span><span class="p">)</span>
-<a id="__codelineno-0-165" name="__codelineno-0-165"></a>    <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">points</span> <span class="o">/</span> <span class="n">grid</span><span class="o">.</span><span class="n">dx</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">apex_vox</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
-<a id="__codelineno-0-166" name="__codelineno-0-166"></a>    <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<a id="__codelineno-0-167" name="__codelineno-0-167"></a>    <span class="n">src</span> <span class="o">=</span> <span class="n">CWSource</span><span class="p">(</span>
-<a id="__codelineno-0-168" name="__codelineno-0-168"></a>        <span class="n">indices</span><span class="o">=</span><span class="n">idx</span><span class="p">,</span>
-<a id="__codelineno-0-169" name="__codelineno-0-169"></a>        <span class="n">phases</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">idx</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span>
-<a id="__codelineno-0-170" name="__codelineno-0-170"></a>        <span class="n">amplitude</span><span class="o">=</span><span class="n">amplitude</span><span class="p">,</span>
-<a id="__codelineno-0-171" name="__codelineno-0-171"></a>        <span class="n">f0</span><span class="o">=</span><span class="n">f0</span><span class="p">,</span>
-<a id="__codelineno-0-172" name="__codelineno-0-172"></a>        <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">"bowl(a=</span><span class="si">{</span><span class="n">aperture_radius</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">1e3</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">mm, roc=</span><span class="si">{</span><span class="n">roc</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">1e3</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">mm)"</span><span class="p">,</span>
-<a id="__codelineno-0-173" name="__codelineno-0-173"></a>    <span class="p">)</span>
-<a id="__codelineno-0-174" name="__codelineno-0-174"></a>    <span class="n">src</span><span class="o">.</span><span class="n">check_inside</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
-<a id="__codelineno-0-175" name="__codelineno-0-175"></a>    <span class="k">return</span> <span class="n">src</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-264">264</a></span>
+<span class="normal"><a href="#__codelineno-0-265">265</a></span>
+<span class="normal"><a href="#__codelineno-0-266">266</a></span>
+<span class="normal"><a href="#__codelineno-0-267">267</a></span>
+<span class="normal"><a href="#__codelineno-0-268">268</a></span>
+<span class="normal"><a href="#__codelineno-0-269">269</a></span>
+<span class="normal"><a href="#__codelineno-0-270">270</a></span>
+<span class="normal"><a href="#__codelineno-0-271">271</a></span>
+<span class="normal"><a href="#__codelineno-0-272">272</a></span>
+<span class="normal"><a href="#__codelineno-0-273">273</a></span>
+<span class="normal"><a href="#__codelineno-0-274">274</a></span>
+<span class="normal"><a href="#__codelineno-0-275">275</a></span>
+<span class="normal"><a href="#__codelineno-0-276">276</a></span>
+<span class="normal"><a href="#__codelineno-0-277">277</a></span>
+<span class="normal"><a href="#__codelineno-0-278">278</a></span>
+<span class="normal"><a href="#__codelineno-0-279">279</a></span>
+<span class="normal"><a href="#__codelineno-0-280">280</a></span>
+<span class="normal"><a href="#__codelineno-0-281">281</a></span>
+<span class="normal"><a href="#__codelineno-0-282">282</a></span>
+<span class="normal"><a href="#__codelineno-0-283">283</a></span>
+<span class="normal"><a href="#__codelineno-0-284">284</a></span>
+<span class="normal"><a href="#__codelineno-0-285">285</a></span>
+<span class="normal"><a href="#__codelineno-0-286">286</a></span>
+<span class="normal"><a href="#__codelineno-0-287">287</a></span>
+<span class="normal"><a href="#__codelineno-0-288">288</a></span>
+<span class="normal"><a href="#__codelineno-0-289">289</a></span>
+<span class="normal"><a href="#__codelineno-0-290">290</a></span>
+<span class="normal"><a href="#__codelineno-0-291">291</a></span>
+<span class="normal"><a href="#__codelineno-0-292">292</a></span>
+<span class="normal"><a href="#__codelineno-0-293">293</a></span>
+<span class="normal"><a href="#__codelineno-0-294">294</a></span>
+<span class="normal"><a href="#__codelineno-0-295">295</a></span>
+<span class="normal"><a href="#__codelineno-0-296">296</a></span>
+<span class="normal"><a href="#__codelineno-0-297">297</a></span>
+<span class="normal"><a href="#__codelineno-0-298">298</a></span>
+<span class="normal"><a href="#__codelineno-0-299">299</a></span>
+<span class="normal"><a href="#__codelineno-0-300">300</a></span>
+<span class="normal"><a href="#__codelineno-0-301">301</a></span>
+<span class="normal"><a href="#__codelineno-0-302">302</a></span>
+<span class="normal"><a href="#__codelineno-0-303">303</a></span>
+<span class="normal"><a href="#__codelineno-0-304">304</a></span>
+<span class="normal"><a href="#__codelineno-0-305">305</a></span>
+<span class="normal"><a href="#__codelineno-0-306">306</a></span>
+<span class="normal"><a href="#__codelineno-0-307">307</a></span>
+<span class="normal"><a href="#__codelineno-0-308">308</a></span>
+<span class="normal"><a href="#__codelineno-0-309">309</a></span>
+<span class="normal"><a href="#__codelineno-0-310">310</a></span>
+<span class="normal"><a href="#__codelineno-0-311">311</a></span>
+<span class="normal"><a href="#__codelineno-0-312">312</a></span>
+<span class="normal"><a href="#__codelineno-0-313">313</a></span>
+<span class="normal"><a href="#__codelineno-0-314">314</a></span>
+<span class="normal"><a href="#__codelineno-0-315">315</a></span>
+<span class="normal"><a href="#__codelineno-0-316">316</a></span>
+<span class="normal"><a href="#__codelineno-0-317">317</a></span>
+<span class="normal"><a href="#__codelineno-0-318">318</a></span>
+<span class="normal"><a href="#__codelineno-0-319">319</a></span>
+<span class="normal"><a href="#__codelineno-0-320">320</a></span>
+<span class="normal"><a href="#__codelineno-0-321">321</a></span>
+<span class="normal"><a href="#__codelineno-0-322">322</a></span>
+<span class="normal"><a href="#__codelineno-0-323">323</a></span>
+<span class="normal"><a href="#__codelineno-0-324">324</a></span>
+<span class="normal"><a href="#__codelineno-0-325">325</a></span>
+<span class="normal"><a href="#__codelineno-0-326">326</a></span>
+<span class="normal"><a href="#__codelineno-0-327">327</a></span>
+<span class="normal"><a href="#__codelineno-0-328">328</a></span>
+<span class="normal"><a href="#__codelineno-0-329">329</a></span>
+<span class="normal"><a href="#__codelineno-0-330">330</a></span>
+<span class="normal"><a href="#__codelineno-0-331">331</a></span>
+<span class="normal"><a href="#__codelineno-0-332">332</a></span>
+<span class="normal"><a href="#__codelineno-0-333">333</a></span>
+<span class="normal"><a href="#__codelineno-0-334">334</a></span>
+<span class="normal"><a href="#__codelineno-0-335">335</a></span>
+<span class="normal"><a href="#__codelineno-0-336">336</a></span>
+<span class="normal"><a href="#__codelineno-0-337">337</a></span>
+<span class="normal"><a href="#__codelineno-0-338">338</a></span>
+<span class="normal"><a href="#__codelineno-0-339">339</a></span>
+<span class="normal"><a href="#__codelineno-0-340">340</a></span>
+<span class="normal"><a href="#__codelineno-0-341">341</a></span>
+<span class="normal"><a href="#__codelineno-0-342">342</a></span>
+<span class="normal"><a href="#__codelineno-0-343">343</a></span>
+<span class="normal"><a href="#__codelineno-0-344">344</a></span>
+<span class="normal"><a href="#__codelineno-0-345">345</a></span>
+<span class="normal"><a href="#__codelineno-0-346">346</a></span>
+<span class="normal"><a href="#__codelineno-0-347">347</a></span>
+<span class="normal"><a href="#__codelineno-0-348">348</a></span>
+<span class="normal"><a href="#__codelineno-0-349">349</a></span>
+<span class="normal"><a href="#__codelineno-0-350">350</a></span>
+<span class="normal"><a href="#__codelineno-0-351">351</a></span>
+<span class="normal"><a href="#__codelineno-0-352">352</a></span>
+<span class="normal"><a href="#__codelineno-0-353">353</a></span>
+<span class="normal"><a href="#__codelineno-0-354">354</a></span>
+<span class="normal"><a href="#__codelineno-0-355">355</a></span>
+<span class="normal"><a href="#__codelineno-0-356">356</a></span>
+<span class="normal"><a href="#__codelineno-0-357">357</a></span>
+<span class="normal"><a href="#__codelineno-0-358">358</a></span>
+<span class="normal"><a href="#__codelineno-0-359">359</a></span>
+<span class="normal"><a href="#__codelineno-0-360">360</a></span>
+<span class="normal"><a href="#__codelineno-0-361">361</a></span>
+<span class="normal"><a href="#__codelineno-0-362">362</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-264" name="__codelineno-0-264"></a><span class="k">def</span><span class="w"> </span><span class="nf">bowl_cw_source</span><span class="p">(</span>
+<a id="__codelineno-0-265" name="__codelineno-0-265"></a>    <span class="n">grid</span><span class="p">:</span> <span class="n">Grid</span><span class="p">,</span>
+<a id="__codelineno-0-266" name="__codelineno-0-266"></a>    <span class="n">f0</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+<a id="__codelineno-0-267" name="__codelineno-0-267"></a>    <span class="n">amplitude</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+<a id="__codelineno-0-268" name="__codelineno-0-268"></a>    <span class="n">aperture_radius</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+<a id="__codelineno-0-269" name="__codelineno-0-269"></a>    <span class="n">roc</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+<a id="__codelineno-0-270" name="__codelineno-0-270"></a>    <span class="n">apex_vox</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span>
+<a id="__codelineno-0-271" name="__codelineno-0-271"></a>    <span class="n">spacing</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-272" name="__codelineno-0-272"></a>    <span class="o">*</span><span class="p">,</span>
+<a id="__codelineno-0-273" name="__codelineno-0-273"></a>    <span class="n">discretization</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"offgrid"</span><span class="p">,</span>
+<a id="__codelineno-0-274" name="__codelineno-0-274"></a>    <span class="n">bli_tolerance</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span>
+<a id="__codelineno-0-275" name="__codelineno-0-275"></a>    <span class="n">upsampling</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
+<a id="__codelineno-0-276" name="__codelineno-0-276"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CWSource</span><span class="p">:</span>
+<a id="__codelineno-0-277" name="__codelineno-0-277"></a><span class="w">    </span><span class="sd">"""Focused spherical-cap source on a 3-D grid.</span>
+<a id="__codelineno-0-278" name="__codelineno-0-278"></a>
+<a id="__codelineno-0-279" name="__codelineno-0-279"></a><span class="sd">    The cap axis is +z (last grid axis); ``apex_vox`` is the voxel of the</span>
+<a id="__codelineno-0-280" name="__codelineno-0-280"></a><span class="sd">    bowl apex and the geometric focus lands at ``apex_vox + roc/dx`` along z.</span>
+<a id="__codelineno-0-281" name="__codelineno-0-281"></a><span class="sd">    Phase is uniform (natural geometric focusing).</span>
+<a id="__codelineno-0-282" name="__codelineno-0-282"></a>
+<a id="__codelineno-0-283" name="__codelineno-0-283"></a><span class="sd">    ``discretization`` chooses how the continuous cap becomes grid quantities:</span>
+<a id="__codelineno-0-284" name="__codelineno-0-284"></a>
+<a id="__codelineno-0-285" name="__codelineno-0-285"></a><span class="sd">    ``"offgrid"`` (default)</span>
+<a id="__codelineno-0-286" name="__codelineno-0-286"></a><span class="sd">        Weighted, band-limited: the cap's closed-form area is divided over</span>
+<a id="__codelineno-0-287" name="__codelineno-0-287"></a><span class="sd">        equal-area quadrature points and each is deposited through a</span>
+<a id="__codelineno-0-288" name="__codelineno-0-288"></a><span class="sd">        band-limited interpolant, so the grid weights sum to the area in</span>
+<a id="__codelineno-0-289" name="__codelineno-0-289"></a><span class="sd">        grid squares. This is what makes the realized amplitude match the</span>
+<a id="__codelineno-0-290" name="__codelineno-0-290"></a><span class="sd">        request for a *curved* source; ``spacing`` is ignored and</span>
+<a id="__codelineno-0-291" name="__codelineno-0-291"></a><span class="sd">        ``upsampling`` sets the quadrature density instead. See</span>
+<a id="__codelineno-0-292" name="__codelineno-0-292"></a><span class="sd">        :mod:`caustica.geometry.offgrid`.</span>
+<a id="__codelineno-0-293" name="__codelineno-0-293"></a>
+<a id="__codelineno-0-294" name="__codelineno-0-294"></a><span class="sd">    ``"binary"``</span>
+<a id="__codelineno-0-295" name="__codelineno-0-295"></a><span class="sd">        The pre-2026-08-24 behaviour: sample the cap at ``spacing``</span>
+<a id="__codelineno-0-296" name="__codelineno-0-296"></a><span class="sd">        (default dx/2), round to voxels, deduplicate, drive each equally.</span>
+<a id="__codelineno-0-297" name="__codelineno-0-297"></a><span class="sd">        Kept because it is what every result before that date was computed</span>
+<a id="__codelineno-0-298" name="__codelineno-0-298"></a><span class="sd">        with, and reproducing one needs it. It over-drives a bowl by 13-25 %</span>
+<a id="__codelineno-0-299" name="__codelineno-0-299"></a><span class="sd">        and leaves 10 % of the shell undriven; both are measured in</span>
+<a id="__codelineno-0-300" name="__codelineno-0-300"></a><span class="sd">        ``benchmarks/reports/geometry/``.</span>
+<a id="__codelineno-0-301" name="__codelineno-0-301"></a><span class="sd">    """</span>
+<a id="__codelineno-0-302" name="__codelineno-0-302"></a>    <span class="k">if</span> <span class="n">grid</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
+<a id="__codelineno-0-303" name="__codelineno-0-303"></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"bowl_cw_source requires a 3-D grid"</span><span class="p">)</span>
+<a id="__codelineno-0-304" name="__codelineno-0-304"></a>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">apex_vox</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
+<a id="__codelineno-0-305" name="__codelineno-0-305"></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"apex_vox must have 3 entries, got </span><span class="si">{</span><span class="n">apex_vox</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<a id="__codelineno-0-306" name="__codelineno-0-306"></a>    <span class="k">if</span> <span class="n">discretization</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"offgrid"</span><span class="p">,</span> <span class="s2">"binary"</span><span class="p">):</span>
+<a id="__codelineno-0-307" name="__codelineno-0-307"></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"discretization must be 'offgrid' or 'binary', got </span><span class="si">{</span><span class="n">discretization</span><span class="si">!r}</span><span class="s2">"</span><span class="p">)</span>
+<a id="__codelineno-0-308" name="__codelineno-0-308"></a>    <span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"bowl(a=</span><span class="si">{</span><span class="n">aperture_radius</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">1e3</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">mm, roc=</span><span class="si">{</span><span class="n">roc</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">1e3</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">mm)"</span>
+<a id="__codelineno-0-309" name="__codelineno-0-309"></a>
+<a id="__codelineno-0-310" name="__codelineno-0-310"></a>    <span class="k">if</span> <span class="n">discretization</span> <span class="o">==</span> <span class="s2">"binary"</span><span class="p">:</span>
+<a id="__codelineno-0-311" name="__codelineno-0-311"></a>        <span class="n">ds</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">dx</span> <span class="o">/</span> <span class="mf">2.0</span> <span class="k">if</span> <span class="n">spacing</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="n">spacing</span><span class="p">)</span>
+<a id="__codelineno-0-312" name="__codelineno-0-312"></a>        <span class="n">points</span><span class="p">,</span> <span class="n">_normals</span><span class="p">,</span> <span class="n">_areas</span> <span class="o">=</span> <span class="n">spherical_cap_points</span><span class="p">(</span><span class="n">aperture_radius</span><span class="p">,</span> <span class="n">roc</span><span class="p">,</span> <span class="n">ds</span><span class="p">)</span>
+<a id="__codelineno-0-313" name="__codelineno-0-313"></a>        <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">points</span> <span class="o">/</span> <span class="n">grid</span><span class="o">.</span><span class="n">dx</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">apex_vox</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
+<a id="__codelineno-0-314" name="__codelineno-0-314"></a>        <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<a id="__codelineno-0-315" name="__codelineno-0-315"></a>        <span class="n">src</span> <span class="o">=</span> <span class="n">CWSource</span><span class="p">(</span>
+<a id="__codelineno-0-316" name="__codelineno-0-316"></a>            <span class="n">indices</span><span class="o">=</span><span class="n">idx</span><span class="p">,</span>
+<a id="__codelineno-0-317" name="__codelineno-0-317"></a>            <span class="n">phases</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">idx</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span>
+<a id="__codelineno-0-318" name="__codelineno-0-318"></a>            <span class="n">amplitude</span><span class="o">=</span><span class="n">amplitude</span><span class="p">,</span>
+<a id="__codelineno-0-319" name="__codelineno-0-319"></a>            <span class="n">f0</span><span class="o">=</span><span class="n">f0</span><span class="p">,</span>
+<a id="__codelineno-0-320" name="__codelineno-0-320"></a>            <span class="n">label</span><span class="o">=</span><span class="n">label</span> <span class="o">+</span> <span class="s2">" binary"</span><span class="p">,</span>
+<a id="__codelineno-0-321" name="__codelineno-0-321"></a>            <span class="n">discretization</span><span class="o">=</span><span class="s2">"binary"</span><span class="p">,</span>
+<a id="__codelineno-0-322" name="__codelineno-0-322"></a>        <span class="p">)</span>
+<a id="__codelineno-0-323" name="__codelineno-0-323"></a>        <span class="n">src</span><span class="o">.</span><span class="n">check_inside</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
+<a id="__codelineno-0-324" name="__codelineno-0-324"></a>        <span class="k">return</span> <span class="n">src</span>
+<a id="__codelineno-0-325" name="__codelineno-0-325"></a>
+<a id="__codelineno-0-326" name="__codelineno-0-326"></a>    <span class="kn">from</span><span class="w"> </span><span class="nn">caustica.geometry.offgrid</span><span class="w"> </span><span class="kn">import</span> <span class="n">spherical_cap_deposit</span>  <span class="c1"># noqa: PLC0415</span>
+<a id="__codelineno-0-327" name="__codelineno-0-327"></a>
+<a id="__codelineno-0-328" name="__codelineno-0-328"></a>    <span class="n">dep</span> <span class="o">=</span> <span class="n">spherical_cap_deposit</span><span class="p">(</span>
+<a id="__codelineno-0-329" name="__codelineno-0-329"></a>        <span class="n">grid</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>
+<a id="__codelineno-0-330" name="__codelineno-0-330"></a>        <span class="n">grid</span><span class="o">.</span><span class="n">dx</span><span class="p">,</span>
+<a id="__codelineno-0-331" name="__codelineno-0-331"></a>        <span class="n">aperture_radius</span><span class="p">,</span>
+<a id="__codelineno-0-332" name="__codelineno-0-332"></a>        <span class="n">roc</span><span class="p">,</span>
+<a id="__codelineno-0-333" name="__codelineno-0-333"></a>        <span class="n">apex_vox</span><span class="p">,</span>
+<a id="__codelineno-0-334" name="__codelineno-0-334"></a>        <span class="n">upsampling</span><span class="o">=</span><span class="n">upsampling</span><span class="p">,</span>
+<a id="__codelineno-0-335" name="__codelineno-0-335"></a>        <span class="n">tolerance</span><span class="o">=</span><span class="n">bli_tolerance</span><span class="p">,</span>
+<a id="__codelineno-0-336" name="__codelineno-0-336"></a>    <span class="p">)</span>
+<a id="__codelineno-0-337" name="__codelineno-0-337"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">dep</span><span class="o">.</span><span class="n">indices</span><span class="p">):</span>
+<a id="__codelineno-0-338" name="__codelineno-0-338"></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<a id="__codelineno-0-339" name="__codelineno-0-339"></a>            <span class="sa">f</span><span class="s2">"the bowl (a=</span><span class="si">{</span><span class="n">aperture_radius</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">1e3</span><span class="si">:</span><span class="s2">g</span><span class="si">}</span><span class="s2"> mm, roc=</span><span class="si">{</span><span class="n">roc</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">1e3</span><span class="si">:</span><span class="s2">g</span><span class="si">}</span><span class="s2"> mm, "</span>
+<a id="__codelineno-0-340" name="__codelineno-0-340"></a>            <span class="sa">f</span><span class="s2">"apex </span><span class="si">{</span><span class="nb">tuple</span><span class="p">(</span><span class="n">apex_vox</span><span class="p">)</span><span class="si">}</span><span class="s2">) deposited nothing inside grid </span><span class="si">{</span><span class="n">grid</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">"</span>
+<a id="__codelineno-0-341" name="__codelineno-0-341"></a>        <span class="p">)</span>
+<a id="__codelineno-0-342" name="__codelineno-0-342"></a>    <span class="c1"># A band-limited source has a halo, and a halo that runs off the edge is</span>
+<a id="__codelineno-0-343" name="__codelineno-0-343"></a>    <span class="c1"># a transducer that is partly outside the domain. Silence there would be</span>
+<a id="__codelineno-0-344" name="__codelineno-0-344"></a>    <span class="c1"># the same failure as the bowl that dissolved into the sponge.</span>
+<a id="__codelineno-0-345" name="__codelineno-0-345"></a>    <span class="k">if</span> <span class="n">dep</span><span class="o">.</span><span class="n">dropped_fraction</span> <span class="o">&gt;</span> <span class="mf">1e-6</span><span class="p">:</span>
+<a id="__codelineno-0-346" name="__codelineno-0-346"></a>        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+<a id="__codelineno-0-347" name="__codelineno-0-347"></a>            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">dep</span><span class="o">.</span><span class="n">dropped_fraction</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">% of this bowl's drive falls outside "</span>
+<a id="__codelineno-0-348" name="__codelineno-0-348"></a>            <span class="sa">f</span><span class="s2">"grid </span><span class="si">{</span><span class="n">grid</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">: the band-limited source reaches several voxels "</span>
+<a id="__codelineno-0-349" name="__codelineno-0-349"></a>            <span class="sa">f</span><span class="s2">"beyond the cap and the domain does not hold it. Enlarge the grid or "</span>
+<a id="__codelineno-0-350" name="__codelineno-0-350"></a>            <span class="sa">f</span><span class="s2">"move the apex inward."</span><span class="p">,</span>
+<a id="__codelineno-0-351" name="__codelineno-0-351"></a>            <span class="n">CausticaWarning</span><span class="p">,</span>
+<a id="__codelineno-0-352" name="__codelineno-0-352"></a>            <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+<a id="__codelineno-0-353" name="__codelineno-0-353"></a>        <span class="p">)</span>
+<a id="__codelineno-0-354" name="__codelineno-0-354"></a>    <span class="k">return</span> <span class="n">CWSource</span><span class="p">(</span>
+<a id="__codelineno-0-355" name="__codelineno-0-355"></a>        <span class="n">indices</span><span class="o">=</span><span class="n">dep</span><span class="o">.</span><span class="n">indices</span><span class="p">,</span>
+<a id="__codelineno-0-356" name="__codelineno-0-356"></a>        <span class="n">phases</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dep</span><span class="o">.</span><span class="n">indices</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span>
+<a id="__codelineno-0-357" name="__codelineno-0-357"></a>        <span class="n">amplitude</span><span class="o">=</span><span class="n">amplitude</span><span class="p">,</span>
+<a id="__codelineno-0-358" name="__codelineno-0-358"></a>        <span class="n">f0</span><span class="o">=</span><span class="n">f0</span><span class="p">,</span>
+<a id="__codelineno-0-359" name="__codelineno-0-359"></a>        <span class="n">weights</span><span class="o">=</span><span class="n">dep</span><span class="o">.</span><span class="n">weights</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span>
+<a id="__codelineno-0-360" name="__codelineno-0-360"></a>        <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span>
+<a id="__codelineno-0-361" name="__codelineno-0-361"></a>        <span class="n">discretization</span><span class="o">=</span><span class="s2">"offgrid"</span><span class="p">,</span>
+<a id="__codelineno-0-362" name="__codelineno-0-362"></a>    <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
