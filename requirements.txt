@@ -1,10 +1,11 @@
 # The site's build environment. caustica is installed because the API reference
 # is generated from its docstrings and the contract tests import it -- pinned to
-# a branch, not a version, so the pages track master rather than the last release.
+# a branch, not a version, so the pages track the integration branch rather than
+# the last release. Switch this back to master at the first release.
 mkdocs-material>=9.5
 mkdocstrings[python]>=0.26
 pytest>=8
 # mkdocstrings formats rendered signatures only if black or ruff is importable;
 # without it every signature publishes on one unwrapped line.
 ruff>=0.16
-caustica @ git+https://github.com/ebx0/caustica@master
+caustica @ git+https://github.com/ebx0/caustica@develop

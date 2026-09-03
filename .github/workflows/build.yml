@@ -51,7 +51,7 @@ jobs:
         working-directory: src
         run: |
           curl -fsSL --retry 3 \
-            https://raw.githubusercontent.com/ebx0/caustica/master/CHANGELOG.md \
+            https://raw.githubusercontent.com/ebx0/caustica/develop/CHANGELOG.md \
             -o CHANGELOG.md
           test -s CHANGELOG.md
 

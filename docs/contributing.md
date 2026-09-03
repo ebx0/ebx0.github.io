@@ -60,11 +60,11 @@ The library repository holds no pages.
 git clone -b caustica-docs https://github.com/ebx0/ebx0.github.io caustica-docs
 cd caustica-docs
 python -m venv .venv && .venv/bin/pip install -r requirements.txt
-curl -fsSL https://raw.githubusercontent.com/ebx0/caustica/master/CHANGELOG.md -o CHANGELOG.md
+curl -fsSL https://raw.githubusercontent.com/ebx0/caustica/develop/CHANGELOG.md -o CHANGELOG.md
 .venv/bin/python -m mkdocs serve
 ```
 
-`requirements.txt` installs caustica from `master`, because the API reference is generated
+`requirements.txt` installs caustica from `develop`, because the API reference is generated
 from its docstrings rather than written here.
 
 Two gates run before anything is published. `mkdocs build --strict` fails on a broken internal

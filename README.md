@@ -15,7 +15,7 @@ rhythm, so it was moved out on 2026-09-03. Two links back remain, both
 deliberate:
 
 - the **API reference** is generated from caustica's docstrings, so the build
-  installs the library from `master` rather than copying anything;
+  installs the library from `develop` rather than copying anything;
 - **`docs/changelog.md`** includes the library's `CHANGELOG.md`, fetched at
   build time, so the two cannot drift.
 
@@ -31,7 +31,7 @@ publishes. A page that drifts from the code fails the build.
 
 ```bash
 python -m venv .venv && .venv/bin/pip install -r requirements.txt
-curl -fsSL https://raw.githubusercontent.com/ebx0/caustica/master/CHANGELOG.md -o CHANGELOG.md
+curl -fsSL https://raw.githubusercontent.com/ebx0/caustica/develop/CHANGELOG.md -o CHANGELOG.md
 .venv/bin/python -m pytest
 .venv/bin/python -m mkdocs serve
 ```
